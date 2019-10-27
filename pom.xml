@@ -63,7 +63,6 @@
       <artifactId>maven-compat</artifactId>
       <version>3.6.2</version>
     </dependency>
-    <!-- dependencies to annotations -->
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>

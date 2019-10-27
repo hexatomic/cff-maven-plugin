@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -73,13 +74,13 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         Load yamlLoad = new Load(yamlLoadSettings);
         Map<String, Object> cff = new LinkedHashMap<>();
         cff.putIfAbsent("cff-version", "1.0.3");
-        
+
         if (input != null && input.isFile()) {
             try (FileInputStream inputFile = new FileInputStream(input)) {
                 Object loaded = yamlLoad.loadFromInputStream(inputFile);
-                if(loaded instanceof Map<?,?>) {
-                    for(Map.Entry<?,?> e : ((Map<?,?>) loaded).entrySet()) {
-                        if(e.getKey() instanceof String) {
+                if (loaded instanceof Map<?, ?>) {
+                    for (Map.Entry<?, ?> e : ((Map<?, ?>) loaded).entrySet()) {
+                        if (e.getKey() instanceof String) {
                             cff.put((String) e.getKey(), e.getValue());
                         }
                     }
@@ -93,7 +94,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 mavenSession.getProjectBuildingRequest()).setRemoteRepositories(remoteRepositories)
                         .setValidationLevel(ModelBuildingRequest.VALIDATION_LEVEL_MINIMAL).setResolveDependencies(false)
                         .setProcessPlugins(false);
-    
+
         // set basic properties like title
         cff.putIfAbsent("title", project.getName());
         cff.putIfAbsent("version", project.getVersion());
@@ -113,7 +114,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         for (Artifact artifact : project.getArtifacts()) {
             try {
                 Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-                if(ignoreExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
+                if (ignoreExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
                     getLog().info("Ignoring existing dependency " + artifact.toString());
                 } else {
                     getLog().info("Adding dependency " + artifact.toString());
@@ -162,16 +163,24 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
         reference.put("title", artifact.getArtifactId());
 
-        String licenseString = null;
-
+     
         if (!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
 
             List<License> licenses = result.getProject().getLicenses();
             if (!licenses.isEmpty()) {
-                licenseString = licenses.get(0).getName();
+                License l = licenses.get(0);
+                Optional<String> spdx = KnownLicenses.parse(l.getName());
+                if(spdx.isPresent()) {
+                    reference.put("license", spdx.get());
+                } else if (l.getUrl() != null && !l.getUrl().isEmpty()) {
+                    // We could not parse the license, but there is an URL we can use
+                    getLog().warn("Falling back to license URL for unknown license \"" + l.getName() + "\"");
+                    reference.put("license-url", l.getUrl());
+                } else {
+                    // TODO: try to get the license from clearlydefined.io
+                }
             }
-            reference.put("license", licenseString);
         }
 
         return reference;
