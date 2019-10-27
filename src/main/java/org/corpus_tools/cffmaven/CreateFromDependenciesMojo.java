@@ -37,6 +37,8 @@ import org.snakeyaml.engine.v2.api.Load;
 import org.snakeyaml.engine.v2.api.LoadSettings;
 import org.snakeyaml.engine.v2.common.FlowStyle;
 
+import okhttp3.OkHttpClient;
+
 /**
  * Create Citation File Format with references from the dependencies defined via
  * Maven.
@@ -57,7 +59,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private File input;
 
     @Parameter(defaultValue = "true")
-    private boolean ignoreExistingDependencies;
+    private boolean skipExistingDependencies;
 
     @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true)
     protected List<ArtifactRepository> remoteRepositories;
@@ -67,6 +69,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     @Component
     private ProjectBuilder mavenProjectBuilder;
+
+    private final OkHttpClient http = new OkHttpClient();
 
     public void execute() throws MojoExecutionException {
 
@@ -114,7 +118,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         for (Artifact artifact : project.getArtifacts()) {
             try {
                 Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-                if (ignoreExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
+                if (skipExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
                     getLog().info("Ignoring existing dependency " + artifact.toString());
                 } else {
                     getLog().info("Adding dependency " + artifact.toString());
@@ -163,7 +167,6 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
         reference.put("title", artifact.getArtifactId());
 
-     
         if (!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
 
@@ -171,18 +174,26 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             if (!licenses.isEmpty()) {
                 License l = licenses.get(0);
                 Optional<String> spdx = KnownLicenses.parse(l.getName());
-                if(spdx.isPresent()) {
+                if (!spdx.isPresent()) {
+                    spdx = queryLicenseFromClearlyDefined(artifact);
+                }
+                if (spdx.isPresent()) {
                     reference.put("license", spdx.get());
                 } else if (l.getUrl() != null && !l.getUrl().isEmpty()) {
                     // We could not parse the license, but there is an URL we can use
                     getLog().warn("Falling back to license URL for unknown license \"" + l.getName() + "\"");
                     reference.put("license-url", l.getUrl());
                 } else {
-                    // TODO: try to get the license from clearlydefined.io
+                    getLog().error("Unknown license for " + artifact.toString());
+                    reference.put("license", "UNKNOWN");
                 }
             }
         }
 
         return reference;
+    }
+
+    private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
+        return Optional.empty();
     }
 }
