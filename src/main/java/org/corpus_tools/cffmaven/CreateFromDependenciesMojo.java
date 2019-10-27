@@ -72,6 +72,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         LoadSettings yamlLoadSettings = LoadSettings.builder().build();
         Load yamlLoad = new Load(yamlLoadSettings);
         Map<String, Object> cff = new LinkedHashMap<>();
+        cff.putIfAbsent("cff-version", "1.0.3");
+        
         if (input != null && input.isFile()) {
             try (FileInputStream inputFile = new FileInputStream(input)) {
                 Object loaded = yamlLoad.loadFromInputStream(inputFile);
@@ -91,7 +93,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 mavenSession.getProjectBuildingRequest()).setRemoteRepositories(remoteRepositories)
                         .setValidationLevel(ModelBuildingRequest.VALIDATION_LEVEL_MINIMAL).setResolveDependencies(false)
                         .setProcessPlugins(false);
-
+    
         // set basic properties like title
         cff.putIfAbsent("title", project.getName());
         cff.putIfAbsent("version", project.getVersion());
