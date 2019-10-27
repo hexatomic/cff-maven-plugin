@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
@@ -41,18 +43,25 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         scopes.put("title", project.getName());
         scopes.put("version", project.getVersion());
 
+        // collect references to add
+        List<HashMap<String, Object>> references = new LinkedList<>();
         for (Dependency dep : project.getModel().getDependencies()) {
-            getLog().info("Dependency: " + dep.getArtifactId());
+            getLog().info("Adding dependency: " + dep.getGroupId() + ":" + dep.getArtifactId());
+            HashMap<String, Object> refInfo = new HashMap<>();
+
+            refInfo.put("title", dep.getArtifactId());
+
+            references.add(refInfo);
         }
+        scopes.put("reference", references);
 
+        // Write out the file using the template and the collected information
         MustacheFactory mustacheFactory = new DefaultMustacheFactory();
-
-        try (InputStream cff_template = getClass().getResourceAsStream("citation_template.yaml"); 
+        try (InputStream cff_template = getClass().getResourceAsStream("citation_template.yaml");
                 FileWriter outWriter = new FileWriter(citationFile)) {
 
-            Mustache m = mustacheFactory.compile(new InputStreamReader(cff_template, StandardCharsets.UTF_8) , "CFF");
+            Mustache m = mustacheFactory.compile(new InputStreamReader(cff_template, StandardCharsets.UTF_8), "CFF");
             m.execute(outWriter, scopes);
-    
 
         } catch (IOException ex) {
             getLog().error("Could create Citation file from template", ex);
