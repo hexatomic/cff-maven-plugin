@@ -2,6 +2,10 @@ cff-version: 1.0.3
 message: If you use this software, please cite it as below.
 title: {{title}}
 version: {{version}}
+authors:
+{{#author}}
+  - name: {{name}}
+{{/author}}
 references:
   {{#reference}}
   - type: software

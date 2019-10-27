@@ -15,6 +15,7 @@ import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
 import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Developer;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -42,6 +43,14 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         // set basic properties like title
         scopes.put("title", project.getName());
         scopes.put("version", project.getVersion());
+
+        List<HashMap<String, Object>> authors = new LinkedList<>();
+        for(Developer dev : project.getModel().getDevelopers()) {
+            HashMap<String, Object> author = new HashMap<>();
+            author.put("name", dev.getName());
+            authors.add(author);
+        }
+        scopes.put("author", authors);
 
         // collect references to add
         List<HashMap<String, Object>> references = new LinkedList<>();
