@@ -12,26 +12,34 @@ public class KnownLicenses {
     static {
         Map<String, String> licenseMap = new LinkedHashMap<>();
 
-        licenseMap.put("Apache-2.0", "Apache-2.0".toLowerCase());
-        licenseMap.put("Apache License 2.0".toLowerCase(), "Apache-2.0");
-        licenseMap.put("Apache License, Version 2.0".toLowerCase(), "Apache-2.0");
-        licenseMap.put("Apache 2.0".toLowerCase(), "Apache-2.0");
-        licenseMap.put("The Apache Software License, Version 2.0".toLowerCase(), "Apache-2.0");
+        licenseMap.put(norm("Apache-2.0"), "Apache-2.0");
+        licenseMap.put(norm("Apache License 2.0"), "Apache-2.0");
+        licenseMap.put(norm("Apache License, Version 2.0"), "Apache-2.0");
+        licenseMap.put(norm("Apache 2.0"), "Apache-2.0");
+        licenseMap.put(norm("The Apache Software License, Version 2.0"), "Apache-2.0");
 
-        licenseMap.put("GPL-2.0-with-classpath-exception".toLowerCase(), "GPL-2.0-with-classpath-exception");
-        licenseMap.put("GNU General Public License v2.0 w/Classpath exception".toLowerCase(),
+        licenseMap.put(norm("GPL-2.0-with-classpath-exception"), "GPL-2.0-with-classpath-exception");
+        licenseMap.put(norm("GNU General Public License v2.0 w/Classpath exception"),
                 "GPL-2.0-with-classpath-exception");
-        licenseMap.put("GNU General Public License, version 2 (GPL2), with the classpath exception".toLowerCase(),
+        licenseMap.put(norm("GNU General Public License, version 2 (GPL2), with the classpath exception"),
                 "GPL-2.0-with-classpath-exception");
 
-        licenseMap.put("MIT".toLowerCase(), "MIT");
-        licenseMap.put("MIT license".toLowerCase(), "MIT");
+        licenseMap.put(norm("MIT"), "MIT");
+        licenseMap.put(norm("MIT license"), "MIT");
 
-        licenseMap.put("EPL-1.0".toLowerCase(), "EPL-1.0");
-        licenseMap.put("Eclipse Public License 1.0".toLowerCase(), "EPL-1.0");
-        licenseMap.put("Eclipse Public License, Version 1.0".toLowerCase(), "EPL-1.0");
+        licenseMap.put(norm("EPL-1.0"), "EPL-1.0");
+        licenseMap.put(norm("Eclipse Public License 1.0"), "EPL-1.0");
+        licenseMap.put(norm("Eclipse Public License, Version 1.0"), "EPL-1.0");
 
         toSpdx = Collections.unmodifiableMap(licenseMap);
+    }
+
+    private static String norm(String license) {
+        if (license != null) {
+            return license.toLowerCase().trim();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -42,8 +50,6 @@ public class KnownLicenses {
      * @return If found, the SPDX short identifier
      */
     public static Optional<String> parse(String orig) {
-        String license = orig.trim().toLowerCase();
-
-        return Optional.ofNullable(toSpdx.get(license));
+        return Optional.ofNullable(toSpdx.get(norm(orig)));
     }
 }
