@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
@@ -53,6 +55,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     @Parameter(defaultValue = "")
     private File input;
 
+    @Parameter(defaultValue = "true")
+    private boolean ignoreExistingDependencies;
+
     @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true)
     protected List<ArtifactRepository> remoteRepositories;
 
@@ -67,9 +72,16 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         LoadSettings yamlLoadSettings = LoadSettings.builder().build();
         Load yamlLoad = new Load(yamlLoadSettings);
         Map<String, Object> cff = new LinkedHashMap<>();
-        if(input != null && input.isFile()) {
-            try(FileInputStream inputFile = new FileInputStream(input)) {
-                yamlLoad.loadFromInputStream(inputFile);
+        if (input != null && input.isFile()) {
+            try (FileInputStream inputFile = new FileInputStream(input)) {
+                Object loaded = yamlLoad.loadFromInputStream(inputFile);
+                if(loaded instanceof Map<?,?>) {
+                    for(Map.Entry<?,?> e : ((Map<?,?>) loaded).entrySet()) {
+                        if(e.getKey() instanceof String) {
+                            cff.put((String) e.getKey(), e.getValue());
+                        }
+                    }
+                }
             } catch (Throwable ex) {
                 getLog().error("Error loading input YAML file " + input.getPath(), ex);
             }
@@ -92,35 +104,26 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         }
         cff.putIfAbsent("authors", authors);
 
-        // collect references to add
-        List<HashMap<String, Object>> references = new LinkedList<>();
+        // get existing references and add new ones to the list
+        List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
+        Set<String> existingTitles = references.stream().map(ref -> ref.get("title")).filter(title -> title != null)
+                .map(title -> title.toString()).collect(Collectors.toSet());
         for (Artifact artifact : project.getArtifacts()) {
             try {
-                getLog().info("Adding dependency: " + artifact.toString());
-                HashMap<String, Object> refInfo = new HashMap<>();
-
-                refInfo.put("title", artifact.getArtifactId());
-
-                String license = "UNKNOWN";
-
-                references.add(refInfo);
-
-                if(!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
-                    ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
-
-                    for (License depLicense : result.getProject().getLicenses()) {
-                        getLog().info("" + artifact.toString() + " has license " + depLicense.getName());
-                    }
+                Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
+                if(ignoreExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
+                    getLog().info("Ignoring existing dependency " + artifact.toString());
+                } else {
+                    getLog().info("Adding dependency " + artifact.toString());
+                    references.add(createReference(artifact, projectBuildingRequest));
                 }
-
-                refInfo.put("license", license);
-
             } catch (ProjectBuildingException ex) {
                 getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
             }
 
         }
-        cff.put("reference", references);
+
+        cff.put("references", references);
 
         // Write out the YAML file again
         DumpSettings dumpSettings = DumpSettings.builder().setDefaultFlowStyle(FlowStyle.BLOCK).build();
@@ -131,6 +134,44 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         } catch (IOException ex) {
             getLog().error("Could not write Citation file", ex);
         }
+    }
 
+    private List<Map<String, Object>> mapExistingReferences(Object existingReferences) {
+        List<Map<String, Object>> references = new LinkedList<>();
+        if (existingReferences instanceof List) {
+            for (Object ref : (List<?>) existingReferences) {
+                if (ref instanceof Map) {
+                    Map<String, Object> existingRefEntry = new LinkedHashMap<>();
+                    for (Map.Entry<?, ?> e : ((Map<?, ?>) ref).entrySet()) {
+                        if (e.getKey() instanceof String) {
+                            existingRefEntry.put((String) e.getKey(), e.getValue());
+                        }
+                    }
+                    references.add(existingRefEntry);
+                }
+            }
+        }
+
+        return references;
+    }
+
+    private Map<String, Object> createReference(Artifact artifact, ProjectBuildingRequest projectBuildingRequest)
+            throws ProjectBuildingException {
+        LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
+        reference.put("title", artifact.getArtifactId());
+
+        String licenseString = null;
+
+        if (!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+            ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
+
+            List<License> licenses = result.getProject().getLicenses();
+            if (!licenses.isEmpty()) {
+                licenseString = licenses.get(0).getName();
+            }
+            reference.put("license", licenseString);
+        }
+
+        return reference;
     }
 }
