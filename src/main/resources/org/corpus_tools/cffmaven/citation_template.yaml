@@ -10,4 +10,9 @@ references:
   {{#reference}}
   - type: software
     title: {{title}}
+    license: {{license}}
+    authors:
+      {{#author}}
+      - name: {}
+      {{/author}}
   {{/reference}}
