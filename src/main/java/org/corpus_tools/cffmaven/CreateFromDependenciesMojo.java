@@ -194,6 +194,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     }
 
     private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
+        // TODO: query the REST API of ClearlyDefined 
+        // https://api.clearlydefined.io/api-docs/
         return Optional.empty();
     }
 }
