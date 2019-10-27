@@ -8,10 +8,10 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
  
 /**
- * Says "Hi" to the user.
+ * Create Citation File Format with references from the dependencies defined via Maven.
  *
  */
-@Mojo( name = "sayhi")
+@Mojo( name = "dependencies")
 public class CreateFromDependenciesMojo extends AbstractMojo
 {
     public void execute() throws MojoExecutionException
