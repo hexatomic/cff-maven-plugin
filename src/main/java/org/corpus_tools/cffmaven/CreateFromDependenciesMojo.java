@@ -320,7 +320,6 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 reference.put("license-url", l.getUrl());
             } else {
                 getLog().error("Unknown license for " + artifact.toString());
-                reference.put("license", "UNKNOWN");
             }
         }
         // Add author information
