@@ -84,7 +84,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private boolean skipExistingDependencies;
 
     @Parameter(defaultValue = "true")
-    private boolean includeEMails;
+    private boolean includeEMail;
 
     @Parameter(defaultValue = "true")
     private boolean p2IgnorePatchLevel;
@@ -328,7 +328,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         for (Developer dev : project.getDevelopers()) {
             Map<String, Object> author = new LinkedHashMap<>();
             author.put("name", dev.getName());
-            if (includeEMails && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
+            if (includeEMail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
                 author.put("email", dev.getEmail());
             }
             authorList.add(author);
