@@ -5,7 +5,7 @@ authors:
 - name: Thomas Krause
 references:
 - type: software
-  title: snakeyaml-engine
+  title: SnakeYAML Engine (snakeyaml-engine)
   license: Apache-2.0
   authors:
   - name: Andrey Somov
@@ -13,38 +13,38 @@ references:
   - name: Alexander Maslov
     email: alexander.maslov@gmail.com
 - type: software
-  title: json
+  title: JSON in Java (json)
   license: JSON
   authors:
   - name: Douglas Crockford
     email: douglas@crockford.com
 - type: software
-  title: okhttp
+  title: okhttp (okhttp)
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
-  title: okio
+  title: Okio (okio)
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
-  title: kotlin-stdlib
+  title: org.jetbrains.kotlin:kotlin-stdlib (kotlin-stdlib)
   license: Apache-2.0
   authors:
   - name: Kotlin Team
 - type: software
-  title: kotlin-stdlib-common
+  title: org.jetbrains.kotlin:kotlin-stdlib-common (kotlin-stdlib-common)
   license: Apache-2.0
   authors:
   - name: Kotlin Team
 - type: software
-  title: annotations
+  title: IntelliJ IDEA Annotations (annotations)
   license: Apache-2.0
   authors:
   - name: JetBrains Team
 - type: software
-  title: maven-plugin-api
+  title: Maven Plugin API (maven-plugin-api)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -189,7 +189,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-model
+  title: Maven Model (maven-model)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -334,7 +334,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-artifact
+  title: Maven Artifact (maven-artifact)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -479,7 +479,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: commons-lang3
+  title: Apache Commons Lang (commons-lang3)
   license: Apache-2.0
   authors:
   - name: Daniel Rall
@@ -515,10 +515,10 @@ references:
   - name: Rob Tompkins
     email: chtompki@apache.org
 - type: software
-  title: org.eclipse.sisu.plexus
+  title: org.eclipse.sisu.plexus (org.eclipse.sisu.plexus)
   license: EPL-1.0
 - type: software
-  title: cdi-api
+  title: CDI APIs (cdi-api)
   license: Apache-2.0
   authors:
   - name: Pete Muir
@@ -527,13 +527,13 @@ references:
   - name: David Allen
   - name: Nicklas Karlsson
 - type: software
-  title: jsr250-api
+  title: JSR-250 Common Annotations for the JavaTM Platform (jsr250-api)
   license: NOASSERTION
 - type: software
-  title: org.eclipse.sisu.inject
+  title: org.eclipse.sisu.inject (org.eclipse.sisu.inject)
   license: EPL-1.0
 - type: software
-  title: plexus-utils
+  title: Plexus Common Utilities (plexus-utils)
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -587,7 +587,7 @@ references:
   - name: Michael Osipov
     email: 1983-01-06@gmx.net
 - type: software
-  title: plexus-classworlds
+  title: Plexus Classworlds (plexus-classworlds)
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -641,7 +641,7 @@ references:
   - name: Michael Osipov
     email: 1983-01-06@gmx.net
 - type: software
-  title: maven-compat
+  title: Maven Compat (maven-compat)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -786,7 +786,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-model-builder
+  title: Maven Model Builder (maven-model-builder)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -931,155 +931,10 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: javax.inject
+  title: javax.inject (javax.inject)
   license: Apache-2.0
 - type: software
-  title: maven-builder-support
-  license: Apache-2.0
-  authors:
-  - name: Robert Scholte
-    email: rfscholte@apache.org
-  - name: Arnaud Héritier
-    email: aheritier@apache.org
-  - name: Anders Hammar
-    email: andham@apache.org
-  - name: Barrie Treloar
-    email: baerrach@apache.org
-  - name: Benson Margulies
-    email: bimargulies@apache.org
-  - name: Brian Fox
-    email: brianf@apache.org
-  - name: Tamas Cservenak
-    email: cstamas@apache.org
-  - name: Dennis Lundberg
-    email: dennisl@apache.org
-  - name: Daniel Kulp
-    email: dkulp@apache.org
-  - name: Emmanuel Venisse
-    email: evenisse@apache.org
-  - name: Guillaume Boué
-    email: gboue@apache.org
-  - name: Hervé Boutemy
-    email: hboutemy@apache.org
-  - name: Igor Fedorenko
-    email: igor@ifedorenko.com
-  - name: Jason van Zyl
-    email: jason@maven.org
-  - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
-  - name: Kristian Rosenvold
-    email: krosenvold@apache.org
-  - name: Milos Kleint
-  - name: Olivier Lamy
-    email: olamy@apache.org
-  - name: Michael Osipov
-    email: michaelo@apache.org
-  - name: Ralph Goers
-    email: rgoers@apache.org
-  - name: Stephane Nicoll
-    email: snicoll@apache.org
-  - name: Stephen Connolly
-    email: stephenc@apache.org
-  - name: Tibor Digaňa
-    email: tibordigana@apache.org
-  - name: Vincent Siveton
-    email: vsiveton@apache.org
-  - name: Wayne Fay
-    email: wfay@apache.org
-  - name: Andreas Dangel
-    email: adangel@apache.org
-  - name: Brian Demers
-    email: bdemers@apache.org
-  - name: Fabrice Bellingard
-  - name: Benjamin Bentmann
-    email: bentmann@apache.org
-  - name: Chris Graham
-    email: chrisgwarp@apache.org
-  - name: Dan Tran
-    email: dantran@apache.org
-  - name: Damian Bradicich
-    email: dbradicich@apache.org
-  - name: Brett Porter
-    email: brett@apache.org
-  - name: Daniel Fabulich
-    email: dfabulich@apache.org
-  - name: Fabrizio Giustina
-    email: fgiust@apache.org
-  - name: Evgeny Mandrikov
-    email: godin@apache.org
-  - name: Andrew Williams
-    email: handyande@apache.org
-  - name: Dominik Bartholdi
-    email: imod@apache.org
-  - name: Jeff Jensen
-  - name: Lukas Theussl
-    email: ltheussl@apache.org
-  - name: Mark Hobson
-    email: markh@apache.org
-  - name: Mauro Talevi
-  - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
-  - name: Manfred Moser
-    email: mmoser@apache.org
-  - name: Nicolas de Loof
-  - name: Maria Odea B. Ching
-  - name: Paul Gier
-    email: pgier@apache.org
-  - name: Petar Tahchiev
-    email: ptahchiev@apache.org
-  - name: Raphaël Piéroni
-    email: rafale@apache.org
-  - name: Christian Schulte
-    email: schulte@apache.org
-  - name: Simone Tripodi
-    email: simonetripodi@apache.org
-  - name: Christian Stein
-    email: sor@apache.org
-  - name: Mark Struberg
-    email: struberg@apache.org
-  - name: Tony Chemit
-    email: tchemit@apache.org
-  - name: Vincent Massol
-    email: vmassol@apache.org
-  - name: Andreas Gudian
-    email: agudian@apache.org
-  - name: Allan Q. Ramirez
-  - name: Henri Yandell
-  - name: Carlos Sanchez
-    email: carlos@apache.org
-  - name: Chris Stevenson
-  - name: David Blevins
-  - name: Daniel Rall
-  - name: Edwin Punzalan
-    email: epunzalan@apache.org
-  - name: Felipe Leme
-  - name: John Casey
-    email: jdcasey@apache.org
-  - name: Jesse McConnell
-    email: jmcconnell@apache.org
-  - name: Joakim Erdfelt
-    email: joakime@apache.org
-  - name: Johnny Ruiz III
-    email: jruiz@apache.org
-  - name: James Strachan
-  - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
-  - name: Kenney Westerhof
-    email: kenney@apache.org
-  - name: Mike Perham
-    email: mperham@gmail.com
-  - name: Oleg Gusakov
-  - name: Patrick Schneider
-    email: pschneider@gmail.com
-  - name: Rahul Thakur
-  - name: Shinobu Kuwai
-  - name: Torbjorn Eikli Smorgrav
-  - name: Trygve Laugstol
-    email: trygvis@apache.org
-  - name: Wendy Smoak
-    email: wsmoak@apache.org
-- type: software
-  title: maven-settings
+  title: Maven Builder Support (maven-builder-support)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1224,7 +1079,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-settings-builder
+  title: Maven Settings (maven-settings)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1369,13 +1224,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: plexus-sec-dispatcher
-  license: Apache-2.0
-- type: software
-  title: plexus-cipher
-  license: Apache-2.0
-- type: software
-  title: maven-core
+  title: Maven Settings Builder (maven-settings-builder)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1520,7 +1369,13 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-resolver-spi
+  title: Plexus Security Dispatcher Component (plexus-sec-dispatcher)
+  license: Apache-2.0
+- type: software
+  title: 'Plexus Cipher: encryption/decryption Component (plexus-cipher)'
+  license: Apache-2.0
+- type: software
+  title: Maven Core (maven-core)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1665,7 +1520,152 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-shared-utils
+  title: Maven Artifact Resolver SPI (maven-resolver-spi)
+  license: Apache-2.0
+  authors:
+  - name: Robert Scholte
+    email: rfscholte@apache.org
+  - name: Arnaud Héritier
+    email: aheritier@apache.org
+  - name: Anders Hammar
+    email: andham@apache.org
+  - name: Barrie Treloar
+    email: baerrach@apache.org
+  - name: Benson Margulies
+    email: bimargulies@apache.org
+  - name: Brian Fox
+    email: brianf@apache.org
+  - name: Tamas Cservenak
+    email: cstamas@apache.org
+  - name: Dennis Lundberg
+    email: dennisl@apache.org
+  - name: Daniel Kulp
+    email: dkulp@apache.org
+  - name: Emmanuel Venisse
+    email: evenisse@apache.org
+  - name: Guillaume Boué
+    email: gboue@apache.org
+  - name: Hervé Boutemy
+    email: hboutemy@apache.org
+  - name: Igor Fedorenko
+    email: igor@ifedorenko.com
+  - name: Jason van Zyl
+    email: jason@maven.org
+  - name: Karl Heinz Marbaise
+    email: khmarbaise@apache.org
+  - name: Kristian Rosenvold
+    email: krosenvold@apache.org
+  - name: Milos Kleint
+  - name: Olivier Lamy
+    email: olamy@apache.org
+  - name: Michael Osipov
+    email: michaelo@apache.org
+  - name: Ralph Goers
+    email: rgoers@apache.org
+  - name: Stephane Nicoll
+    email: snicoll@apache.org
+  - name: Stephen Connolly
+    email: stephenc@apache.org
+  - name: Tibor Digaňa
+    email: tibordigana@apache.org
+  - name: Vincent Siveton
+    email: vsiveton@apache.org
+  - name: Wayne Fay
+    email: wfay@apache.org
+  - name: Andreas Dangel
+    email: adangel@apache.org
+  - name: Brian Demers
+    email: bdemers@apache.org
+  - name: Fabrice Bellingard
+  - name: Benjamin Bentmann
+    email: bentmann@apache.org
+  - name: Chris Graham
+    email: chrisgwarp@apache.org
+  - name: Dan Tran
+    email: dantran@apache.org
+  - name: Damian Bradicich
+    email: dbradicich@apache.org
+  - name: Brett Porter
+    email: brett@apache.org
+  - name: Daniel Fabulich
+    email: dfabulich@apache.org
+  - name: Fabrizio Giustina
+    email: fgiust@apache.org
+  - name: Evgeny Mandrikov
+    email: godin@apache.org
+  - name: Andrew Williams
+    email: handyande@apache.org
+  - name: Dominik Bartholdi
+    email: imod@apache.org
+  - name: Jeff Jensen
+  - name: Lukas Theussl
+    email: ltheussl@apache.org
+  - name: Mark Hobson
+    email: markh@apache.org
+  - name: Mauro Talevi
+  - name: Mirko Friedenhagen
+    email: mfriedenhagen@apache.org
+  - name: Manfred Moser
+    email: mmoser@apache.org
+  - name: Nicolas de Loof
+  - name: Maria Odea B. Ching
+  - name: Paul Gier
+    email: pgier@apache.org
+  - name: Petar Tahchiev
+    email: ptahchiev@apache.org
+  - name: Raphaël Piéroni
+    email: rafale@apache.org
+  - name: Christian Schulte
+    email: schulte@apache.org
+  - name: Simone Tripodi
+    email: simonetripodi@apache.org
+  - name: Christian Stein
+    email: sor@apache.org
+  - name: Mark Struberg
+    email: struberg@apache.org
+  - name: Tony Chemit
+    email: tchemit@apache.org
+  - name: Vincent Massol
+    email: vmassol@apache.org
+  - name: Andreas Gudian
+    email: agudian@apache.org
+  - name: Allan Q. Ramirez
+  - name: Henri Yandell
+  - name: Carlos Sanchez
+    email: carlos@apache.org
+  - name: Chris Stevenson
+  - name: David Blevins
+  - name: Daniel Rall
+  - name: Edwin Punzalan
+    email: epunzalan@apache.org
+  - name: Felipe Leme
+  - name: John Casey
+    email: jdcasey@apache.org
+  - name: Jesse McConnell
+    email: jmcconnell@apache.org
+  - name: Joakim Erdfelt
+    email: joakime@apache.org
+  - name: Johnny Ruiz III
+    email: jruiz@apache.org
+  - name: James Strachan
+  - name: Ernesto Tolentino Jr.
+    email: jtolentino@apache.org
+  - name: Kenney Westerhof
+    email: kenney@apache.org
+  - name: Mike Perham
+    email: mperham@gmail.com
+  - name: Oleg Gusakov
+  - name: Patrick Schneider
+    email: pschneider@gmail.com
+  - name: Rahul Thakur
+  - name: Shinobu Kuwai
+  - name: Torbjorn Eikli Smorgrav
+  - name: Trygve Laugstol
+    email: trygvis@apache.org
+  - name: Wendy Smoak
+    email: wsmoak@apache.org
+- type: software
+  title: Apache Maven Shared Utils (maven-shared-utils)
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy
@@ -1806,7 +1806,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: commons-io
+  title: Apache Commons IO (commons-io)
   license: Apache-2.0
   authors:
   - name: Scott Sanders
@@ -1835,24 +1835,24 @@ references:
   - name: Kristian Rosenvold
     email: krosenvold@apache.org
 - type: software
-  title: guice
+  title: Google Guice - Core Library (guice)
   license: Apache-2.0
   authors:
   - name: null
 - type: software
-  title: aopalliance
+  title: AOP alliance (aopalliance)
   license: OTHER
 - type: software
-  title: guava
+  title: 'Guava: Google Core Libraries for Java (guava)'
   license: Apache-2.0
   authors:
   - name: Kevin Bourrillion
     email: kevinb@google.com
 - type: software
-  title: jsr305
+  title: FindBugs-jsr305 (jsr305)
   license: Apache-2.0
 - type: software
-  title: checker-compat-qual
+  title: Checker Qual (checker-compat-qual)
   license: GPL-2.0-with-classpath-exception
   authors:
   - name: Michael Ernst
@@ -1870,13 +1870,13 @@ references:
   - name: Jonathan G. Burke
     email: jburke@cs.washington.edu
 - type: software
-  title: error_prone_annotations
+  title: error-prone annotations (error_prone_annotations)
   license: Apache-2.0
 - type: software
-  title: j2objc-annotations
+  title: J2ObjC Annotations (j2objc-annotations)
   license: Apache-2.0
 - type: software
-  title: animal-sniffer-annotations
+  title: Animal Sniffer Annotations (animal-sniffer-annotations)
   license: MIT
   authors:
   - name: Kohsuke Kaw
@@ -1884,7 +1884,7 @@ references:
   - name: Stephen Connolly
     email: stephen (dot) alan (dot) connolly (at) gmail (dot) com
 - type: software
-  title: maven-resolver-provider
+  title: Maven Artifact Resolver Provider (maven-resolver-provider)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2029,13 +2029,13 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: slf4j-api
+  title: SLF4J API Module (slf4j-api)
   license: MIT
   authors:
   - name: Ceki Gulcu
     email: ceki@qos.ch
 - type: software
-  title: maven-repository-metadata
+  title: Maven Repository Metadata Model (maven-repository-metadata)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2180,7 +2180,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-resolver-api
+  title: Maven Artifact Resolver API (maven-resolver-api)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2325,7 +2325,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-resolver-util
+  title: Maven Artifact Resolver Utilities (maven-resolver-util)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2470,7 +2470,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-resolver-impl
+  title: Maven Artifact Resolver Implementation (maven-resolver-impl)
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2615,7 +2615,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: plexus-interpolation
+  title: Plexus Interpolation API (plexus-interpolation)
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -2669,7 +2669,7 @@ references:
   - name: Michael Osipov
     email: 1983-01-06@gmx.net
 - type: software
-  title: plexus-component-annotations
+  title: 'Plexus :: Component Annotations (plexus-component-annotations)'
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -2723,7 +2723,7 @@ references:
   - name: Michael Osipov
     email: 1983-01-06@gmx.net
 - type: software
-  title: wagon-provider-api
+  title: 'Apache Maven Wagon :: API (wagon-provider-api)'
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2868,7 +2868,7 @@ references:
   - name: Wendy Smoak
     email: wsmoak@apache.org
 - type: software
-  title: maven-plugin-annotations
+  title: Maven Plugin Tools Java 5 Annotations (maven-plugin-annotations)
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy

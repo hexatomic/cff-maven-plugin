@@ -205,6 +205,10 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
             MavenProject project = result.getProject();
 
+            if(project.getName() != null && !project.getName().isEmpty()) {
+                reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
+            }
+
             // Add license information
             List<License> licenses = project.getLicenses();
             if (!licenses.isEmpty()) {
