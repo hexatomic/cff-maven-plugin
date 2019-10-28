@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -13,6 +14,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -57,7 +59,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     private final static String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
 
-    private static final Pattern P2_VERSION_SUFFIX = Pattern.compile("(.*)(\\.v[0-9]+-[0-9]+)");
+    private static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
+    private static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
 
     private final static HttpUrl DEFINITIONS_ENDPOINT = HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
@@ -72,6 +75,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "true")
     private boolean skipExistingDependencies;
+
+    @Parameter(defaultValue = "true")
+    private boolean p2IgnorePatchLevel;
+
+    @Parameter(defaultValue = "true")
+    private boolean p2ReconstructGroupId;
 
     @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true)
     protected List<ArtifactRepository> remoteRepositories;
@@ -121,7 +130,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             author.put("name", dev.getName());
             authors.add(author);
         }
-        if(!authors.isEmpty()) {
+        if (!authors.isEmpty()) {
             cff.putIfAbsent("authors", authors);
         }
 
@@ -137,7 +146,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 Object newRefTitle = newRef.getOrDefault("title", "");
                 if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
                     getLog().info("Ignoring existing dependency " + artifact.toString());
-                } else if(!alreadyAddedTitles.contains(newRefTitle)) {
+                } else if (!alreadyAddedTitles.contains(newRefTitle)) {
                     getLog().info("Adding dependency " + artifact.toString());
                     references.add(newRef);
                     alreadyAddedTitles.add(newRefTitle);
@@ -192,12 +201,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             if (remoteLicense.isPresent()) {
                 reference.put("license", remoteLicense.get().spdx);
                 List<Map<String, Object>> authorList = new LinkedList<>();
-                for(String name : remoteLicense.get().authors) {
+                for (String name : remoteLicense.get().authors) {
                     Map<String, Object> author = new LinkedHashMap<>();
                     author.put("name", name);
                     authorList.add(author);
                 }
-                if(!authorList.isEmpty()) {
+                if (!authorList.isEmpty()) {
                     reference.put("authors", authorList);
                 }
             }
@@ -205,7 +214,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
             MavenProject project = result.getProject();
 
-            if(project.getName() != null && !project.getName().isEmpty()) {
+            if (project.getName() != null && !project.getName().isEmpty()) {
                 reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
             }
 
@@ -237,15 +246,15 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             }
             // Add author information
             List<Map<String, Object>> authorList = new LinkedList<>();
-            for(Developer dev : project.getDevelopers()) {
+            for (Developer dev : project.getDevelopers()) {
                 Map<String, Object> author = new LinkedHashMap<>();
                 author.put("name", dev.getName());
-                if(dev.getEmail() != null) {
+                if (dev.getEmail() != null) {
                     author.put("email", dev.getEmail());
                 }
                 authorList.add(author);
             }
-            if(!authorList.isEmpty()) {
+            if (!authorList.isEmpty()) {
                 reference.put("authors", authorList);
             }
         }
@@ -256,33 +265,58 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
         // query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
-        String pattern;
+        List<String> patterns = new LinkedList<>();
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
-            String version = P2_VERSION_SUFFIX.matcher(artifact.getVersion()).replaceFirst("$1");
-            pattern = artifact.getArtifactId() + "/" + version;
-        } else {
-            pattern = artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion();
-        }
-        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern", pattern).build();
-        Request findRequest = new Request.Builder().url(findUrl).build();
+            Optional<String> minorVersion = Optional.empty();
+            Matcher minorVersionMatcher = MINOR_VERSION_HEURISTIC.matcher(artifact.getVersion());
+            if(minorVersionMatcher.matches()) {
+                minorVersion = Optional.of(minorVersionMatcher.group(1));
+                getLog().debug("Minor version is " + minorVersion.get() + " for artifact " + artifact.toString());
+            }
+            patterns.add(artifact.getArtifactId() + "/" + artifact.getVersion());
+            if (p2IgnorePatchLevel && minorVersion.isPresent()) {
 
-        try (Response response = http.newCall(findRequest).execute()) {
-            if (response.code() == 200) {
-                // Parse JSON
-                JSONArray searchResult = new JSONArray(response.body().string());
-                for (Object foundArtifactId : searchResult) {
-                    if (foundArtifactId instanceof String) {
-                        Optional<RemoteLicenseInformation> result = queryLicenseForId((String) foundArtifactId);
-                        if (result.isPresent()) {
-                            return result;
-                        }
+                patterns.add(artifact.getArtifactId() + "/" + minorVersion.get());
+            }
+            if (p2ReconstructGroupId) {
+                Matcher m = ARTIFACTID_HEURISTIC_SUFFIX.matcher(artifact.getArtifactId());
+                if (m.find()) {
+                    String groupId = m.group(1);
+                    String artifactId = m.group(3);
+                    patterns.add(groupId + "/" + artifactId + "/" + artifact.getVersion());
+                    if (p2IgnorePatchLevel && minorVersion.isPresent()) {
+                        patterns.add(groupId + "/" + artifactId + "/" + minorVersion.get());
                     }
                 }
             }
-
-        } catch (IOException ex) {
-            getLog().error("Could not interact with clearlydefined.io", ex);
+        } else {
+            patterns.add(artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion());
         }
+
+        for (String pattern : patterns) {
+            getLog().debug("Trying pattern \"" + pattern + "\" for artifact " + artifact.toString());
+            HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern", pattern).build();
+            Request findRequest = new Request.Builder().url(findUrl).build();
+
+            try (Response response = http.newCall(findRequest).execute()) {
+                if (response.code() == 200) {
+                    // Parse JSON
+                    JSONArray searchResult = new JSONArray(response.body().string());
+                    for (Object foundArtifactId : searchResult) {
+                        if (foundArtifactId instanceof String) {
+                            Optional<RemoteLicenseInformation> result = queryLicenseForId((String) foundArtifactId);
+                            if (result.isPresent()) {
+                                return result;
+                            }
+                        }
+                    }
+                }
+
+            } catch (IOException ex) {
+                getLog().error("Could not interact with clearlydefined.io", ex);
+            }
+        }
+
         return Optional.empty();
     }
 
@@ -291,7 +325,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         List<String> authors = new LinkedList<>();
     }
 
-    private Optional<RemoteLicenseInformation>  queryLicenseForId(String id) throws IOException {
+    private Optional<RemoteLicenseInformation> queryLicenseForId(String id) throws IOException {
         HttpUrl artifactUrl = DEFINITIONS_ENDPOINT.newBuilder().addEncodedPathSegment(id).build();
 
         Response response = http.newCall(new Request.Builder().url(artifactUrl).build()).execute();
@@ -305,7 +339,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     RemoteLicenseInformation result = new RemoteLicenseInformation();
                     result.spdx = licensedObject.getString("declared");
                     // also get the authors by using the attribution data
-                    if(root.has("facets")) {
+                    if (root.has("facets")) {
                         JSONObject facets = root.getJSONObject("facets");
                         if (facets != null) {
                             JSONObject core = facets.getJSONObject("core");
