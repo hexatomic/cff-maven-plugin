@@ -6,14 +6,16 @@ authors:
 references:
 - title: snakeyaml-engine
   license: Apache-2.0
+- title: json
+  license: JSON
 - title: okhttp
   license: Apache-2.0
 - title: okio
   license: Apache-2.0
 - title: kotlin-stdlib
-  license-url: http://www.apache.org/licenses/LICENSE-2.0.txt
+  license: Apache-2.0
 - title: kotlin-stdlib-common
-  license-url: http://www.apache.org/licenses/LICENSE-2.0.txt
+  license: Apache-2.0
 - title: annotations
   license: Apache-2.0
 - title: maven-plugin-api
@@ -29,7 +31,7 @@ references:
 - title: cdi-api
   license: Apache-2.0
 - title: jsr250-api
-  license-url: https://glassfish.dev.java.net/public/CDDLv1.0.html
+  license: NOASSERTION
 - title: org.eclipse.sisu.inject
   license: EPL-1.0
 - title: plexus-utils
@@ -49,9 +51,9 @@ references:
 - title: maven-settings-builder
   license: Apache-2.0
 - title: plexus-sec-dispatcher
-  license-url: http://www.apache.org/licenses/LICENSE-2.0
+  license: Apache-2.0
 - title: plexus-cipher
-  license-url: http://www.apache.org/licenses/LICENSE-2.0
+  license: Apache-2.0
 - title: maven-core
   license: Apache-2.0
 - title: maven-resolver-spi
@@ -63,99 +65,7 @@ references:
 - title: guice
   license: Apache-2.0
 - title: aopalliance
-  license: UNKNOWN
-- title: guava
-  license: Apache-2.0
-- title: jsr305
-  license: Apache-2.0
-- title: checker-compat-qual
-  license: GPL-2.0-with-classpath-exception
-- title: error_prone_annotations
-  license: Apache-2.0
-- title: j2objc-annotations
-  license: Apache-2.0
-- title: animal-sniffer-annotations
-  license: MIT
-- title: maven-resolver-provider
-  license: Apache-2.0
-- title: slf4j-api
-  license: MIT
-- title: maven-repository-metadata
-  license: Apache-2.0
-- title: maven-resolver-api
-  license: Apache-2.0
-- title: maven-resolver-util
-  license: Apache-2.0
-- title: maven-resolver-impl
-  license: Apache-2.0
-- title: plexus-interpolation
-  license: Apache-2.0
-- title: plexus-component-annotations
-  license: Apache-2.0
-- title: wagon-provider-api
-  license: Apache-2.0
-- title: maven-plugin-annotations
-  license: Apache-2.0
-- title: snakeyaml-engine
-  license: Apache-2.0
-- title: okhttp
-  license: Apache-2.0
-- title: okio
-  license: Apache-2.0
-- title: kotlin-stdlib
-  license-url: http://www.apache.org/licenses/LICENSE-2.0.txt
-- title: kotlin-stdlib-common
-  license-url: http://www.apache.org/licenses/LICENSE-2.0.txt
-- title: annotations
-  license: Apache-2.0
-- title: maven-plugin-api
-  license: Apache-2.0
-- title: maven-model
-  license: Apache-2.0
-- title: maven-artifact
-  license: Apache-2.0
-- title: commons-lang3
-  license: Apache-2.0
-- title: org.eclipse.sisu.plexus
-  license: EPL-1.0
-- title: cdi-api
-  license: Apache-2.0
-- title: jsr250-api
-  license-url: https://glassfish.dev.java.net/public/CDDLv1.0.html
-- title: org.eclipse.sisu.inject
-  license: EPL-1.0
-- title: plexus-utils
-  license: Apache-2.0
-- title: plexus-classworlds
-  license: Apache-2.0
-- title: maven-compat
-  license: Apache-2.0
-- title: maven-model-builder
-  license: Apache-2.0
-- title: javax.inject
-  license: Apache-2.0
-- title: maven-builder-support
-  license: Apache-2.0
-- title: maven-settings
-  license: Apache-2.0
-- title: maven-settings-builder
-  license: Apache-2.0
-- title: plexus-sec-dispatcher
-  license-url: http://www.apache.org/licenses/LICENSE-2.0
-- title: plexus-cipher
-  license-url: http://www.apache.org/licenses/LICENSE-2.0
-- title: maven-core
-  license: Apache-2.0
-- title: maven-resolver-spi
-  license: Apache-2.0
-- title: maven-shared-utils
-  license: Apache-2.0
-- title: commons-io
-  license: Apache-2.0
-- title: guice
-  license: Apache-2.0
-- title: aopalliance
-  license: UNKNOWN
+  license: OTHER
 - title: guava
   license: Apache-2.0
 - title: jsr305

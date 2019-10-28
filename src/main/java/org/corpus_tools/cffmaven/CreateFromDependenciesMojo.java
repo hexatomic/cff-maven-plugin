@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -31,13 +32,18 @@ import org.apache.maven.project.ProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
 import org.apache.maven.project.ProjectBuildingResult;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.snakeyaml.engine.v2.api.Dump;
 import org.snakeyaml.engine.v2.api.DumpSettings;
 import org.snakeyaml.engine.v2.api.Load;
 import org.snakeyaml.engine.v2.api.LoadSettings;
 import org.snakeyaml.engine.v2.common.FlowStyle;
 
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * Create Citation File Format with references from the dependencies defined via
@@ -48,6 +54,8 @@ import okhttp3.OkHttpClient;
 public class CreateFromDependenciesMojo extends AbstractMojo {
 
     private final static String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
+
+    private final static HttpUrl DEFINITIONS_ENDPOINT = HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
     @Parameter(defaultValue = "${project}", readonly = true)
     private MavenProject project;
@@ -194,8 +202,46 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     }
 
     private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
-        // TODO: query the REST API of ClearlyDefined 
+        // TODO: query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
+        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder()
+                .addQueryParameter("pattern", artifact.getGroupId() + "/" + artifact.getArtifactId()).build();
+        Request findRequest = new Request.Builder().url(findUrl).build();
+
+        try (Response response = http.newCall(findRequest).execute()) {
+            // Parse JSON
+            JSONArray searchResult = new JSONArray(response.body().string());
+            for(Object foundArtifactId : searchResult) {
+                if(foundArtifactId instanceof String) {
+                    Optional<String> license = queryLicenseForId((String) foundArtifactId);
+                    if(license.isPresent()) {
+                        return license;
+                    }
+                }
+            }
+
+        } catch (IOException ex) {
+            getLog().error("Could not interact with clearlydefined.io", ex);
+        }
+        return Optional.empty();
+    }
+
+    private Optional<String> queryLicenseForId(String id) throws IOException {
+        HttpUrl artifactUrl = DEFINITIONS_ENDPOINT.newBuilder().addEncodedPathSegment(id).build();
+
+        Response response = http.newCall(new Request.Builder().url(artifactUrl).build()).execute();
+        if(response.code() == 200) {
+            JSONObject result = new JSONObject(response.body().string());
+            // only use explicitly declared licenses
+            if(result.has("licensed")) {
+                JSONObject licensedObject = result.getJSONObject("licensed");
+                if(licensedObject.has("declared")) {
+                    String declaredLicense = licensedObject.getString("declared");
+                    return Optional.of(declaredLicense);
+                }
+            }
+        }
+
         return Optional.empty();
     }
 }
