@@ -7,6 +7,7 @@ authors:
 references:
 - type: software
   title: SnakeYAML Engine (snakeyaml-engine)
+  version: '2.0'
   license: Apache-2.0
   authors:
   - name: Andrey Somov
@@ -15,37 +16,44 @@ references:
     email: alexander.maslov@gmail.com
 - type: software
   title: JSON in Java (json)
+  version: '20190722'
   license: JSON
   authors:
   - name: Douglas Crockford
     email: douglas@crockford.com
 - type: software
   title: okhttp (okhttp)
+  version: 4.2.2
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
   title: Okio (okio)
+  version: 2.2.2
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
   title: org.jetbrains.kotlin:kotlin-stdlib (kotlin-stdlib)
+  version: 1.3.50
   license: Apache-2.0
   authors:
   - name: Kotlin Team
 - type: software
   title: org.jetbrains.kotlin:kotlin-stdlib-common (kotlin-stdlib-common)
+  version: 1.3.50
   license: Apache-2.0
   authors:
   - name: Kotlin Team
 - type: software
   title: IntelliJ IDEA Annotations (annotations)
+  version: '13.0'
   license: Apache-2.0
   authors:
   - name: JetBrains Team
 - type: software
   title: Maven Plugin API (maven-plugin-api)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -191,6 +199,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Model (maven-model)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -336,6 +345,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Artifact (maven-artifact)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -481,6 +491,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Apache Commons Lang (commons-lang3)
+  version: 3.8.1
   license: Apache-2.0
   authors:
   - name: Daniel Rall
@@ -516,9 +527,11 @@ references:
     email: chtompki@apache.org
 - type: software
   title: org.eclipse.sisu.plexus (org.eclipse.sisu.plexus)
+  version: 0.3.3
   license: EPL-1.0
 - type: software
   title: CDI APIs (cdi-api)
+  version: '1.0'
   license: Apache-2.0
   authors:
   - name: Pete Muir
@@ -528,12 +541,15 @@ references:
   - name: Nicklas Karlsson
 - type: software
   title: JSR-250 Common Annotations for the JavaTM Platform (jsr250-api)
+  version: '1.0'
   license: NOASSERTION
 - type: software
   title: org.eclipse.sisu.inject (org.eclipse.sisu.inject)
+  version: 0.3.3
   license: EPL-1.0
 - type: software
   title: Plexus Common Utilities (plexus-utils)
+  version: 3.2.1
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -587,6 +603,7 @@ references:
     email: 1983-01-06@gmx.net
 - type: software
   title: Plexus Classworlds (plexus-classworlds)
+  version: 2.6.0
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -640,6 +657,7 @@ references:
     email: 1983-01-06@gmx.net
 - type: software
   title: Maven Compat (maven-compat)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -785,6 +803,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Model Builder (maven-model-builder)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -930,9 +949,11 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: javax.inject (javax.inject)
+  version: '1'
   license: Apache-2.0
 - type: software
   title: Maven Builder Support (maven-builder-support)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1078,6 +1099,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Settings (maven-settings)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1223,6 +1245,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Settings Builder (maven-settings-builder)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1368,12 +1391,15 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Plexus Security Dispatcher Component (plexus-sec-dispatcher)
+  version: '1.4'
   license: Apache-2.0
 - type: software
   title: 'Plexus Cipher: encryption/decryption Component (plexus-cipher)'
+  version: '1.4'
   license: Apache-2.0
 - type: software
   title: Maven Core (maven-core)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1519,6 +1545,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Artifact Resolver SPI (maven-resolver-spi)
+  version: 1.4.1
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1664,6 +1691,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Apache Maven Shared Utils (maven-shared-utils)
+  version: 3.2.1
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy
@@ -1805,6 +1833,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Apache Commons IO (commons-io)
+  version: '2.5'
   license: Apache-2.0
   authors:
   - name: Scott Sanders
@@ -1834,23 +1863,28 @@ references:
     email: krosenvold@apache.org
 - type: software
   title: Google Guice - Core Library (guice)
+  version: 4.2.1
   license: Apache-2.0
   authors:
   - name: null
 - type: software
   title: AOP alliance (aopalliance)
+  version: '1.0'
   license: OTHER
 - type: software
   title: 'Guava: Google Core Libraries for Java (guava)'
+  version: 25.1-android
   license: Apache-2.0
   authors:
   - name: Kevin Bourrillion
     email: kevinb@google.com
 - type: software
   title: FindBugs-jsr305 (jsr305)
+  version: 3.0.2
   license: Apache-2.0
 - type: software
   title: Checker Qual (checker-compat-qual)
+  version: 2.0.0
   license: GPL-2.0-with-classpath-exception
   authors:
   - name: Michael Ernst
@@ -1869,12 +1903,15 @@ references:
     email: jburke@cs.washington.edu
 - type: software
   title: error-prone annotations (error_prone_annotations)
+  version: 2.1.3
   license: Apache-2.0
 - type: software
   title: J2ObjC Annotations (j2objc-annotations)
+  version: '1.1'
   license: Apache-2.0
 - type: software
   title: Animal Sniffer Annotations (animal-sniffer-annotations)
+  version: '1.14'
   license: MIT
   authors:
   - name: Kohsuke Kaw
@@ -1883,6 +1920,7 @@ references:
     email: stephen (dot) alan (dot) connolly (at) gmail (dot) com
 - type: software
   title: Maven Artifact Resolver Provider (maven-resolver-provider)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2028,12 +2066,14 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: SLF4J API Module (slf4j-api)
+  version: 1.7.25
   license: MIT
   authors:
   - name: Ceki Gulcu
     email: ceki@qos.ch
 - type: software
   title: Maven Repository Metadata Model (maven-repository-metadata)
+  version: 3.6.2
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2179,6 +2219,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Artifact Resolver API (maven-resolver-api)
+  version: 1.4.1
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2324,6 +2365,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Artifact Resolver Utilities (maven-resolver-util)
+  version: 1.4.1
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2469,6 +2511,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Artifact Resolver Implementation (maven-resolver-impl)
+  version: 1.4.1
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2614,6 +2657,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Plexus Interpolation API (plexus-interpolation)
+  version: '1.25'
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -2667,6 +2711,7 @@ references:
     email: 1983-01-06@gmx.net
 - type: software
   title: 'Plexus :: Component Annotations (plexus-component-annotations)'
+  version: 2.0.0
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -2720,6 +2765,7 @@ references:
     email: 1983-01-06@gmx.net
 - type: software
   title: 'Apache Maven Wagon :: API (wagon-provider-api)'
+  version: 3.3.3
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -2865,6 +2911,7 @@ references:
     email: wsmoak@apache.org
 - type: software
   title: Maven Plugin Tools Java 5 Annotations (maven-plugin-annotations)
+  version: '3.4'
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy

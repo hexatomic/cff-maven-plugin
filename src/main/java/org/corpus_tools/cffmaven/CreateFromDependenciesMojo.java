@@ -205,6 +205,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
         reference.put("type", "software");
         reference.put("title", artifact.getArtifactId());
+        reference.put("version", artifact.getVersion());
 
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
             createReferenceFromP2(reference, artifact, projectBuildingRequest);
@@ -295,6 +296,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
         if (project.getName() != null && !project.getName().isEmpty()) {
             reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
+        }
+        if(project.getVersion() != null && !project.getVersion().isEmpty()) {
+            reference.put("version", project.getVersion());
         }
 
         // Add license information
