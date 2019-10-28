@@ -1,4 +1,5 @@
 cff-version: 1.0.3
+message: If you use this software, please cite it as below.
 title: cff Maven Plugin
 version: 0.1.0-SNAPSHOT
 authors:

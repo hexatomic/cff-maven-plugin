@@ -99,7 +99,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         Load yamlLoad = new Load(yamlLoadSettings);
         Map<String, Object> cff = new LinkedHashMap<>();
         cff.putIfAbsent("cff-version", "1.0.3");
-
+        
         if (input != null && input.isFile()) {
             try (FileInputStream inputFile = new FileInputStream(input)) {
                 Object loaded = yamlLoad.loadFromInputStream(inputFile);
@@ -121,6 +121,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                         .setProcessPlugins(false);
 
         // set basic properties like title
+        cff.putIfAbsent("message", "If you use this software, please cite it as below.");
         cff.putIfAbsent("title", project.getName());
         cff.putIfAbsent("version", project.getVersion());
 
