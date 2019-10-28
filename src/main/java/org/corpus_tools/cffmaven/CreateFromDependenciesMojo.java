@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -128,14 +129,18 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
         Set<String> existingTitles = references.stream().map(ref -> ref.get("title")).filter(title -> title != null)
                 .map(title -> title.toString()).collect(Collectors.toSet());
+        Set<Object> alreadyAddedTitles = new HashSet<>();
+
         for (Artifact artifact : project.getArtifacts()) {
             try {
                 Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-                if (skipExistingDependencies && existingTitles.contains(newRef.getOrDefault("title", ""))) {
+                Object newRefTitle = newRef.getOrDefault("title", "");
+                if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
                     getLog().info("Ignoring existing dependency " + artifact.toString());
-                } else {
+                } else if(!alreadyAddedTitles.contains(newRefTitle)) {
                     getLog().info("Adding dependency " + artifact.toString());
-                    references.add(createReference(artifact, projectBuildingRequest));
+                    references.add(newRef);
+                    alreadyAddedTitles.add(newRefTitle);
                 }
             } catch (ProjectBuildingException ex) {
                 getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
