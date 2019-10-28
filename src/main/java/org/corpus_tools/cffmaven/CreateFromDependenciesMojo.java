@@ -269,7 +269,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
             Optional<String> minorVersion = Optional.empty();
             Matcher minorVersionMatcher = MINOR_VERSION_HEURISTIC.matcher(artifact.getVersion());
-            if(minorVersionMatcher.matches()) {
+            if (minorVersionMatcher.matches()) {
                 minorVersion = Optional.of(minorVersionMatcher.group(1));
                 getLog().debug("Minor version is " + minorVersion.get() + " for artifact " + artifact.toString());
             }
@@ -323,6 +323,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     class RemoteLicenseInformation {
         String spdx;
         List<String> authors = new LinkedList<>();
+        int score = 0;
     }
 
     private Optional<RemoteLicenseInformation> queryLicenseForId(String id) throws IOException {
@@ -339,15 +340,15 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     RemoteLicenseInformation result = new RemoteLicenseInformation();
                     result.spdx = licensedObject.getString("declared");
                     // also get the authors by using the attribution data
-                    if (root.has("facets")) {
-                        JSONObject facets = root.getJSONObject("facets");
+                    if (licensedObject.has("facets")) {
+                        JSONObject facets = licensedObject.getJSONObject("facets");
                         if (facets != null) {
-                            JSONObject core = facets.getJSONObject("core");
-                            if (core != null) {
-                                JSONObject attribution = core.getJSONObject("attribution");
-                                if (attribution != null) {
-                                    JSONArray parties = attribution.getJSONArray("parties");
-                                    if (parties != null) {
+                            if (facets.has("core")) {
+                                JSONObject core = facets.getJSONObject("core");
+                                if (core.has("attribution")) {
+                                    JSONObject attribution = core.getJSONObject("attribution");
+                                    if (attribution.has("parties")) {
+                                        JSONArray parties = attribution.getJSONArray("parties");
                                         for (Object p : parties) {
                                             if (p instanceof String) {
                                                 result.authors.add((String) p);
