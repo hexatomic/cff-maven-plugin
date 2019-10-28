@@ -517,7 +517,6 @@ references:
 - type: software
   title: org.eclipse.sisu.plexus
   license: EPL-1.0
-  authors: []
 - type: software
   title: cdi-api
   license: Apache-2.0
@@ -530,11 +529,9 @@ references:
 - type: software
   title: jsr250-api
   license: NOASSERTION
-  authors: []
 - type: software
   title: org.eclipse.sisu.inject
   license: EPL-1.0
-  authors: []
 - type: software
   title: plexus-utils
   license: Apache-2.0
@@ -936,7 +933,6 @@ references:
 - type: software
   title: javax.inject
   license: Apache-2.0
-  authors: []
 - type: software
   title: maven-builder-support
   license: Apache-2.0
@@ -1375,11 +1371,9 @@ references:
 - type: software
   title: plexus-sec-dispatcher
   license: Apache-2.0
-  authors: []
 - type: software
   title: plexus-cipher
   license: Apache-2.0
-  authors: []
 - type: software
   title: maven-core
   license: Apache-2.0
@@ -1848,7 +1842,6 @@ references:
 - type: software
   title: aopalliance
   license: OTHER
-  authors: []
 - type: software
   title: guava
   license: Apache-2.0
@@ -1858,7 +1851,6 @@ references:
 - type: software
   title: jsr305
   license: Apache-2.0
-  authors: []
 - type: software
   title: checker-compat-qual
   license: GPL-2.0-with-classpath-exception
@@ -1880,11 +1872,9 @@ references:
 - type: software
   title: error_prone_annotations
   license: Apache-2.0
-  authors: []
 - type: software
   title: j2objc-annotations
   license: Apache-2.0
-  authors: []
 - type: software
   title: animal-sniffer-annotations
   license: MIT

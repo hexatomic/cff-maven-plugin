@@ -190,7 +190,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     author.put("name", name);
                     authorList.add(author);
                 }
-                reference.put("authors", authorList);
+                if(!authorList.isEmpty()) {
+                    reference.put("authors", authorList);
+                }
             }
         } else {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
@@ -232,7 +234,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 }
                 authorList.add(author);
             }
-            reference.put("authors", authorList);
+            if(!authorList.isEmpty()) {
+                reference.put("authors", authorList);
+            }
         }
 
         return reference;
