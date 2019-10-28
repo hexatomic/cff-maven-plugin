@@ -254,7 +254,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         // https://api.clearlydefined.io/api-docs/
         String pattern;
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
-            String version = P2_VERSION_SUFFIX.matcher(artifact.getVersion()).replaceFirst("\\1");
+            String version = P2_VERSION_SUFFIX.matcher(artifact.getVersion()).replaceFirst("$1");
             pattern = artifact.getArtifactId() + "/" + version;
         } else {
             pattern = artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion();
@@ -287,7 +287,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         List<String> authors = new LinkedList<>();
     }
 
-    private Optional<RemoteLicenseInformation> queryLicenseForId(String id) throws IOException {
+    private Optional<RemoteLicenseInformation>  queryLicenseForId(String id) throws IOException {
         HttpUrl artifactUrl = DEFINITIONS_ENDPOINT.newBuilder().addEncodedPathSegment(id).build();
 
         Response response = http.newCall(new Request.Builder().url(artifactUrl).build()).execute();
