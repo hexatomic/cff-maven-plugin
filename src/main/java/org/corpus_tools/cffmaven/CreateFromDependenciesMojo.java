@@ -179,16 +179,38 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         reference.put("type", "software");
         reference.put("title", artifact.getArtifactId());
 
-        if (!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+        Optional<RemoteLicenseInformation> remoteLicense = Optional.empty();
+        if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+            remoteLicense = queryLicenseFromClearlyDefined(artifact);
+            if (remoteLicense.isPresent()) {
+                reference.put("license", remoteLicense.get().spdx);
+                List<Map<String, Object>> authorList = new LinkedList<>();
+                for(String name : remoteLicense.get().authors) {
+                    Map<String, Object> author = new LinkedHashMap<>();
+                    author.put("name", name);
+                    authorList.add(author);
+                }
+                reference.put("authors", authorList);
+            }
+        } else {
             ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
+            MavenProject project = result.getProject();
 
-            List<License> licenses = result.getProject().getLicenses();
+            // Add license information
+            List<License> licenses = project.getLicenses();
             if (!licenses.isEmpty()) {
                 License l = licenses.get(0);
+
                 Optional<String> spdx = KnownLicenses.parse(l.getName());
+
                 if (!spdx.isPresent()) {
-                    spdx = queryLicenseFromClearlyDefined(artifact);
+                    // try to query the license from remote
+                    remoteLicense = queryLicenseFromClearlyDefined(artifact);
+                    if (remoteLicense.isPresent()) {
+                        spdx = Optional.of(remoteLicense.get().spdx);
+                    }
                 }
+
                 if (spdx.isPresent()) {
                     reference.put("license", spdx.get());
                 } else if (l.getUrl() != null && !l.getUrl().isEmpty()) {
@@ -200,16 +222,27 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     reference.put("license", "UNKNOWN");
                 }
             }
+            // Add author information
+            List<Map<String, Object>> authorList = new LinkedList<>();
+            for(Developer dev : project.getDevelopers()) {
+                Map<String, Object> author = new LinkedHashMap<>();
+                author.put("name", dev.getName());
+                if(dev.getEmail() != null) {
+                    author.put("email", dev.getEmail());
+                }
+                authorList.add(author);
+            }
+            reference.put("authors", authorList);
         }
 
         return reference;
     }
 
-    private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
+    private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
         // query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
         String pattern;
-        if(P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+        if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
             String version = P2_VERSION_SUFFIX.matcher(artifact.getVersion()).replaceFirst("\\1");
             pattern = artifact.getArtifactId() + "/" + version;
         } else {
@@ -224,9 +257,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 JSONArray searchResult = new JSONArray(response.body().string());
                 for (Object foundArtifactId : searchResult) {
                     if (foundArtifactId instanceof String) {
-                        Optional<String> license = queryLicenseForId((String) foundArtifactId);
-                        if (license.isPresent()) {
-                            return license;
+                        Optional<RemoteLicenseInformation> result = queryLicenseForId((String) foundArtifactId);
+                        if (result.isPresent()) {
+                            return result;
                         }
                     }
                 }
@@ -238,18 +271,46 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         return Optional.empty();
     }
 
-    private Optional<String> queryLicenseForId(String id) throws IOException {
+    class RemoteLicenseInformation {
+        String spdx;
+        List<String> authors = new LinkedList<>();
+    }
+
+    private Optional<RemoteLicenseInformation> queryLicenseForId(String id) throws IOException {
         HttpUrl artifactUrl = DEFINITIONS_ENDPOINT.newBuilder().addEncodedPathSegment(id).build();
 
         Response response = http.newCall(new Request.Builder().url(artifactUrl).build()).execute();
         if (response.code() == 200) {
-            JSONObject result = new JSONObject(response.body().string());
+            JSONObject root = new JSONObject(response.body().string());
             // only use explicitly declared licenses
-            if (result.has("licensed")) {
-                JSONObject licensedObject = result.getJSONObject("licensed");
+            if (root.has("licensed")) {
+                JSONObject licensedObject = root.getJSONObject("licensed");
                 if (licensedObject.has("declared")) {
-                    String declaredLicense = licensedObject.getString("declared");
-                    return Optional.of(declaredLicense);
+
+                    RemoteLicenseInformation result = new RemoteLicenseInformation();
+                    result.spdx = licensedObject.getString("declared");
+                    // also get the authors by using the attribution data
+                    if(root.has("facets")) {
+                        JSONObject facets = root.getJSONObject("facets");
+                        if (facets != null) {
+                            JSONObject core = facets.getJSONObject("core");
+                            if (core != null) {
+                                JSONObject attribution = core.getJSONObject("attribution");
+                                if (attribution != null) {
+                                    JSONArray parties = attribution.getJSONArray("parties");
+                                    if (parties != null) {
+                                        for (Object p : parties) {
+                                            if (p instanceof String) {
+                                                result.authors.add((String) p);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    return Optional.of(result);
                 }
             }
         }
