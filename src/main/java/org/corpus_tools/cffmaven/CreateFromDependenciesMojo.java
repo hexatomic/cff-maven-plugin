@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -293,6 +293,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             patterns.add(artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion());
         }
 
+        TreeMap<Long, RemoteLicenseInformation> remoteLicensesByScore = new TreeMap<>();
+
         for (String pattern : patterns) {
             getLog().debug("Trying pattern \"" + pattern + "\" for artifact " + artifact.toString());
             HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern", pattern).build();
@@ -306,7 +308,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                         if (foundArtifactId instanceof String) {
                             Optional<RemoteLicenseInformation> result = queryLicenseForId((String) foundArtifactId);
                             if (result.isPresent()) {
-                                return result;
+                                getLog().debug("Found license information with score " + result.get().score
+                                        + " for artifact " + artifact.toString());
+                                remoteLicensesByScore.put(result.get().score, result.get());
                             }
                         }
                     }
@@ -317,13 +321,20 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             }
         }
 
-        return Optional.empty();
+        if (remoteLicensesByScore.isEmpty()) {
+            return Optional.empty();
+        } else {
+            // return the entry with the highest score
+            return Optional.of(remoteLicensesByScore.lastEntry().getValue());
+        }
+
+
     }
 
     class RemoteLicenseInformation {
         String spdx;
         List<String> authors = new LinkedList<>();
-        int score = 0;
+        long score = 0;
     }
 
     private Optional<RemoteLicenseInformation> queryLicenseForId(String id) throws IOException {
@@ -339,6 +350,14 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
                     RemoteLicenseInformation result = new RemoteLicenseInformation();
                     result.spdx = licensedObject.getString("declared");
+
+                    if (root.has("scores")) {
+                        JSONObject scores = root.getJSONObject("scores");
+                        if (scores.has("effective")) {
+                            result.score = scores.getLong("effective");
+                        }
+                    }
+
                     // also get the authors by using the attribution data
                     if (licensedObject.has("facets")) {
                         JSONObject facets = licensedObject.getJSONObject("facets");
