@@ -99,7 +99,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         Load yamlLoad = new Load(yamlLoadSettings);
         Map<String, Object> cff = new LinkedHashMap<>();
         cff.putIfAbsent("cff-version", "1.0.3");
-        
+
         if (input != null && input.isFile()) {
             try (FileInputStream inputFile = new FileInputStream(input)) {
                 Object loaded = yamlLoad.loadFromInputStream(inputFile);
@@ -196,71 +196,79 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         reference.put("type", "software");
         reference.put("title", artifact.getArtifactId());
 
-        Optional<RemoteLicenseInformation> remoteLicense = Optional.empty();
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
-            remoteLicense = queryLicenseFromClearlyDefined(artifact);
-            if (remoteLicense.isPresent()) {
-                reference.put("license", remoteLicense.get().spdx);
-                List<Map<String, Object>> authorList = new LinkedList<>();
-                for (String name : remoteLicense.get().authors) {
-                    Map<String, Object> author = new LinkedHashMap<>();
-                    author.put("name", name);
-                    authorList.add(author);
-                }
-                if (!authorList.isEmpty()) {
-                    reference.put("authors", authorList);
-                }
-            }
+            createReferenceFromP2(reference, artifact);
         } else {
-            ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
-            MavenProject project = result.getProject();
+            createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
+        }
 
-            if (project.getName() != null && !project.getName().isEmpty()) {
-                reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
-            }
+        return reference;
+    }
 
-            // Add license information
-            List<License> licenses = project.getLicenses();
-            if (!licenses.isEmpty()) {
-                License l = licenses.get(0);
-
-                Optional<String> spdx = KnownLicenses.parse(l.getName());
-
-                if (!spdx.isPresent()) {
-                    // try to query the license from remote
-                    remoteLicense = queryLicenseFromClearlyDefined(artifact);
-                    if (remoteLicense.isPresent()) {
-                        spdx = Optional.of(remoteLicense.get().spdx);
-                    }
-                }
-
-                if (spdx.isPresent()) {
-                    reference.put("license", spdx.get());
-                } else if (l.getUrl() != null && !l.getUrl().isEmpty()) {
-                    // We could not parse the license, but there is an URL we can use
-                    getLog().warn("Falling back to license URL for unknown license \"" + l.getName() + "\"");
-                    reference.put("license-url", l.getUrl());
-                } else {
-                    getLog().error("Unknown license for " + artifact.toString());
-                    reference.put("license", "UNKNOWN");
-                }
-            }
-            // Add author information
+    private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact) {
+        Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
+        if (remoteLicense.isPresent()) {
+            reference.put("license", remoteLicense.get().spdx);
             List<Map<String, Object>> authorList = new LinkedList<>();
-            for (Developer dev : project.getDevelopers()) {
+            for (String name : remoteLicense.get().authors) {
                 Map<String, Object> author = new LinkedHashMap<>();
-                author.put("name", dev.getName());
-                if (dev.getEmail() != null) {
-                    author.put("email", dev.getEmail());
-                }
+                author.put("name", name);
                 authorList.add(author);
             }
             if (!authorList.isEmpty()) {
                 reference.put("authors", authorList);
             }
         }
+    }
 
-        return reference;
+    private void createReferenceFromMavenArtifact(Map<String, Object> reference, Artifact artifact,
+            ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
+        ProjectBuildingResult result = mavenProjectBuilder.build(artifact, projectBuildingRequest);
+        MavenProject project = result.getProject();
+
+        if (project.getName() != null && !project.getName().isEmpty()) {
+            reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
+        }
+
+        // Add license information
+        List<License> licenses = project.getLicenses();
+        if (!licenses.isEmpty()) {
+            License l = licenses.get(0);
+
+            Optional<String> spdx = KnownLicenses.parse(l.getName());
+
+            if (!spdx.isPresent()) {
+                // try to query the license from remote repository
+                Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
+                if (remoteLicense.isPresent()) {
+                    spdx = Optional.of(remoteLicense.get().spdx);
+                }
+            }
+
+            if (spdx.isPresent()) {
+                reference.put("license", spdx.get());
+            } else if (l.getUrl() != null && !l.getUrl().isEmpty()) {
+                // We could not parse the license, but there is an URL we can use
+                getLog().warn("Falling back to license URL for unknown license \"" + l.getName() + "\"");
+                reference.put("license-url", l.getUrl());
+            } else {
+                getLog().error("Unknown license for " + artifact.toString());
+                reference.put("license", "UNKNOWN");
+            }
+        }
+        // Add author information
+        List<Map<String, Object>> authorList = new LinkedList<>();
+        for (Developer dev : project.getDevelopers()) {
+            Map<String, Object> author = new LinkedHashMap<>();
+            author.put("name", dev.getName());
+            if (dev.getEmail() != null) {
+                author.put("email", dev.getEmail());
+            }
+            authorList.add(author);
+        }
+        if (!authorList.isEmpty()) {
+            reference.put("authors", authorList);
+        }
     }
 
     private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
@@ -328,7 +336,6 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             // return the entry with the highest score
             return Optional.of(remoteLicensesByScore.lastEntry().getValue());
         }
-
 
     }
 

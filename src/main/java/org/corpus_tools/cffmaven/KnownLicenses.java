@@ -17,6 +17,7 @@ public class KnownLicenses {
         licenseMap.put(norm("Apache License, Version 2.0"), "Apache-2.0");
         licenseMap.put(norm("Apache 2.0"), "Apache-2.0");
         licenseMap.put(norm("The Apache Software License, Version 2.0"), "Apache-2.0");
+        licenseMap.put(norm("http://www.apache.org/licenses/LICENSE-2.0.txt"), "Apache-2.0");
 
         licenseMap.put(norm("GPL-2.0-with-classpath-exception"), "GPL-2.0-with-classpath-exception");
         licenseMap.put(norm("GNU General Public License v2.0 w/Classpath exception"),
