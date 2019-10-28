@@ -496,7 +496,6 @@ references:
   - name: Gary D. Gregory
     email: ggregory@apache.org
   - name: Fredrik Westermarck
-    email: ''
   - name: James Carman
     email: jcarman@apache.org
   - name: Niall Pemberton
@@ -540,7 +539,6 @@ references:
   - name: Jason van Zyl
     email: jason@maven.org
   - name: Pete Kazmier
-    email: ''
   - name: James Taylor
     email: james@jamestaylor.org
   - name: Dan Diephouse
@@ -594,7 +592,6 @@ references:
   - name: Jason van Zyl
     email: jason@maven.org
   - name: Pete Kazmier
-    email: ''
   - name: James Taylor
     email: james@jamestaylor.org
   - name: Dan Diephouse
@@ -2622,7 +2619,6 @@ references:
   - name: Jason van Zyl
     email: jason@maven.org
   - name: Pete Kazmier
-    email: ''
   - name: James Taylor
     email: james@jamestaylor.org
   - name: Dan Diephouse
@@ -2676,7 +2672,6 @@ references:
   - name: Jason van Zyl
     email: jason@maven.org
   - name: Pete Kazmier
-    email: ''
   - name: James Taylor
     email: james@jamestaylor.org
   - name: Dan Diephouse

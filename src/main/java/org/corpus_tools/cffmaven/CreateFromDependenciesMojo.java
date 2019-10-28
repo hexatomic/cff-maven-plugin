@@ -26,7 +26,6 @@ import java.util.zip.ZipFile;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
 import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Developer;
@@ -83,6 +82,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "true")
     private boolean skipExistingDependencies;
+
+    @Parameter(defaultValue = "true")
+    private boolean includeEMails;
 
     @Parameter(defaultValue = "true")
     private boolean p2IgnorePatchLevel;
@@ -326,7 +328,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         for (Developer dev : project.getDevelopers()) {
             Map<String, Object> author = new LinkedHashMap<>();
             author.put("name", dev.getName());
-            if (dev.getEmail() != null) {
+            if (includeEMails && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
                 author.put("email", dev.getEmail());
             }
             authorList.add(author);
