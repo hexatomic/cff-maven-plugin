@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.apache.maven.artifact.Artifact;
@@ -54,6 +55,8 @@ import okhttp3.Response;
 public class CreateFromDependenciesMojo extends AbstractMojo {
 
     private final static String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
+
+    private static final Pattern P2_VERSION_SUFFIX = Pattern.compile("(.*)(\\.v[0-9]+-[0-9]+)");
 
     private final static HttpUrl DEFINITIONS_ENDPOINT = HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
@@ -173,6 +176,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private Map<String, Object> createReference(Artifact artifact, ProjectBuildingRequest projectBuildingRequest)
             throws ProjectBuildingException {
         LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
+        reference.put("type", "software");
         reference.put("title", artifact.getArtifactId());
 
         if (!P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
@@ -202,10 +206,16 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     }
 
     private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
-        // TODO: query the REST API of ClearlyDefined
+        // query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
-        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern",
-                artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion()).build();
+        String pattern;
+        if(P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+            String version = P2_VERSION_SUFFIX.matcher(artifact.getVersion()).replaceFirst("\\1");
+            pattern = artifact.getArtifactId() + "/" + version;
+        } else {
+            pattern = artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion();
+        }
+        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern", pattern).build();
         Request findRequest = new Request.Builder().url(findUrl).build();
 
         try (Response response = http.newCall(findRequest).execute()) {
