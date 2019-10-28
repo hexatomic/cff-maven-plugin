@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.security.cert.PKIXRevocationChecker.Option;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.maven.artifact.Artifact;
@@ -78,7 +78,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     @Component
     private ProjectBuilder mavenProjectBuilder;
 
-    private final OkHttpClient http = new OkHttpClient();
+    private final OkHttpClient http = new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
 
     public void execute() throws MojoExecutionException {
 
@@ -204,18 +204,20 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private Optional<String> queryLicenseFromClearlyDefined(Artifact artifact) {
         // TODO: query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
-        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder()
-                .addQueryParameter("pattern", artifact.getGroupId() + "/" + artifact.getArtifactId()).build();
+        HttpUrl findUrl = DEFINITIONS_ENDPOINT.newBuilder().addQueryParameter("pattern",
+                artifact.getGroupId() + "/" + artifact.getArtifactId() + "/" + artifact.getVersion()).build();
         Request findRequest = new Request.Builder().url(findUrl).build();
 
         try (Response response = http.newCall(findRequest).execute()) {
-            // Parse JSON
-            JSONArray searchResult = new JSONArray(response.body().string());
-            for(Object foundArtifactId : searchResult) {
-                if(foundArtifactId instanceof String) {
-                    Optional<String> license = queryLicenseForId((String) foundArtifactId);
-                    if(license.isPresent()) {
-                        return license;
+            if (response.code() == 200) {
+                // Parse JSON
+                JSONArray searchResult = new JSONArray(response.body().string());
+                for (Object foundArtifactId : searchResult) {
+                    if (foundArtifactId instanceof String) {
+                        Optional<String> license = queryLicenseForId((String) foundArtifactId);
+                        if (license.isPresent()) {
+                            return license;
+                        }
                     }
                 }
             }
@@ -230,12 +232,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         HttpUrl artifactUrl = DEFINITIONS_ENDPOINT.newBuilder().addEncodedPathSegment(id).build();
 
         Response response = http.newCall(new Request.Builder().url(artifactUrl).build()).execute();
-        if(response.code() == 200) {
+        if (response.code() == 200) {
             JSONObject result = new JSONObject(response.body().string());
             // only use explicitly declared licenses
-            if(result.has("licensed")) {
+            if (result.has("licensed")) {
                 JSONObject licensedObject = result.getJSONObject("licensed");
-                if(licensedObject.has("declared")) {
+                if (licensedObject.has("declared")) {
                     String declaredLicense = licensedObject.getString("declared");
                     return Optional.of(declaredLicense);
                 }
