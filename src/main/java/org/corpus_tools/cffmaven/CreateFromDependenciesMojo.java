@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -11,15 +13,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
+import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Developer;
 import org.apache.maven.model.License;
@@ -197,7 +205,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         reference.put("title", artifact.getArtifactId());
 
         if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
-            createReferenceFromP2(reference, artifact);
+            createReferenceFromP2(reference, artifact, projectBuildingRequest);
         } else {
             createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
         }
@@ -205,20 +213,77 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         return reference;
     }
 
-    private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact) {
-        Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
-        if (remoteLicense.isPresent()) {
-            reference.put("license", remoteLicense.get().spdx);
-            List<Map<String, Object>> authorList = new LinkedList<>();
-            for (String name : remoteLicense.get().authors) {
-                Map<String, Object> author = new LinkedHashMap<>();
-                author.put("name", name);
-                authorList.add(author);
-            }
-            if (!authorList.isEmpty()) {
-                reference.put("authors", authorList);
+    private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact,
+            ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
+
+        if (!createReferenceFromIncludedPom(reference, artifact, projectBuildingRequest)) {
+            Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
+            if (remoteLicense.isPresent()) {
+                reference.put("license", remoteLicense.get().spdx);
+                List<Map<String, Object>> authorList = new LinkedList<>();
+                for (String name : remoteLicense.get().authors) {
+                    Map<String, Object> author = new LinkedHashMap<>();
+                    author.put("name", name);
+                    authorList.add(author);
+                }
+                if (!authorList.isEmpty()) {
+                    reference.put("authors", authorList);
+                }
             }
         }
+    }
+
+    private boolean createReferenceFromIncludedPom(Map<String, Object> reference, Artifact artifact,
+            ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
+        // try to get the real artifact information from the JAR-file
+        if (artifact.getFile() != null && artifact.getFile().isFile()) {
+            try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
+                Enumeration<? extends ZipEntry> entries = artifactFile.entries();
+                while (entries.hasMoreElements()) {
+                    ZipEntry currentEntry = entries.nextElement();
+                    if (currentEntry.getName().endsWith("/pom.properties")) {
+                        try (InputStream propertyInputStream = artifactFile.getInputStream(currentEntry)) {
+                            Properties props = new Properties();
+                            props.load(propertyInputStream);
+                            String groupId = props.getProperty("groupId");
+                            String artifactId = props.getProperty("artifactId");
+                            String version = props.getProperty("version");
+                            if (groupId != null && artifactId != null && version != null) {
+                                // use the original maven artifact information
+                                Artifact newArtifact = new DefaultArtifact(groupId, artifactId, version,
+                                        artifact.getScope(), artifact.getType(), artifact.getClassifier(),
+                                        artifact.getArtifactHandler());
+                                // Don't try to fetch snapshot dependencies
+                                if (!newArtifact.isSnapshot()) {
+                                    try {
+                                        createReferenceFromMavenArtifact(reference, newArtifact,
+                                                projectBuildingRequest);
+                                        return true;
+                                    } catch (ProjectBuildingException ex) {
+                                        if (ex.getCause() instanceof ArtifactResolutionException) {
+                                            getLog().warn("Replacing artifact " + artifact.toString() + " with "
+                                                    + newArtifact.toString()
+                                                    + " failed because the new one was not found.");
+                                        } else {
+                                            getLog().warn("Replacing artifact " + artifact.toString() + " with "
+                                                    + newArtifact.toString() + " failed", ex);
+                                        }
+                                    }
+                                }
+                            } else {
+                                getLog().error("Invalid pom.properties detected: " + groupId + "/" + artifactId + "/"
+                                        + version);
+                            }
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                getLog().error("Could not open JAR file " + artifact.getFile().getPath() + " for inspection", ex);
+            }
+        }
+
+        return false;
+
     }
 
     private void createReferenceFromMavenArtifact(Map<String, Object> reference, Artifact artifact,
