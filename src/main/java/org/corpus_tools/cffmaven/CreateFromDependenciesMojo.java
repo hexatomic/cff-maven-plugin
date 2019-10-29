@@ -70,7 +70,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     private static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
     private static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
     private static final Pattern INCLUDE_THIRD_PARTY_FILE_PATTERN = Pattern.compile(
-            "(META-INF/)?((NOTICE|DEPENDENCIES|about|license|LICENSE)(\\.md|\\.txt|\\.html)?)|(about_files/.*)");
+            "(META-INF/)?((NOTICE|DEPENDENCIES|about|license|LICENSE)(\\.md|\\.txt|\\.html|\\.rst)?)|(about_files/.*)");
 
     private final static HttpUrl DEFINITIONS_ENDPOINT = HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
