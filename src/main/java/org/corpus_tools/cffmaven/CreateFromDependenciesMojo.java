@@ -496,10 +496,14 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                         if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
                             // copy this file to the output folder
                             File outputFile = new File(artifactFolder, entryPath);
-                            getLog().info("Copying " + entryPath + " from artifact to " + outputFile.getPath());
-                            if (outputFile.getParentFile().isDirectory() || outputFile.getParentFile().mkdirs()) {
-                                try (InputStream is = artifactFile.getInputStream(currentEntry)) {
-                                    Files.copy(is, outputFile.toPath());
+                            if(outputFile.exists()) {
+                                getLog().warn("Not overwriting existing file " + outputFile.getPath());
+                            } else {
+                                getLog().info("Copying " + entryPath + " from artifact to " + outputFile.getPath());
+                                if (outputFile.getParentFile().isDirectory() || outputFile.getParentFile().mkdirs()) {
+                                    try (InputStream is = artifactFile.getInputStream(currentEntry)) {
+                                        Files.copy(is, outputFile.toPath());
+                                    }
                                 }
                             }
                         }
