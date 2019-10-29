@@ -1,0 +1,31 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Maven Settings Builder
+
+
+From: 'an unknown organization'
+  - javax.inject (http://code.google.com/p/atinject/) javax.inject:javax.inject:jar:1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Plexus Cipher: encryption/decryption Component (http://spice.sonatype.org/plexus-cipher) org.sonatype.plexus:plexus-cipher:jar:1.7
+    License: Apache Public License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - Plexus Security Dispatcher Component (http://spice.sonatype.org/plexus-sec-dispatcher) org.sonatype.plexus:plexus-sec-dispatcher:jar:1.4
+    License: Apache Public License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+From: 'Codehaus Plexus' (http://codehaus-plexus.github.io/)
+  - Plexus Interpolation API (http://codehaus-plexus.github.io/plexus-interpolation/) org.codehaus.plexus:plexus-interpolation:bundle:1.25
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Plexus Common Utilities (http://codehaus-plexus.github.io/plexus-utils/) org.codehaus.plexus:plexus-utils:jar:3.2.1
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (https://www.apache.org/)
+  - Maven Builder Support (https://maven.apache.org/ref/3.6.2/maven-builder-support/) org.apache.maven:maven-builder-support:jar:3.6.2
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Maven Settings (https://maven.apache.org/ref/3.6.2/maven-settings/) org.apache.maven:maven-settings:jar:3.6.2
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+
