@@ -28,7 +28,6 @@
           <version>0.1.0-SNAPSHOT</version>
           <configuration>
             <input>${basedir}/CITATION.cff</input>
-            <skipExistingDependencies>false</skipExistingDependencies>
           </configuration>
         </plugin>
       </plugins>
