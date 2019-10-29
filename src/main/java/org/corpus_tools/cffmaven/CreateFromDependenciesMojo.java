@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -68,6 +69,8 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     private static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
     private static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
+    private static final Pattern INCLUDE_THIRD_PARTY_FILE_PATTERN = Pattern.compile(
+            "(META-INF/)?((NOTICE|DEPENDENCIES|about|license|LICENSE)(\\.md|\\.txt|\\.html)?)|(about_files/.*)");
 
     private final static HttpUrl DEFINITIONS_ENDPOINT = HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
@@ -76,6 +79,9 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
     @Parameter(defaultValue = "${basedir}/CITATION.cff")
     private File output;
+
+    @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
+    private File thirdPartyFolder;
 
     @Parameter(defaultValue = "")
     private File input;
@@ -89,7 +95,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
     @Parameter(defaultValue = "true")
     private boolean p2IgnorePatchLevel;
 
-    @Parameter(defaultValue = "true")
+    @Parameter(defaultValue = "false")
     private boolean p2ReconstructGroupId;
 
     @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true)
@@ -161,6 +167,10 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     getLog().info("Adding dependency " + artifact.toString());
                     references.add(newRef);
                     alreadyAddedTitles.add(newRefTitle);
+                    String titleForThirdParty = (String) newRefTitle;
+                    // remove additional information like stuff in (...) at the end
+                    titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");
+                    createThirdPartyFolder(titleForThirdParty, artifact, projectBuildingRequest);
                 }
             } catch (ProjectBuildingException ex) {
                 getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
@@ -297,7 +307,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         if (project.getName() != null && !project.getName().isEmpty()) {
             reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
         }
-        if(project.getVersion() != null && !project.getVersion().isEmpty()) {
+        if (project.getVersion() != null && !project.getVersion().isEmpty()) {
             reference.put("version", project.getVersion());
         }
 
@@ -464,4 +474,40 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
 
         return Optional.empty();
     }
+
+    private void createThirdPartyFolder(String title, Artifact artifact,
+            ProjectBuildingRequest projectBuildingRequest) {
+        if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
+            // Create a sub-directory for this artifact
+            File artifactFolder = new File(thirdPartyFolder, title.replaceAll("\\W+", "_"));
+            // Inspect the JAR file to copy all available license texts and notices
+            if (artifact.getFile() != null && artifact.getFile().isFile()) {
+                try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
+                    Enumeration<? extends ZipEntry> entries = artifactFile.entries();
+                    while (entries.hasMoreElements()) {
+                        ZipEntry currentEntry = entries.nextElement();
+                        String entryPath = currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
+                        getLog().debug("Checking zip file entry \"" + entryPath
+                                + "\" for inclusion in third party folder.");
+                        if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
+                            // copy this file to the output folder
+                            File outputFile = new File(artifactFolder, entryPath);
+                            getLog().info("Copying " + entryPath + " from artifact to " + outputFile.getPath());
+                            if (outputFile.getParentFile().isDirectory() || outputFile.getParentFile().mkdirs()) {
+                                try (InputStream is = artifactFile.getInputStream(currentEntry)) {
+                                    Files.copy(is, outputFile.toPath());
+                                }
+                            }
+                        }
+                    }
+                } catch (IOException ex) {
+                    getLog().warn("Could not open artifact file " + artifact.getFile()
+                            + ". No 3rd party files will be extracted from it.", ex);
+                }
+            }
+
+        
+        }
+    }
+
 }
