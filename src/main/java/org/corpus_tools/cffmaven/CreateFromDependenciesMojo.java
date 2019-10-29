@@ -155,18 +155,18 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
         Set<String> existingTitles = references.stream().map(ref -> ref.get("title")).filter(title -> title != null)
                 .map(title -> title.toString()).collect(Collectors.toSet());
-        Set<Object> alreadyAddedTitles = new HashSet<>();
+      
+        TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
 
         for (Artifact artifact : project.getArtifacts()) {
             try {
                 Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-                Object newRefTitle = newRef.getOrDefault("title", "");
+                String newRefTitle = (String) newRef.getOrDefault("title", "");
                 if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
                     getLog().info("Ignoring existing dependency " + artifact.toString());
-                } else if (!alreadyAddedTitles.contains(newRefTitle)) {
+                } else if (!newReferences.containsKey(newRefTitle)) {
                     getLog().info("Adding dependency " + artifact.toString());
-                    references.add(newRef);
-                    alreadyAddedTitles.add(newRefTitle);
+                    newReferences.put(newRefTitle, newRef);
                     String titleForThirdParty = (String) newRefTitle;
                     // remove additional information like stuff in (...) at the end
                     titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");
@@ -175,7 +175,11 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             } catch (ProjectBuildingException ex) {
                 getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
             }
+        }
 
+        // add all new references to the list
+        for(Map<String, Object> ref : newReferences.values()) {
+            references.add(ref);
         }
 
         cff.put("references", references);
