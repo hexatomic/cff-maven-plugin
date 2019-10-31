@@ -12,6 +12,11 @@
       <email>krauseto@hu-berlin.de</email>
       <organization>Humboldt Universität zu Berlin</organization>
     </developer>
+    <developer>
+      <name>Stephan Druskat</name>
+      <email>mail@sdruskat.net</email>
+      <organization>Friedrich Schiller University Jena</organization>
+    </developer>
   </developers>
 
   <properties>
