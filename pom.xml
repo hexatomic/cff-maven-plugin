@@ -18,6 +18,10 @@
       <organization>Friedrich Schiller University Jena</organization>
     </developer>
   </developers>
+  
+  <scm>
+  	<url>https://github.com/hexatomic/cff-maven-plugin</url>
+  </scm>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
