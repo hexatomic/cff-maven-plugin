@@ -9,6 +9,8 @@ references:
   title: AOP alliance (aopalliance)
   version: '1.0'
   license: OTHER
+  authors:
+  - name: The AOP alliance (aopalliance) 1.0 Team
 - type: software
   title: Animal Sniffer Annotations (animal-sniffer-annotations)
   version: '1.14'
@@ -405,6 +407,8 @@ references:
   title: FindBugs-jsr305 (jsr305)
   version: 3.0.2
   license: Apache-2.0
+  authors:
+  - name: The FindBugs-jsr305 (jsr305) 3.0.2 Team
 - type: software
   title: Google Guice - Core Library (guice)
   version: 4.2.1
@@ -428,6 +432,8 @@ references:
   title: J2ObjC Annotations (j2objc-annotations)
   version: '1.1'
   license: Apache-2.0
+  authors:
+  - name: The J2ObjC Annotations (j2objc-annotations) 1.1 Team
 - type: software
   title: JSON in Java (json)
   version: '20190722'
@@ -439,6 +445,9 @@ references:
   title: JSR-250 Common Annotations for the JavaTM Platform (jsr250-api)
   version: '1.0'
   license: NOASSERTION
+  authors:
+  - name: The JSR-250 Common Annotations for the JavaTM Platform (jsr250-api) 1.0
+      Team
 - type: software
   title: Maven Artifact (maven-artifact)
   version: 3.6.2
@@ -2826,6 +2835,9 @@ references:
   title: 'Plexus Cipher: encryption/decryption Component (plexus-cipher)'
   version: '1.4'
   license: Apache-2.0
+  authors:
+  - name: 'The Plexus Cipher: encryption/decryption Component (plexus-cipher) 1.4
+      Team'
 - type: software
   title: Plexus Classworlds (plexus-classworlds)
   version: 2.6.0
@@ -2992,6 +3004,8 @@ references:
   title: Plexus Security Dispatcher Component (plexus-sec-dispatcher)
   version: '1.4'
   license: Apache-2.0
+  authors:
+  - name: The Plexus Security Dispatcher Component (plexus-sec-dispatcher) 1.4 Team
 - type: software
   title: SLF4J API Module (slf4j-api)
   version: 1.7.25
@@ -3012,10 +3026,14 @@ references:
   title: error-prone annotations (error_prone_annotations)
   version: 2.1.3
   license: Apache-2.0
+  authors:
+  - name: The error-prone annotations (error_prone_annotations) 2.1.3 Team
 - type: software
   title: javax.inject (javax.inject)
   version: '1'
   license: Apache-2.0
+  authors:
+  - name: The javax.inject (javax.inject) 1 Team
 - type: software
   title: okhttp (okhttp)
   version: 4.2.2
@@ -3026,10 +3044,14 @@ references:
   title: org.eclipse.sisu.inject (org.eclipse.sisu.inject)
   version: 0.3.3
   license: EPL-1.0
+  authors:
+  - name: The org.eclipse.sisu.inject (org.eclipse.sisu.inject) 0.3.3 Team
 - type: software
   title: org.eclipse.sisu.plexus (org.eclipse.sisu.plexus)
   version: 0.3.3
   license: EPL-1.0
+  authors:
+  - name: The org.eclipse.sisu.plexus (org.eclipse.sisu.plexus) 0.3.3 Team
 - type: software
   title: org.jetbrains.kotlin:kotlin-stdlib (kotlin-stdlib)
   version: 1.3.50
