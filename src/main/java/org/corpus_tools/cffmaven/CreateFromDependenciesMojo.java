@@ -147,9 +147,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             author.put("name", dev.getName());
             authors.add(author);
         }
-        if (!authors.isEmpty()) {
-            cff.putIfAbsent("authors", authors);
+        if (authors.isEmpty()) {
+            HashMap<String, Object> author = new HashMap<>();
+            author.put("name", "The " + project.getName() + " " + project.getVersion() + " Team");
+            authors.add(author);
         }
+        cff.putIfAbsent("authors", authors);
 
         // get existing references and add new ones to the list
         List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
