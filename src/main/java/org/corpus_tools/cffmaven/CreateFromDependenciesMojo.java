@@ -148,18 +148,26 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         }
         // If no authors are specified, use generic fallback author info
         if (authors.isEmpty()) {
-        	getLog().info("No author info found for this project. Creating fallback information.");
+            getLog().info("No author info found for this project. Creating fallback information.");
             HashMap<String, Object> author = new HashMap<>();
             author.put("name", "The " + cff.get("title") + " " + cff.get("version") + " Team");
             authors.add(author);
         }
         cff.putIfAbsent("authors", authors);
 
+        // Add primary SCM information to CFF
+        if (project.getScm() != null) {
+            String scmUrl = project.getScm().getUrl();
+            if (!scmUrl.isEmpty()) {
+                cff.putIfAbsent("repository-code", scmUrl);
+            }
+        }
+
         // get existing references and add new ones to the list
         List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
         Set<String> existingTitles = references.stream().map(ref -> ref.get("title")).filter(title -> title != null)
                 .map(title -> title.toString()).collect(Collectors.toSet());
-      
+
         TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
 
         for (Artifact artifact : project.getArtifacts()) {
@@ -182,7 +190,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         }
 
         // add all new references to the list
-        for(Map<String, Object> ref : newReferences.values()) {
+        for (Map<String, Object> ref : newReferences.values()) {
             references.add(ref);
         }
 
@@ -195,7 +203,7 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             String yamlAsString = dumpYaml.dumpToString(cff);
             outWriter.write(yamlAsString);
         } catch (IOException ex) {
-            getLog().error("Could not write Citation file", ex);
+            getLog().error("Could not write CITATION.cff file.", ex);
         }
     }
 
@@ -249,13 +257,16 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 }
                 // If no authors are specified, use generic fallback author info
                 if (authorList.isEmpty()) {
-                	getLog().info("No author info found for P2 artifact " + artifact.getId() + ". Creating fallback information.");
+                    getLog().info("No author info found for P2 artifact " + artifact.getId()
+                            + ". Creating fallback information.");
                     HashMap<String, Object> author = new LinkedHashMap<>();
                     author.put("name", "The " + reference.get("title") + " " + reference.get("version") + " Team");
                     authorList.add(author);
                 }
             }
+            
         }
+        
     }
 
     private boolean createReferenceFromIncludedPom(Map<String, Object> reference, Artifact artifact,
@@ -360,15 +371,26 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
         }
         // If no authors are specified, use generic fallback author info
         if (authorList.isEmpty()) {
-        	getLog().info("No author info found for Maven artifact " + artifact.getArtifactId() + ". Creating fallback information.");
-        	Map<String, Object> author = new LinkedHashMap<>();
+            getLog().info("No author info found for Maven artifact " + project.getArtifactId()
+                    + ". Creating fallback information.");
+            Map<String, Object> author = new LinkedHashMap<>();
             author.put("name", "The " + reference.get("title") + " " + reference.get("version") + " Team");
             authorList.add(author);
         }
         reference.put("authors", authorList);
+        // Add SCM URL if available
+        if (project.getScm() != null) {
+            String scmUrl = project.getScm().getUrl();
+            if (!scmUrl.isEmpty()) {
+                reference.put("repository-code", scmUrl);
+            }
+        }
+        else {
+            getLog().info("No SCM info available for artifact " + project.getArtifactId());
+        }
     }
 
-	private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
+    private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
         // query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
         List<String> patterns = new LinkedList<>();
@@ -504,12 +526,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     while (entries.hasMoreElements()) {
                         ZipEntry currentEntry = entries.nextElement();
                         String entryPath = currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
-                        getLog().debug("Checking zip file entry \"" + entryPath
-                                + "\" for inclusion in third party folder.");
+                        getLog().debug(
+                                "Checking zip file entry \"" + entryPath + "\" for inclusion in third party folder.");
                         if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
                             // copy this file to the output folder
                             File outputFile = new File(artifactFolder, entryPath);
-                            if(outputFile.exists()) {
+                            if (outputFile.exists()) {
                                 getLog().warn("Not overwriting existing file " + outputFile.getPath());
                             } else {
                                 getLog().info("Copying " + entryPath + " from artifact to " + outputFile.getPath());
@@ -527,7 +549,6 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                 }
             }
 
-        
         }
     }
 
