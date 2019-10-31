@@ -146,9 +146,11 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             author.put("name", dev.getName());
             authors.add(author);
         }
+        // If no authors are specified, use generic fallback author info
         if (authors.isEmpty()) {
+        	getLog().info("No author info found for this project. Creating fallback information.");
             HashMap<String, Object> author = new HashMap<>();
-            author.put("name", "The " + project.getName() + " " + project.getVersion() + " Team");
+            author.put("name", "The " + cff.get("title") + " " + cff.get("version") + " Team");
             authors.add(author);
         }
         cff.putIfAbsent("authors", authors);
@@ -245,8 +247,12 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
                     author.put("name", name);
                     authorList.add(author);
                 }
-                if (!authorList.isEmpty()) {
-                    reference.put("authors", authorList);
+                // If no authors are specified, use generic fallback author info
+                if (authorList.isEmpty()) {
+                	getLog().info("No author info found for P2 artifact " + artifact.getId() + ". Creating fallback information.");
+                    HashMap<String, Object> author = new LinkedHashMap<>();
+                    author.put("name", "The " + reference.get("title") + " " + reference.get("version") + " Team");
+                    authorList.add(author);
                 }
             }
         }
@@ -352,12 +358,17 @@ public class CreateFromDependenciesMojo extends AbstractMojo {
             }
             authorList.add(author);
         }
-        if (!authorList.isEmpty()) {
-            reference.put("authors", authorList);
+        // If no authors are specified, use generic fallback author info
+        if (authorList.isEmpty()) {
+        	getLog().info("No author info found for Maven artifact " + artifact.getArtifactId() + ". Creating fallback information.");
+        	Map<String, Object> author = new LinkedHashMap<>();
+            author.put("name", "The " + reference.get("title") + " " + reference.get("version") + " Team");
+            authorList.add(author);
         }
+        reference.put("authors", authorList);
     }
 
-    private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
+	private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
         // query the REST API of ClearlyDefined
         // https://api.clearlydefined.io/api-docs/
         List<String> patterns = new LinkedList<>();
