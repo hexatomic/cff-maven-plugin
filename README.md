@@ -12,15 +12,10 @@ mvn install && mvn cff:create -Dinput=CITATION.cff
 
 ## Goals
 
-### Common parameters
+- [cff:create](#cffcreate)
+- [cff:third-party-folder](#cffthird-party-folder)
+- [Common parameters](#common-parameters)
 
-The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
-
-| Parameter              | Default Value | Description                                                                                |
-| ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
-| `includeEMail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
-| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts            |
-| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                        |
 
 ### cff:create
 
@@ -54,3 +49,13 @@ mvn cff:third-party-folder
 | Parameter          | Default Value            | Description                                                                                                   |
 | ------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | `thirdPartyFolder` | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder |
+
+### Common parameters
+
+The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
+
+| Parameter              | Default Value | Description                                                                                |
+| ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| `includeEMail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
+| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts            |
+| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                        |
