@@ -42,12 +42,12 @@ be applied to find a corresponding Maven Central artifact or query the [Clearly 
 | `input`                    | \<empty\>                 | A CFF input file that will be extended. E.g. if you want to add additional information to the CFF file that is not automatically generated, you can write this information into the input file and and the plugin will extend the input file with new information, but will not override existing existing entries. |
 | `skipExistingDependencies` | `true`                    | If `true`, don't replace existing reference entries from the input file.                                                                                                                                                                                                                                            |
 
-### cff::third-party-folder
+### cff:third-party-folder
 
 Extracts third-party license files like `LICENSE.txt`, `NOTICE` or `about.html` into a folder.
 
 ```bash
-mvn cff::third-party-folder
+mvn cff:third-party-folder
 ```
 
 
