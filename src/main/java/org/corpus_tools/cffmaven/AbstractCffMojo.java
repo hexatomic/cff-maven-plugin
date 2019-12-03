@@ -190,9 +190,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
       authorList.add(author);
     }
-    if (!authorList.isEmpty()) {
-      reference.put("authors", authorList);
-    }
+    reference.put("authors", authorList);
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
