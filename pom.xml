@@ -1,116 +1,152 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.corpus_tools</groupId>
-  <artifactId>cff-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
-  <version>0.1.0-SNAPSHOT</version>
-  <name>cff Maven Plugin</name>
-  <url>http://maven.apache.org</url>
-  <developers>
-    <developer>
-      <name>Thomas Krause</name>
-      <email>krauseto@hu-berlin.de</email>
-      <organization>Humboldt Universität zu Berlin</organization>
-    </developer>
-  </developers>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.corpus_tools</groupId>
+    <artifactId>cff-maven-plugin</artifactId>
+    <packaging>maven-plugin</packaging>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>cff Maven Plugin</name>
+    <url>http://maven.apache.org</url>
+    <developers>
+        <developer>
+            <name>Thomas Krause</name>
+            <email>krauseto@hu-berlin.de</email>
+            <organization>Humboldt Universität zu Berlin</organization>
+        </developer>
+    </developers>
 
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.corpus_tools</groupId>
-          <artifactId>cff-maven-plugin</artifactId>
-          <version>0.1.0-SNAPSHOT</version>
-          <configuration>
-            <input>${basedir}/CITATION.cff</input>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.corpus_tools</groupId>
+                    <artifactId>cff-maven-plugin</artifactId>
+                    <version>0.1.0-SNAPSHOT</version>
+                    <configuration>
+                        <input>${basedir}/CITATION.cff</input>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
 
-    <plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-plugin-plugin</artifactId>
-			<version>3.6.0</version>
-		</plugin>
-		<!-- USE GITFLOW -->
-		<plugin>
-			<groupId>com.amashchenko.maven.plugin</groupId>
-			<artifactId>gitflow-maven-plugin</artifactId>
-			<version>1.12.0</version>
-			<configuration>
-				<gpgSignTag>true</gpgSignTag>
-				<gpgSignCommit>true</gpgSignCommit>
-				<verbose>true</verbose>
-				<skipFeatureVersion>true</skipFeatureVersion>
-				<versionDigitToIncrement>1</versionDigitToIncrement>
-				<pushRemote>true</pushRemote>
-				<keepRemote>false</keepRemote>
-				<gitFlowConfig>
-					<versionTagPrefix>v</versionTagPrefix>
-				</gitFlowConfig>
-			</configuration>
-		</plugin>
-		<!-- BUILD JAVADOCS -->
-		<plugin>
-			<!-- Parse version during `validate` phase to create the properties - ${parsedVersion.majorVersion} 
-				- ${parsedVersion.minorVersion} - ${parsedVersion.incrementalVersion} They 
-				are used during the aggregation phase for javadoc by the maven-javadoc-plugin -->
-			<artifactId>build-helper-maven-plugin</artifactId>
-			<groupId>org.codehaus.mojo</groupId>
-			<version>3.0.0</version>
-			<executions>
-				<execution>
-					<id>parse-version</id>
-					<goals>
-						<goal>parse-version</goal>
-					</goals>
-				</execution>
-			</executions>
-		</plugin>
-    </plugins>
-  </build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+            <!-- USE GITFLOW -->
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>1.12.0</version>
+                <configuration>
+                    <gpgSignTag>true</gpgSignTag>
+                    <gpgSignCommit>true</gpgSignCommit>
+                    <verbose>true</verbose>
+                    <skipFeatureVersion>true</skipFeatureVersion>
+                    <versionDigitToIncrement>1</versionDigitToIncrement>
+                    <pushRemote>true</pushRemote>
+                    <keepRemote>false</keepRemote>
+                    <gitFlowConfig>
+                        <versionTagPrefix>v</versionTagPrefix>
+                    </gitFlowConfig>
+                </configuration>
+            </plugin>
+            <!-- BUILD JAVADOCS -->
+            <plugin>
+                <!-- Parse version during `validate` phase to create the 
+                    properties - ${parsedVersion.majorVersion} - ${parsedVersion.minorVersion} 
+                    - ${parsedVersion.incrementalVersion} They are used during the aggregation 
+                    phase for javadoc by the maven-javadoc-plugin -->
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>parse-version</id>
+                        <goals>
+                            <goal>parse-version</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Check coding style with checkstyle plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!-- This is a default configuration available on the 
+                        classpath of the checkstyle plugin -->
+                    <configLocation>${maven.multiModuleProjectDirectory}/checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <violationSeverity>warning</violationSeverity>
+                    <!-- TODO: set this to true when all source files have 
+                        been updated -->
+                    <failOnViolation>false</failOnViolation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.snakeyaml</groupId>
-      <artifactId>snakeyaml-engine</artifactId>
-      <version>2.0</version>
-      <type>jar</type>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20190722</version>
-    </dependency>
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp</artifactId>
-      <version>4.2.2</version>
-    </dependency>
+            <!-- Update the changelog header during a release -->
+            <plugin>
+                <groupId>co.enear.maven.plugins</groupId>
+                <artifactId>keepachangelog-maven-plugin</artifactId>
+                <version>1.2.3</version>
+                <inherited>false</inherited>
+            </plugin>
+        </plugins>
+    </build>
 
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>3.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-compat</artifactId>
-      <version>3.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-tools</groupId>
-      <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.4</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.snakeyaml</groupId>
+            <artifactId>snakeyaml-engine</artifactId>
+            <version>2.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20190722</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-compat</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
