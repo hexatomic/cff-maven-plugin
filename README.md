@@ -12,6 +12,16 @@ mvn install && mvn cff:create -Dinput=CITATION.cff
 
 ## Goals
 
+### Common parameters
+
+The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
+
+| Parameter              | Default Value | Description                                                                                |
+| ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
+| `includeEMail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
+| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts            |
+| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                        |
+
 ### cff:create
 
 ```bash
@@ -29,9 +39,18 @@ be applied to find a corresponding Maven Central artifact or query the [Clearly 
 | Parameter                  | Default Value             | Description                                                                                                                                                                                                                                                                                                         |
 | -------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `output`                   | `${basedir}/CITATION.cff` | The output file                                                                                                                                                                                                                                                                                                     |
-| `thirdPartyFolder`         | `${basedir}/THIRD-PARTY`  | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder                                                                                                                                                                                                      |
 | `input`                    | \<empty\>                 | A CFF input file that will be extended. E.g. if you want to add additional information to the CFF file that is not automatically generated, you can write this information into the input file and and the plugin will extend the input file with new information, but will not override existing existing entries. |
 | `skipExistingDependencies` | `true`                    | If `true`, don't replace existing reference entries from the input file.                                                                                                                                                                                                                                            |
-| `includeEMail`             | `true`                    | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                                                                                                                          |
-| `p2IgnorePatchLevel` | `true` | Ignore any patch level information when applying the heuristics to P2 artifacts |
-| `p2ReconstructGroupId` | `false` | For P2 bundles, try to reconstruct a group ID from the bundle name. | 
+
+### cff::third-party-folder
+
+Extracts third-party license files like `LICENSE.txt`, `NOTICE` or `about.html` into a folder.
+
+```bash
+mvn cff::third-party-folder
+```
+
+
+| Parameter          | Default Value            | Description                                                                                                   |
+| ------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| `thirdPartyFolder` | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder |

@@ -21,12 +21,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DefaultArtifact;
+import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Developer;
 import org.apache.maven.model.License;
+import org.apache.maven.model.building.ModelBuildingRequest;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.apache.maven.project.DefaultProjectBuildingRequest;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.ProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
@@ -35,6 +39,12 @@ import org.apache.maven.project.ProjectBuildingResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ * Common functionality of the different CFF Mojos.
+ * 
+ * @author Thomas Krause
+ *
+ */
 public abstract class AbstractCffMojo extends AbstractMojo {
 
   protected static final String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
@@ -42,13 +52,27 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   protected static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
       HttpUrl.parse("https://api.clearlydefined.io/definitions");
-  
+
+
+
   @Parameter(defaultValue = "true")
   private boolean includeEMail;
   @Parameter(defaultValue = "true")
   private boolean p2IgnorePatchLevel;
   @Parameter(defaultValue = "false")
   private boolean p2ReconstructGroupId;
+
+
+  @Parameter(defaultValue = "${project}", readonly = true)
+  protected MavenProject project;
+
+
+  @Parameter(defaultValue = "${session}", readonly = true)
+  private MavenSession mavenSession;
+
+  @Parameter(defaultValue = "${project.remoteArtifactRepositories}", readonly = true)
+  protected List<ArtifactRepository> remoteRepositories;
+
   @Component
   private ProjectBuilder mavenProjectBuilder;
   private final OkHttpClient http =
@@ -313,6 +337,13 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     }
 
     return Optional.empty();
+  }
+
+  protected ProjectBuildingRequest createProjectBuildingRequest() {
+    return new DefaultProjectBuildingRequest(mavenSession.getProjectBuildingRequest())
+        .setRemoteRepositories(remoteRepositories)
+        .setValidationLevel(ModelBuildingRequest.VALIDATION_LEVEL_MINIMAL)
+        .setResolveDependencies(false).setProcessPlugins(false);
   }
 
 }
