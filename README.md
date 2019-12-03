@@ -1,6 +1,8 @@
 
 # Citation File Format Maven plugin
 
+[![Build Status](https://travis-ci.org/hexatomic/cff-maven-plugin.svg?branch=develop)](https://travis-ci.org/hexatomic/cff-maven-plugin)
+
 This is a helper plugin to create a [CFF](https://citation-file-format.github.io/) file for
 a Maven project.
 You can generate the citation file of this project by executing
