@@ -30,8 +30,8 @@ import org.apache.maven.project.ProjectBuildingRequest;
 public class ThirdPartyFolderMojo extends AbstractCffMojo {
 
   private static final Pattern INCLUDE_THIRD_PARTY_FILE_PATTERN =
-      Pattern.compile("(META-INF/)?((NOTICE|DEPENDENCIES|about|license|LICENSE)"
-          + "(\\.md|\\.txt|\\.html|\\.rst)?)|(about_files/.+)");
+      Pattern.compile("(meta-info/)?((notice|dependencies|about|license)"
+          + "(\\.md|\\.txt|\\.html|\\.rst)?)|(about_files/.+)", Pattern.CASE_INSENSITIVE);
 
   @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
   private File thirdPartyFolder;
