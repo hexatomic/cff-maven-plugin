@@ -7,11 +7,6 @@ authors:
 - name: Thomas Krause
 references:
 - type: software
-  title: AOP alliance (aopalliance)
-  version: '1.0'
-  license: CC-PDDC
-  authors: []
-- type: software
   title: Animal Sniffer Annotations (animal-sniffer-annotations)
   version: '1.14'
   license: MIT
@@ -290,6 +285,15 @@ references:
   version: '1.0'
   license: NOASSERTION
   authors: []
+- type: software
+  title: Java/J2EE AOP standards
+  version: '1.0'
+  license: CC-PDDC
+  url: http://aopalliance.sourceforge.net/
+  notes: Library for interoperability for Java AOP implementations, published as public
+    domain.
+  authors:
+  - name: The AOP Alliance
 - type: software
   title: Maven Artifact (maven-artifact)
   version: 3.6.2

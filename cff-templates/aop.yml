@@ -1,5 +1,8 @@
 type: software
-title: AOP alliance (aopalliance)
+title: Java/J2EE AOP standards
 version: '{{version}}'
 license: CC-PDDC
-authors: []
+url: http://aopalliance.sourceforge.net/
+notes: Library for interoperability for Java AOP implementations, published as public domain.
+authors: 
+   - name: The AOP Alliance
