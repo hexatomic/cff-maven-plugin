@@ -118,8 +118,13 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       for (Map.Entry<?, ?> e : ((Map<?, ?>) loaded).entrySet()) {
         if (e.getKey() instanceof String) {
           reference.put((String) e.getKey(), e.getValue());
+        } else {
+          getLog().warn("Template " + templateFile.getPath() + " as a non-string key '" + e.getKey()
+              + "' which will be ignored");
         }
       }
+    } else {
+      getLog().warn("Template " + templateFile.getPath() + " is not a map and will be ignored");
     }
     return reference;
   }
