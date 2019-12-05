@@ -73,7 +73,7 @@ To configure reference templates, add the following configuration to the `cff-ma
 
 ```xml
 <plugin>
-    <groupId>org.corpus_tools</groupId>
+    <groupId>org.corpus-tools</groupId>
     <artifactId>cff-maven-plugin</artifactId>
     <version>SET VERSION HERE</version>
     <configuration>
