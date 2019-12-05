@@ -1,5 +1,5 @@
 type: software
 title: AOP alliance (aopalliance)
-version: '1.0'
+version: '{{version}}'
 license: CC-PDDC
 authors: []
