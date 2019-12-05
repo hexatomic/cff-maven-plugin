@@ -6,4 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-First public releases
+## [0.1.0] - 2019-12-05
+
+First public release
+
+[Unreleased]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.1.0...HEAD
