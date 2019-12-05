@@ -6,15 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.4] - 2019-12-05
+
+### Fixed
+
+- Add a URL to the SCM which can be accessed by a browser
+
 ## [0.2.3] - 2019-12-05
 
-## Fixed
+### Fixed
 
 - Use release profile when executing gitflow release/hotfix finish
 
 ## [0.2.2] - 2019-12-05
 
-## Fixed
+### Fixed
 
 - Some Sonatype requirements like signing the artifactss or a description were not met
 - Close Sonatype staging repository automatically when deploying

@@ -27,6 +27,7 @@
     <scm>
         <connection>https://github.com/hexatomic/cff-maven-plugin.git</connection>
         <developerConnection>https://github.com/hexatomic/cff-maven-plugin.git</developerConnection>
+        <url>https://github.com/hexatomic/cff-maven-plugin</url>
     </scm>
 
     <distributionManagement>
