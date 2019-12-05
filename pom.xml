@@ -27,6 +27,7 @@
     <scm>
         <connection>https://github.com/hexatomic/cff-maven-plugin.git</connection>
         <developerConnection>https://github.com/hexatomic/cff-maven-plugin.git</developerConnection>
+        <url>https://github.com/hexatomic/cff-maven-plugin</url>
     </scm>
 
     <distributionManagement>
@@ -89,8 +90,8 @@
                     <gitFlowConfig>
                         <versionTagPrefix>v</versionTagPrefix>
                     </gitFlowConfig>
-                    <postReleaseGoals>deploy</postReleaseGoals>
-                    <postHotfixGoals>deploy</postHotfixGoals>
+                    <postReleaseGoals>-Prelease deploy</postReleaseGoals>
+                    <postHotfixGoals>-Prelease deploy</postHotfixGoals>
                 </configuration>
             </plugin>
             <!-- BUILD JAVADOCS -->
