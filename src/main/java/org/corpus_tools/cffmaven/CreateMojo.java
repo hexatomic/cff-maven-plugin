@@ -35,7 +35,7 @@ import org.snakeyaml.engine.v2.common.FlowStyle;
  */
 @Mojo(name = "create", requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME,
     requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
-public class CreateFromDependenciesMojo extends AbstractCffMojo {
+public class CreateMojo extends AbstractCffMojo {
 
   @Parameter(defaultValue = "${basedir}/CITATION.cff")
   private File output;
