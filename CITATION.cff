@@ -7,15 +7,17 @@ authors:
 - name: Thomas Krause
 references:
 - type: software
-  title: Animal Sniffer Annotations (animal-sniffer-annotations)
+  title: Animal Sniffer Annotations
   version: '1.14'
+  abbreviation: org.codehaus.mojo:animal-sniffer-annotations
   license: MIT
   authors:
   - name: Kohsuke Kaw
   - name: Stephen Connolly
 - type: software
-  title: Apache Commons IO (commons-io)
+  title: Apache Commons IO
   version: '2.5'
+  abbreviation: commons-io:commons-io
   license: Apache-2.0
   authors:
   - name: Scott Sanders
@@ -33,8 +35,9 @@ references:
   - name: Gary Gregory
   - name: Kristian Rosenvold
 - type: software
-  title: Apache Commons Lang (commons-lang3)
+  title: Apache Commons Lang
   version: 3.8.1
+  abbreviation: org.apache.commons:commons-lang3
   license: Apache-2.0
   authors:
   - name: Daniel Rall
@@ -55,8 +58,9 @@ references:
   - name: Loic Guibert
   - name: Rob Tompkins
 - type: software
-  title: Apache Maven Shared Utils (maven-shared-utils)
+  title: Apache Maven Shared Utils
   version: 3.2.1
+  abbreviation: org.apache.maven.shared:maven-shared-utils
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy
@@ -137,8 +141,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: 'Apache Maven Wagon :: API (wagon-provider-api)'
+  title: 'Apache Maven Wagon :: API'
   version: 3.3.3
+  abbreviation: org.apache.maven.wagon:wagon-provider-api
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -221,8 +226,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: CDI APIs (cdi-api)
+  title: CDI APIs
   version: '1.0'
+  abbreviation: javax.enterprise:cdi-api
   license: Apache-2.0
   authors:
   - name: Pete Muir
@@ -230,8 +236,9 @@ references:
   - name: David Allen
   - name: Nicklas Karlsson
 - type: software
-  title: Checker Qual (checker-compat-qual)
+  title: Checker Qual
   version: 2.0.0
+  abbreviation: org.checkerframework:checker-compat-qual
   license: GPL-2.0 WITH Classpath-exception-2.0
   authors:
   - name: Michael Ernst
@@ -242,47 +249,55 @@ references:
   - name: Dan Brown
   - name: Jonathan G. Burke
 - type: software
-  title: FindBugs-jsr305 (jsr305)
+  title: FindBugs-jsr305
   version: 3.0.2
+  abbreviation: com.google.code.findbugs:jsr305
   license: Apache-2.0
   authors: []
 - type: software
-  title: Google Guice - Core Library (guice)
+  title: Google Guice - Core Library
   version: 4.2.1
+  abbreviation: com.google.inject:guice
   license: Apache-2.0
   authors: []
 - type: software
-  title: 'Guava: Google Core Libraries for Java (guava)'
+  title: 'Guava: Google Core Libraries for Java'
   version: 25.1-android
+  abbreviation: com.google.guava:guava
   license: Apache-2.0
   authors:
   - name: Kevin Bourrillion
 - type: software
-  title: Handlebars (handlebars)
+  title: Handlebars
   version: 4.1.2
+  abbreviation: com.github.jknack:handlebars
   license: Apache-2.0
   authors:
   - name: Edgar Espina
 - type: software
-  title: IntelliJ IDEA Annotations (annotations)
+  title: IntelliJ IDEA Annotations
   version: '13.0'
+  abbreviation: org.jetbrains:annotations
   license: Apache-2.0
   authors:
   - name: JetBrains Team
 - type: software
-  title: J2ObjC Annotations (j2objc-annotations)
+  title: J2ObjC Annotations
   version: '1.1'
+  abbreviation: com.google.j2objc:j2objc-annotations
   license: Apache-2.0
   authors: []
 - type: software
-  title: JSON in Java (json)
+  title: JSON in Java
   version: '20190722'
+  abbreviation: org.json:json
   license: JSON
   authors:
   - name: Douglas Crockford
 - type: software
-  title: JSR-250 Common Annotations for the JavaTM Platform (jsr250-api)
+  title: JSR-250 Common Annotations for the JavaTM Platform
   version: '1.0'
+  abbreviation: javax.annotation:jsr250-api
   license: NOASSERTION
   authors: []
 - type: software
@@ -292,13 +307,14 @@ references:
   license: CC-PDDC
   url: http://aopalliance.sourceforge.net/
   notes: Library for interoperability for Java AOP implementations.
-  copyright: Published as public domain.
+  copyright: Published in the public domain.
   institution:
     name: The AOP Alliance
   authors: []
 - type: software
-  title: Maven Artifact (maven-artifact)
+  title: Maven Artifact
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-artifact
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -381,8 +397,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Artifact Resolver API (maven-resolver-api)
+  title: Maven Artifact Resolver API
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-api
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -465,8 +482,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Artifact Resolver Implementation (maven-resolver-impl)
+  title: Maven Artifact Resolver Implementation
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-impl
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -549,8 +567,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Artifact Resolver Provider (maven-resolver-provider)
+  title: Maven Artifact Resolver Provider
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-resolver-provider
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -633,8 +652,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Artifact Resolver SPI (maven-resolver-spi)
+  title: Maven Artifact Resolver SPI
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-spi
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -717,8 +737,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Artifact Resolver Utilities (maven-resolver-util)
+  title: Maven Artifact Resolver Utilities
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-util
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -801,8 +822,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Builder Support (maven-builder-support)
+  title: Maven Builder Support
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-builder-support
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -885,8 +907,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Compat (maven-compat)
+  title: Maven Compat
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-compat
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -969,8 +992,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Core (maven-core)
+  title: Maven Core
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-core
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1053,8 +1077,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Model (maven-model)
+  title: Maven Model
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-model
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1137,8 +1162,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Model Builder (maven-model-builder)
+  title: Maven Model Builder
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-model-builder
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1221,8 +1247,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Plugin API (maven-plugin-api)
+  title: Maven Plugin API
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-plugin-api
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1305,8 +1332,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Plugin Tools Java 5 Annotations (maven-plugin-annotations)
+  title: Maven Plugin Tools Java 5 Annotations
   version: '3.4'
+  abbreviation: org.apache.maven.plugin-tools:maven-plugin-annotations
   license: Apache-2.0
   authors:
   - name: Hervé Boutemy
@@ -1383,8 +1411,9 @@ references:
   - name: Johnny Ruiz III
   - name: Kenney Westerhof
 - type: software
-  title: Maven Repository Metadata Model (maven-repository-metadata)
+  title: Maven Repository Metadata Model
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-repository-metadata
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1467,8 +1496,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Settings (maven-settings)
+  title: Maven Settings
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-settings
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1551,8 +1581,9 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Maven Settings Builder (maven-settings-builder)
+  title: Maven Settings Builder
   version: 3.6.2
+  abbreviation: org.apache.maven:maven-settings-builder
   license: Apache-2.0
   authors:
   - name: Robert Scholte
@@ -1635,14 +1666,16 @@ references:
   - name: Trygve Laugstol
   - name: Wendy Smoak
 - type: software
-  title: Okio (okio)
+  title: Okio
   version: 2.2.2
+  abbreviation: com.squareup.okio:okio
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
-  title: 'Plexus :: Component Annotations (plexus-component-annotations)'
+  title: 'Plexus :: Component Annotations'
   version: 2.0.0
+  abbreviation: org.codehaus.plexus:plexus-component-annotations
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -1671,13 +1704,15 @@ references:
   - name: Karl Heinz Marbaise
   - name: Michael Osipov
 - type: software
-  title: 'Plexus Cipher: encryption/decryption Component (plexus-cipher)'
+  title: 'Plexus Cipher: encryption/decryption Component'
   version: '1.4'
+  abbreviation: org.sonatype.plexus:plexus-cipher
   license: Apache-2.0
   authors: []
 - type: software
-  title: Plexus Classworlds (plexus-classworlds)
+  title: Plexus Classworlds
   version: 2.6.0
+  abbreviation: org.codehaus.plexus:plexus-classworlds
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -1706,8 +1741,9 @@ references:
   - name: Karl Heinz Marbaise
   - name: Michael Osipov
 - type: software
-  title: Plexus Common Utilities (plexus-utils)
+  title: Plexus Common Utilities
   version: 3.2.1
+  abbreviation: org.codehaus.plexus:plexus-utils
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -1736,8 +1772,9 @@ references:
   - name: Karl Heinz Marbaise
   - name: Michael Osipov
 - type: software
-  title: Plexus Interpolation API (plexus-interpolation)
+  title: Plexus Interpolation API
   version: '1.25'
+  abbreviation: org.codehaus.plexus:plexus-interpolation
   license: Apache-2.0
   authors:
   - name: Jason van Zyl
@@ -1766,58 +1803,68 @@ references:
   - name: Karl Heinz Marbaise
   - name: Michael Osipov
 - type: software
-  title: Plexus Security Dispatcher Component (plexus-sec-dispatcher)
+  title: Plexus Security Dispatcher Component
   version: '1.4'
+  abbreviation: org.sonatype.plexus:plexus-sec-dispatcher
   license: Apache-2.0
   authors: []
 - type: software
-  title: SLF4J API Module (slf4j-api)
+  title: SLF4J API Module
   version: 1.7.25
+  abbreviation: org.slf4j:slf4j-api
   license: MIT
   authors:
   - name: Ceki Gulcu
 - type: software
-  title: SnakeYAML Engine (snakeyaml-engine)
+  title: SnakeYAML Engine
   version: '2.0'
+  abbreviation: org.snakeyaml:snakeyaml-engine
   license: Apache-2.0
   authors:
   - name: Andrey Somov
   - name: Alexander Maslov
 - type: software
-  title: error-prone annotations (error_prone_annotations)
+  title: error-prone annotations
   version: 2.1.3
+  abbreviation: com.google.errorprone:error_prone_annotations
   license: Apache-2.0
   authors: []
 - type: software
-  title: javax.inject (javax.inject)
+  title: javax.inject
   version: '1'
+  abbreviation: javax.inject:javax.inject
   license: Apache-2.0
   authors: []
 - type: software
-  title: okhttp (okhttp)
+  title: okhttp
   version: 4.2.2
+  abbreviation: com.squareup.okhttp3:okhttp
   license: Apache-2.0
   authors:
   - name: Square, Inc.
 - type: software
-  title: org.eclipse.sisu.inject (org.eclipse.sisu.inject)
+  title: org.eclipse.sisu.inject
   version: 0.3.3
+  abbreviation: org.eclipse.sisu:org.eclipse.sisu.inject
   license: EPL-1.0
   authors: []
 - type: software
-  title: org.eclipse.sisu.plexus (org.eclipse.sisu.plexus)
+  title: org.eclipse.sisu.plexus
   version: 0.3.3
+  abbreviation: org.eclipse.sisu:org.eclipse.sisu.plexus
   license: EPL-1.0
   authors: []
 - type: software
-  title: org.jetbrains.kotlin:kotlin-stdlib (kotlin-stdlib)
+  title: org.jetbrains.kotlin:kotlin-stdlib
   version: 1.3.50
+  abbreviation: org.jetbrains.kotlin:kotlin-stdlib
   license: Apache-2.0
   authors:
   - name: Kotlin Team
 - type: software
-  title: org.jetbrains.kotlin:kotlin-stdlib-common (kotlin-stdlib-common)
+  title: org.jetbrains.kotlin:kotlin-stdlib-common
   version: 1.3.50
+  abbreviation: org.jetbrains.kotlin:kotlin-stdlib-common
   license: Apache-2.0
   authors:
   - name: Kotlin Team

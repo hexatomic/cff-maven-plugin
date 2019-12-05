@@ -203,7 +203,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     MavenProject project = result.getProject();
 
     if (project.getName() != null && !project.getName().isEmpty()) {
-      reference.put("title", project.getName() + " (" + artifact.getArtifactId() + ")");
+      reference.put("title", project.getName());
+      reference.put("abbreviation", project.getGroupId() + ":" + project.getArtifactId());
     }
     if (project.getVersion() != null && !project.getVersion().isEmpty()) {
       reference.put("version", project.getVersion());
