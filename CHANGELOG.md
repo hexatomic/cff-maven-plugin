@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Fixed
+
+- Close Sonatype staging repository automatically when deploying
+
+## [0.2.1] - 2019-12-05
+
 ### Fixed
 
 - Configure Gitflow Plugin to deploy after release
