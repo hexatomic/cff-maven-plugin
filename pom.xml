@@ -5,7 +5,7 @@
     <groupId>org.corpus_tools</groupId>
     <artifactId>cff-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>cff Maven Plugin</name>
     <url>http://maven.apache.org</url>
     <licenses>
@@ -34,7 +34,7 @@
                 <plugin>
                     <groupId>org.corpus_tools</groupId>
                     <artifactId>cff-maven-plugin</artifactId>
-                    <version>0.1.0-SNAPSHOT</version>
+                    <version>0.1.0</version>
                     <configuration>
                         <includeEmail>false</includeEmail>
                         <referenceTemplates>
