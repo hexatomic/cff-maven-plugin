@@ -208,11 +208,14 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     List<Map<String, Object>> authorList = new LinkedList<>();
     for (Developer dev : project.getDevelopers()) {
       Map<String, Object> author = new LinkedHashMap<>();
-      author.put("name", dev.getName());
-      if (includeEMail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
-        author.put("email", dev.getEmail());
+
+      if (dev.getName() != null) {
+        author.put("name", dev.getName());
+        if (includeEMail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
+          author.put("email", dev.getEmail());
+        }
+        authorList.add(author);
       }
-      authorList.add(author);
     }
     reference.put("authors", authorList);
   }

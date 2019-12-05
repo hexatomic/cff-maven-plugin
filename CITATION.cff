@@ -255,8 +255,7 @@ references:
   title: Google Guice - Core Library (guice)
   version: 4.2.1
   license: Apache-2.0
-  authors:
-  - name: null
+  authors: []
 - type: software
   title: 'Guava: Google Core Libraries for Java (guava)'
   version: 25.1-android
