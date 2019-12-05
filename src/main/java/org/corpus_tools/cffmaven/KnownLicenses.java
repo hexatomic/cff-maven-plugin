@@ -24,7 +24,7 @@ public class KnownLicenses {
         "GPL-2.0-with-classpath-exception");
     licenseMap.put(
         norm("GNU General Public License, version 2 (GPL2), with the classpath exception"),
-        "GPL-2.0-with-classpath-exception");
+        "GPL-2.0 WITH Classpath-exception-2.0");
 
     licenseMap.put(norm("MIT"), "MIT");
     licenseMap.put(norm("MIT license"), "MIT");

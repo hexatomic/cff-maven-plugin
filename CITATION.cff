@@ -237,7 +237,7 @@ references:
 - type: software
   title: Checker Qual (checker-compat-qual)
   version: 2.0.0
-  license: GPL-2.0-with-classpath-exception
+  license: GPL-2.0 WITH Classpath-exception-2.0
   authors:
   - name: Michael Ernst
   - name: Werner M. Dietl
@@ -1808,4 +1808,4 @@ references:
   version: 1.3.50
   license: Apache-2.0
   authors:
-  - name: Kotlin Team
+   - name: Kotlin Team
