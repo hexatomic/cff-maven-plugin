@@ -2,6 +2,9 @@ package org.corpus_tools.cffmaven;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
+import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
+import com.github.jknack.handlebars.io.FileTemplateLoader;
+import com.github.jknack.handlebars.io.TemplateLoader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,7 +84,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   private ProjectBuilder mavenProjectBuilder;
   private final OkHttpClient http =
       new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
-  private final Handlebars handlebars = new Handlebars();
+  private final TemplateLoader handlebarsTemplateLoader = new FileTemplateLoader("", "");
+  private final Handlebars handlebars = new Handlebars(handlebarsTemplateLoader);
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
@@ -98,12 +102,12 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
     return reference;
   }
-  
+
 
   protected Map<String, Object> createReferenceFromTemplate(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest, File templateFile, Load yamlLoad)
       throws ProjectBuildingException, IOException {
-    
+
     Map<String, Object> reference = new LinkedHashMap<>();
 
     // Apply the template to the artifact Pojo

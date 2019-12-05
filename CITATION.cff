@@ -9,7 +9,7 @@ references:
 - type: software
   title: AOP alliance (aopalliance)
   version: '1.0'
-  license: OTHER
+  license: CC-PDDC
   authors: []
 - type: software
   title: Animal Sniffer Annotations (animal-sniffer-annotations)

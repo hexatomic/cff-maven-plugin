@@ -50,9 +50,10 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
   @Parameter
   private String dateReleased;
+  
 
-  @Parameter(name = "dependency-template")
-  private Map<String, File> dependencyTemplate;
+  @Parameter(name = "reference-templates")
+  private List<TemplateConfiguration> referenceTemplates;
 
   /**
    * {@inheritDoc}
@@ -112,10 +113,10 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
     TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
 
     Map<Pattern, File> templatePatterns = new LinkedHashMap<Pattern, File>();
-    if (dependencyTemplate != null) {
-      for (Map.Entry<String, File> entry : dependencyTemplate.entrySet()) {
-        Pattern p = Pattern.compile(entry.getKey());
-        templatePatterns.put(p, entry.getValue());
+    if (referenceTemplates != null) {
+      for (TemplateConfiguration config : referenceTemplates) {
+        Pattern p = Pattern.compile(config.getPattern().toString());
+        templatePatterns.put(p, config.getTemplate());
       }
     }
 

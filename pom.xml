@@ -36,6 +36,13 @@
                     <artifactId>cff-maven-plugin</artifactId>
                     <version>0.1.0-SNAPSHOT</version>
                     <configuration>
+                        <include-emails>false</include-emails>
+                        <reference-templates>
+                            <reference-template>
+                                <pattern>.*:aopalliance:.*</pattern>
+                                <template>cff-templates/aop.yml</template>
+                            </reference-template>
+                        </reference-templates>
                     </configuration>
                 </plugin>
             </plugins>
