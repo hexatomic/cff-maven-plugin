@@ -1,5 +1,7 @@
 package org.corpus_tools.cffmaven;
 
+import com.github.jknack.handlebars.Handlebars;
+import com.github.jknack.handlebars.Template;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +41,7 @@ import org.apache.maven.project.ProjectBuildingRequest;
 import org.apache.maven.project.ProjectBuildingResult;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.snakeyaml.engine.v2.api.Load;
 
 /**
  * Common functionality of the different CFF Mojos.
@@ -78,6 +81,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   private ProjectBuilder mavenProjectBuilder;
   private final OkHttpClient http =
       new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
+  private final Handlebars handlebars = new Handlebars();
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
@@ -94,12 +98,27 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
     return reference;
   }
+  
 
   protected Map<String, Object> createReferenceFromTemplate(Artifact artifact,
-      ProjectBuildingRequest projectBuildingRequest, File templateFile)
-      throws ProjectBuildingException {
-    // TODO: implement
-    throw new UnsupportedOperationException();
+      ProjectBuildingRequest projectBuildingRequest, File templateFile, Load yamlLoad)
+      throws ProjectBuildingException, IOException {
+    
+    Map<String, Object> reference = new LinkedHashMap<>();
+
+    // Apply the template to the artifact Pojo
+    Template template = handlebars.compile(templateFile.getAbsolutePath());
+    String referenceRaw = template.apply(artifact);
+    // Parse the generated YAML and create a map out of it
+    Object loaded = yamlLoad.loadFromString(referenceRaw);
+    if (loaded instanceof Map<?, ?>) {
+      for (Map.Entry<?, ?> e : ((Map<?, ?>) loaded).entrySet()) {
+        if (e.getKey() instanceof String) {
+          reference.put((String) e.getKey(), e.getValue());
+        }
+      }
+    }
+    return reference;
   }
 
   private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact,

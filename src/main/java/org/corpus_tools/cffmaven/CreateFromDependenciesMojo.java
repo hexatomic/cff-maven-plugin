@@ -112,9 +112,11 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
     TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
 
     Map<Pattern, File> templatePatterns = new LinkedHashMap<Pattern, File>();
-    for (Map.Entry<String, File> entry : dependencyTemplate.entrySet()) {
-      Pattern p = Pattern.compile(entry.getKey());
-      templatePatterns.put(p, entry.getValue());
+    if (dependencyTemplate != null) {
+      for (Map.Entry<String, File> entry : dependencyTemplate.entrySet()) {
+        Pattern p = Pattern.compile(entry.getKey());
+        templatePatterns.put(p, entry.getValue());
+      }
     }
 
     for (Artifact artifact : project.getArtifacts()) {
@@ -124,8 +126,13 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
         for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
           if (entry.getKey().matcher(artifact.toString()).matches()) {
-            newRef =
-                createReferenceFromTemplate(artifact, projectBuildingRequest, entry.getValue());
+            try {
+              newRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
+                  entry.getValue(), yamlLoad);
+            } catch (IOException e) {
+              getLog().error("Could create reference from template " + entry.getValue().getPath(),
+                  e);
+            }
           }
         }
 
