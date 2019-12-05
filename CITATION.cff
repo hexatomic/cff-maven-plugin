@@ -298,7 +298,7 @@ references:
   title: JSR-250 Common Annotations for the JavaTM Platform
   version: '1.0'
   abbreviation: javax.annotation:jsr250-api
-  license: NOASSERTION
+  license: CDDL-1.0
   authors: []
 - type: software
   title: Java/J2EE AOP standards

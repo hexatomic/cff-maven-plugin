@@ -33,6 +33,9 @@ public class KnownLicenses {
     licenseMap.put(norm("Eclipse Public License 1.0"), "EPL-1.0");
     licenseMap.put(norm("Eclipse Public License, Version 1.0"), "EPL-1.0");
 
+    licenseMap.put(norm("COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0"),
+        "CDDL-1.0");
+
     toSpdx = Collections.unmodifiableMap(licenseMap);
   }
 
