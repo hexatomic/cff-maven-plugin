@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Developer;
@@ -49,6 +50,9 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
   @Parameter
   private String dateReleased;
+
+  @Parameter(name = "dependency-template")
+  private Map<String, File> dependencyTemplate;
 
   /**
    * {@inheritDoc}
@@ -106,6 +110,12 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
         .filter(title -> title != null).map(title -> title.toString()).collect(Collectors.toSet());
 
     TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
+
+    Map<Pattern, File> templatePatterns = new LinkedHashMap<Pattern, File>();
+    for (Map.Entry<String, File> entry : dependencyTemplate.entrySet()) {
+      Pattern p = Pattern.compile(entry.getKey());
+      templatePatterns.put(p, entry.getValue());
+    }
 
     for (Artifact artifact : project.getArtifacts()) {
       try {
