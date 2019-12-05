@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -36,17 +37,28 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
   @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
   private File thirdPartyFolder;
 
+  @Parameter(defaultValue = "true")
+  private boolean deleteFolder;
+
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
 
     ProjectBuildingRequest projectBuildingRequest = createProjectBuildingRequest();
 
+    if (deleteFolder && thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()
+        && thirdPartyFolder.isDirectory()) {
+      try {
+        getLog().info("Deleting third party folder " + thirdPartyFolder.getPath());
+        FileUtils.deleteDirectory(thirdPartyFolder);
+      } catch (IOException e) {
+        getLog().error("Could not delete third party folder", e);
+      }
+    }
 
     for (Artifact artifact : project.getArtifacts()) {
       try {
         Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
         String newRefTitle = (String) newRef.getOrDefault("title", "");
-        getLog().info("Downloading license files for dependency " + artifact.toString());
         String titleForThirdParty = (String) newRefTitle;
         // remove additional information like stuff in (...) at the end
         titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");
@@ -80,7 +92,8 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
               if (outputFile.exists()) {
                 getLog().warn("Not overwriting existing file " + outputFile.getPath());
               } else {
-                getLog().info("Copying " + entryPath + " from artifact to " + outputFile.getPath());
+                getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
+                    + artifact.getArtifactId() + " to " + outputFile.getPath());
                 if (outputFile.getParentFile().isDirectory()
                     || outputFile.getParentFile().mkdirs()) {
                   try (InputStream is = artifactFile.getInputStream(currentEntry)) {

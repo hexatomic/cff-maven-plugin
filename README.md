@@ -49,6 +49,7 @@ mvn cff:third-party-folder
 | Parameter          | Default Value            | Description                                                                                                   |
 | ------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
 | `thirdPartyFolder` | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder |
+| `deleteFolder`     | `true`                   | If `true`, deletes the contents of the given third party folder before copying the license files.             |
 
 ### Common parameters
 
