@@ -55,6 +55,6 @@ The following parameters are accepted by all goals and configure the basic behav
 
 | Parameter              | Default Value | Description                                                                                |
 | ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
-| `includeEMail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
+| `include-email`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
 | `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts            |
 | `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                        |

@@ -55,7 +55,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
 
 
-  @Parameter(defaultValue = "true")
+  @Parameter(defaultValue = "true", property = "include-email")
   private boolean includeEMail;
   @Parameter(defaultValue = "true")
   private boolean p2IgnorePatchLevel;
