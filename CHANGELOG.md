@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Deploy releases on Maven Central
+
 ## [0.1.0] - 2019-12-05
 
 First public release
