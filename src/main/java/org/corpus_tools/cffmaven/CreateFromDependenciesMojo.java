@@ -52,7 +52,7 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
   private String dateReleased;
   
 
-  @Parameter(name = "reference-templates")
+  @Parameter
   private List<TemplateConfiguration> referenceTemplates;
 
   /**

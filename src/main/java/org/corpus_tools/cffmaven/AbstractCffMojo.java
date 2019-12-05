@@ -2,7 +2,6 @@ package org.corpus_tools.cffmaven;
 
 import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
-import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import com.github.jknack.handlebars.io.FileTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
 import java.io.File;
@@ -62,8 +61,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
 
 
-  @Parameter(defaultValue = "true", property = "include-email")
-  private boolean includeEMail;
+  @Parameter(defaultValue = "true")
+  private boolean includeEmail;
   @Parameter(defaultValue = "true")
   private boolean p2IgnorePatchLevel;
   @Parameter(defaultValue = "false")
@@ -242,7 +241,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
       if (dev.getName() != null) {
         author.put("name", dev.getName());
-        if (includeEMail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
+        if (includeEmail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
           author.put("email", dev.getEmail());
         }
         authorList.add(author);
