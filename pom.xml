@@ -84,6 +84,8 @@
                     <gitFlowConfig>
                         <versionTagPrefix>v</versionTagPrefix>
                     </gitFlowConfig>
+                    <postReleaseGoals>deploy</postReleaseGoals>
+                    <postHotfixGoals>deploy</postHotfixGoals>
                 </configuration>
             </plugin>
             <!-- BUILD JAVADOCS -->

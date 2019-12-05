@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Configure Gitflow Plugin to deploy after release
+
 ## [0.2.0] - 2019-12-05
 
 ### Added
