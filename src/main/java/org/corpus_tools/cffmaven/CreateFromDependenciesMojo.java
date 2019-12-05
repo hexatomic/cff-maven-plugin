@@ -119,7 +119,20 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
     for (Artifact artifact : project.getArtifacts()) {
       try {
-        Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
+
+        Map<String, Object> newRef = null;
+
+        for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
+          if (entry.getKey().matcher(artifact.toString()).matches()) {
+            newRef =
+                createReferenceFromTemplate(artifact, projectBuildingRequest, entry.getValue());
+          }
+        }
+
+        if (newRef == null) {
+          // no pattern matched
+          newRef = createReference(artifact, projectBuildingRequest);
+        }
         String newRefTitle = (String) newRef.getOrDefault("title", "");
         if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
           getLog().info("Ignoring existing dependency " + artifact.toString());

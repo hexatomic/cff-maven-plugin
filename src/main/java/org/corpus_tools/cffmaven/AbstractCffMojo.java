@@ -1,5 +1,6 @@
 package org.corpus_tools.cffmaven;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -92,6 +93,13 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     }
 
     return reference;
+  }
+
+  protected Map<String, Object> createReferenceFromTemplate(Artifact artifact,
+      ProjectBuildingRequest projectBuildingRequest, File templateFile)
+      throws ProjectBuildingException {
+    // TODO: implement
+    throw new UnsupportedOperationException();
   }
 
   private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact,
