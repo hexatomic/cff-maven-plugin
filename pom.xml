@@ -53,7 +53,7 @@
                 <plugin>
                     <groupId>org.corpus-tools</groupId>
                     <artifactId>cff-maven-plugin</artifactId>
-                    <version>0.2.5</version>
+                    <version>0.2.6</version>
                     <configuration>
                         <includeEmail>false</includeEmail>
                         <referenceTemplates>
