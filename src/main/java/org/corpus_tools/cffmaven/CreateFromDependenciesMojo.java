@@ -117,6 +117,7 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
       for (TemplateConfiguration config : referenceTemplates) {
         Pattern p = Pattern.compile(config.getPattern().toString());
         templatePatterns.put(p, config.getTemplate());
+        break;
       }
     }
 

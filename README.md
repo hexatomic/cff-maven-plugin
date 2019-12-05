@@ -15,6 +15,7 @@ mvn install && mvn cff:create -Dinput=CITATION.cff
 - [cff:create](#cffcreate)
 - [cff:third-party-folder](#cffthird-party-folder)
 - [Common parameters](#common-parameters)
+  - [Curated reference templates](#curated-reference-templates)
 
 ### cff:create
 
@@ -53,8 +54,56 @@ mvn cff:third-party-folder
 
 The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
 
-| Parameter              | Default Value | Description                                                                                |
-| ---------------------- | ------------- | ------------------------------------------------------------------------------------------ |
-| `includeEmail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information. |
-| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts            |
-| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                        |
+| Parameter              | Default Value | Description                                                                                                                                                                                                    |
+| ---------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `includeEmail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
+| `referenceTemplates`   | \<empty\>     | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
+| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
+| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
+
+#### Curated reference templates
+
+Sometimes, it can happen that an information in the meta-data of Maven or the other sources is wrong
+or incomplete.
+To allow manually curated reference entries, you can create a template file for the reference
+using the [Handlebars syntax](https://handlebarsjs.com/guide/#simple-expressions).
+
+To configure reference templates, add the following configuration to the `cff-maven-plugin` configuration in Maven (either in the `pluginsManagement/plugins` or `build/plugins` section).
+
+```xml
+<plugin>
+    <groupId>org.corpus_tools</groupId>
+    <artifactId>cff-maven-plugin</artifactId>
+    <version>SET VERSION HERE</version>
+    <configuration>
+        <referenceTemplates>
+            <referenceTemplate>
+                <pattern>.*:aopalliance:.*</pattern>
+                <template>cff-templates/aop.yml</template>
+            </referenceTemplate>
+        </referenceTemplates>
+    </configuration>
+</plugin>
+```
+A single reference pattern configuration consists of two parts: 
+- the `pattern` which is a regular expression the whole Maven Artifact ID (including group ID and version)
+- a path to the `template` file.
+You can add several `<referenceTemplate>` entries to the list.
+The first pattern that matches will be used.
+
+The template file itself is a YAML file where you can use Handlebar expressions using the
+[Maven `Artifact` POJO as context](https://maven.apache.org/ref/3.5.4/maven-artifact/apidocs/org/apache/maven/artifact/Artifact.html) as in the following example with `{{artifactId}}` or `{{version}}` expressions that directly map to the corresponding fields of the `Artififact` POJO:
+
+```yaml
+type: software
+title: Java/J2EE AOP standards
+abbreviation: '{{artifactId}}'
+version: '{{version}}'
+license: CC-PDDC
+url: http://aopalliance.sourceforge.net/
+notes: Library for interoperability for Java AOP implementations.
+copyright: Published as public domain.
+institution: 
+   name: The AOP Alliance 
+authors: []
+```
