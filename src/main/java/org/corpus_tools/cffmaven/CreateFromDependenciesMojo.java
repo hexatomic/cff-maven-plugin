@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -36,14 +38,17 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
   @Parameter(defaultValue = "${basedir}/CITATION.cff")
   private File output;
-  
+
 
   @Parameter(defaultValue = "")
   private File input;
-  
+
 
   @Parameter(defaultValue = "true")
   private boolean skipExistingDependencies;
+
+  @Parameter
+  private String dateReleased;
 
   /**
    * {@inheritDoc}
@@ -76,6 +81,13 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
     cff.putIfAbsent("message", "If you use this software, please cite it as below.");
     cff.putIfAbsent("title", project.getName());
     cff.putIfAbsent("version", project.getVersion());
+    if (dateReleased == null) {
+      // add current date
+      SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+      cff.putIfAbsent("date-released", df.format(new Date()));
+    } else {
+      cff.put("date-released", dateReleased);
+    }
 
     List<HashMap<String, Object>> authors = new LinkedList<>();
     for (Developer dev : project.getModel().getDevelopers()) {

@@ -16,7 +16,6 @@ mvn install && mvn cff:create -Dinput=CITATION.cff
 - [cff:third-party-folder](#cffthird-party-folder)
 - [Common parameters](#common-parameters)
 
-
 ### cff:create
 
 ```bash
