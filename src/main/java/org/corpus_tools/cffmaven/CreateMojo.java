@@ -50,7 +50,7 @@ public class CreateMojo extends AbstractCffMojo {
 
   @Parameter
   private String dateReleased;
-  
+
 
   @Parameter
   private List<TemplateConfiguration> referenceTemplates;
@@ -117,7 +117,6 @@ public class CreateMojo extends AbstractCffMojo {
       for (TemplateConfiguration config : referenceTemplates) {
         Pattern p = Pattern.compile(config.getPattern().toString());
         templatePatterns.put(p, config.getTemplate());
-        break;
       }
     }
 
@@ -127,10 +126,15 @@ public class CreateMojo extends AbstractCffMojo {
         Map<String, Object> newRef = null;
 
         for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
+          getLog().debug("Testing artifact " + artifact.toString() + " with pattern "
+              + entry.getKey().pattern());
           if (entry.getKey().matcher(artifact.toString()).matches()) {
             try {
+              getLog().info("Adding reference " + artifact.toString() + " from template "
+                  + entry.getValue().getPath());
               newRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
                   entry.getValue(), yamlLoad);
+              break;
             } catch (IOException e) {
               getLog().error("Could create reference from template " + entry.getValue().getPath(),
                   e);
@@ -146,7 +150,7 @@ public class CreateMojo extends AbstractCffMojo {
         if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
           getLog().info("Ignoring existing dependency " + artifact.toString());
         } else if (!newReferences.containsKey(newRefTitle)) {
-          getLog().info("Adding dependency " + artifact.toString());
+          getLog().info("Adding reference " + artifact.toString());
           newReferences.put(newRefTitle, newRef);
         }
       } catch (ProjectBuildingException ex) {
