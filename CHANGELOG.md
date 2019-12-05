@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Fixed
 
+- Some Sonatype requirements like signing the artifactss or a description were not met
 - Close Sonatype staging repository automatically when deploying
 
 ## [0.2.1] - 2019-12-05

@@ -20,8 +20,13 @@
         </developer>
     </developers>
 
+    <description>
+        This is a helper plugin to create a CFF file for a Maven project and include dependencies as references.
+    </description>
+
     <scm>
         <connection>https://github.com/hexatomic/cff-maven-plugin.git</connection>
+        <developerConnection>https://github.com/hexatomic/cff-maven-plugin.git</developerConnection>
     </scm>
 
     <distributionManagement>
@@ -144,19 +149,7 @@
                 <version>1.2.3</version>
                 <inherited>false</inherited>
             </plugin>
-            <!-- Configure Sonatype Repository deploy -->
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.5</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                    <stagingProgressTimeoutMinutes>120</stagingProgressTimeoutMinutes>
-                </configuration>
-            </plugin>
+
 
         </plugins>
     </build>
@@ -209,4 +202,49 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- Configure Sonatype Repository deploy -->
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.5</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <stagingProgressTimeoutMinutes>120</stagingProgressTimeoutMinutes>
+                        </configuration>
+                    </plugin>
+                    <!-- sign artifacts on release -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>
