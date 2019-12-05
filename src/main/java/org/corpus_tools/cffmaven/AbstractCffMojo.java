@@ -137,9 +137,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
           author.put("name", name);
           authorList.add(author);
         }
-        if (!authorList.isEmpty()) {
-          reference.put("authors", authorList);
-        }
+        reference.put("authors", authorList);
       }
     }
   }
