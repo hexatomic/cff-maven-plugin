@@ -36,7 +36,6 @@
                     <artifactId>cff-maven-plugin</artifactId>
                     <version>0.1.0-SNAPSHOT</version>
                     <configuration>
-                        <input>${basedir}/CITATION.cff</input>
                     </configuration>
                 </plugin>
             </plugins>

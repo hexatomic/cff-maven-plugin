@@ -40,7 +40,7 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
   private File output;
 
 
-  @Parameter(defaultValue = "")
+  @Parameter
   private File input;
 
 
@@ -62,6 +62,7 @@ public class CreateFromDependenciesMojo extends AbstractCffMojo {
 
     if (input != null && input.isFile()) {
       try (FileInputStream inputFile = new FileInputStream(input)) {
+        getLog().info("Reading input CFF file " + input.getPath());
         Object loaded = yamlLoad.loadFromInputStream(inputFile);
         if (loaded instanceof Map<?, ?>) {
           for (Map.Entry<?, ?> e : ((Map<?, ?>) loaded).entrySet()) {
