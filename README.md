@@ -7,7 +7,7 @@ This is a helper plugin to create a [CFF](https://citation-file-format.github.io
 a Maven project.
 You can generate the citation file of this project by executing
 ```bash
-mvn install && mvn cff:create -Dinput=CITATION.cff
+mvn install && mvn cff:create
 ```
 
 ## Goals
