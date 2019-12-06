@@ -164,7 +164,9 @@ public class CreateMojo extends AbstractCffMojo {
     for (Map<String, Object> ref : newReferences.values()) {
       references.add(ref);
     }
-
+    
+    // Remove references first, then add them again to place them at the end of the file.s
+    cff.remove("references");
     cff.put("references", references);
 
     // Write out the YAML file again
