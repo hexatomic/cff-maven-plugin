@@ -60,6 +60,7 @@ The following parameters are accepted by all goals and configure the basic behav
 | `includeEmail`           | `true`                    | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
 | `referenceTemplates`     | \<empty\>                 | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
 | subfolder of this folder |
+| `ignoredArtifacts`       | \<empty\>                 | A list of regular expression patterns of artifact IDs to ignore.                                                                                                                                               |
 | `p2IgnorePatchLevel`     | `true`                    | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
 | `p2ReconstructGroupId`   | `false`                   | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
 
