@@ -22,7 +22,6 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
-import org.json.JSONArray;
 
 /**
  * Extracts third-party license files like "LICENSE.txt", "NOTICE" or "about.html" into a folder.
@@ -58,16 +57,18 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
     }
 
     for (Artifact artifact : project.getArtifacts()) {
-      try {
-        Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-        String newRefTitle = (String) newRef.getOrDefault("title", "");
-        String titleForThirdParty = (String) newRefTitle;
-        // remove additional information like stuff in (...) at the end
-        titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");
-        createThirdPartyFolder(titleForThirdParty, artifact, projectBuildingRequest);
+      if (!isIgnored(artifact)) {
+        try {
+          Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
+          String newRefTitle = (String) newRef.getOrDefault("title", "");
+          String titleForThirdParty = (String) newRefTitle;
+          // remove additional information like stuff in (...) at the end
+          titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");
+          createThirdPartyFolder(titleForThirdParty, artifact, projectBuildingRequest);
 
-      } catch (ProjectBuildingException ex) {
-        getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
+        } catch (ProjectBuildingException ex) {
+          getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
+        }
       }
     }
   }
