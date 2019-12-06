@@ -55,6 +55,7 @@ public class CreateMojo extends AbstractCffMojo {
    * {@inheritDoc}
    */
   public void execute() throws MojoExecutionException {
+    
 
     LoadSettings yamlLoadSettings = LoadSettings.builder().build();
     Load yamlLoad = new Load(yamlLoadSettings);
@@ -123,40 +124,43 @@ public class CreateMojo extends AbstractCffMojo {
     }
 
     for (Artifact artifact : project.getArtifacts()) {
-      try {
 
-        Map<String, Object> newRef = null;
+      if (!isIgnored(artifact)) {
+        try {
 
-        for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
-          getLog().debug("Testing artifact " + artifact.toString() + " with pattern "
-              + entry.getKey().pattern());
-          if (entry.getKey().matcher(artifact.toString()).matches()) {
-            try {
-              getLog().info("Adding reference " + artifact.toString() + " from template "
-                  + entry.getValue().getPath());
-              newRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
-                  entry.getValue(), yamlLoad);
-              break;
-            } catch (IOException e) {
-              getLog().error("Could create reference from template " + entry.getValue().getPath(),
-                  e);
+          Map<String, Object> newRef = null;
+
+          for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
+            getLog().debug("Testing artifact " + artifact.toString() + " with pattern "
+                + entry.getKey().pattern());
+            if (entry.getKey().matcher(artifact.toString()).matches()) {
+              try {
+                getLog().info("Adding reference " + artifact.toString() + " from template "
+                    + entry.getValue().getPath());
+                newRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
+                    entry.getValue(), yamlLoad);
+                break;
+              } catch (IOException e) {
+                getLog().error("Could create reference from template " + entry.getValue().getPath(),
+                    e);
+              }
             }
           }
-        }
 
-        if (newRef == null) {
-          // no pattern matched
-          newRef = createReference(artifact, projectBuildingRequest);
+          if (newRef == null) {
+            // no pattern matched
+            newRef = createReference(artifact, projectBuildingRequest);
+          }
+          String newRefTitle = (String) newRef.getOrDefault("title", "");
+          if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
+            getLog().info("Ignoring existing dependency " + artifact.toString());
+          } else if (!newReferences.containsKey(newRefTitle)) {
+            getLog().info("Adding reference " + artifact.toString());
+            newReferences.put(newRefTitle, newRef);
+          }
+        } catch (ProjectBuildingException ex) {
+          getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
         }
-        String newRefTitle = (String) newRef.getOrDefault("title", "");
-        if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
-          getLog().info("Ignoring existing dependency " + artifact.toString());
-        } else if (!newReferences.containsKey(newRefTitle)) {
-          getLog().info("Adding reference " + artifact.toString());
-          newReferences.put(newRefTitle, newRef);
-        }
-      } catch (ProjectBuildingException ex) {
-        getLog().error("Can not resolve dependency artifact " + artifact.toString(), ex);
       }
     }
 
@@ -164,7 +168,7 @@ public class CreateMojo extends AbstractCffMojo {
     for (Map<String, Object> ref : newReferences.values()) {
       references.add(ref);
     }
-    
+
     // Remove references first, then add them again to place them at the end of the file.s
     cff.remove("references");
     cff.put("references", references);

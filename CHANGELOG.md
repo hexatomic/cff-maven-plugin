@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `ignoredArtifacts` parameter for ignoring artifacts if their string representation matches a regular expression.
+
 ## [0.3.4] - 2019-12-06
 
 ### Fixed

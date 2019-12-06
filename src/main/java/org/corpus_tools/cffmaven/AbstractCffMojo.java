@@ -1,3 +1,4 @@
+
 package org.corpus_tools.cffmaven;
 
 import com.github.jknack.handlebars.Handlebars;
@@ -91,6 +92,12 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   @Parameter(defaultValue = "${basedir}/CITATION.cff")
   protected File output;
 
+  @Parameter
+  protected List<String> ignoredArtifacts;
+
+  private List<Pattern> ignoredPatterns;
+
+
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
@@ -136,7 +143,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
-    
+
     if (!createReferenceFromIncludedPom(reference, artifact, projectBuildingRequest)) {
       List<Map<String, Object>> authorList = new LinkedList<>();
 
@@ -426,5 +433,26 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         .setValidationLevel(ModelBuildingRequest.VALIDATION_LEVEL_MINIMAL)
         .setResolveDependencies(false).setProcessPlugins(false);
   }
+
+  protected boolean isIgnored(Artifact artifact) {
+    if (ignoredPatterns == null) {
+      ignoredPatterns = new LinkedList<>();
+      if (ignoredArtifacts != null) {
+        // Add all patterns defined in the "ignored" parameter to the list
+        for (String patternRaw : ignoredArtifacts) {
+          Pattern pattern = Pattern.compile(patternRaw);
+          getLog().info("Adding ignored pattern " + patternRaw);
+          ignoredPatterns.add(pattern);
+        }
+      }
+    }
+    for (Pattern p : ignoredPatterns) {
+      if (p.matcher(artifact.toString()).matches()) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 
 }
