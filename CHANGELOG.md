@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `institution` was not correctly used in the example templates
 - Ignore more invalid SCM URL patterns
+- Reference to CFF was not formatted correctly
 
 ## [0.3.3] - 2019-12-06
 
