@@ -31,6 +31,7 @@ import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Developer;
 import org.apache.maven.model.License;
+import org.apache.maven.model.Scm;
 import org.apache.maven.model.building.ModelBuildingRequest;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Component;
@@ -58,7 +59,6 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   protected static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
       HttpUrl.parse("https://api.clearlydefined.io/definitions");
-
 
 
   @Parameter(defaultValue = "true")
@@ -252,6 +252,27 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
     }
     reference.put("authors", authorList);
+
+    // Add SCM URL if available
+    String scmUrl = getRepositoryCodeUrl(project.getScm());
+    if (scmUrl != null) {
+      reference.put("repository-code", scmUrl);
+    }
+  }
+
+  protected String getRepositoryCodeUrl(Scm scm) {
+
+    if (scm != null) {
+      String scmUrl = scm.getUrl();
+      if (scmUrl != null && !scmUrl.isEmpty()) {
+        if (scmUrl.startsWith("scm:git:")) {
+          getLog().warn("Invalid SCM URL " + scmUrl + " detected .It will be ignored.");
+        } else {
+          return scmUrl;
+        }
+      }
+    }
+    return null;
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
