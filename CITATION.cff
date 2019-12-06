@@ -8,7 +8,7 @@ authors:
 - family-names: Druskat
   given-names: Stephan
   orcid: https://orcid.org/0000-0003-4925-7248
-version: 0.3.3
+version: 0.3.4
 date-released: 2019-12-06
 repository-code: https://github.com/hexatomic/cff-maven-plugin
 references:
@@ -368,9 +368,8 @@ references:
   url: http://aopalliance.sourceforge.net/
   notes: Library for interoperability for Java AOP implementations.
   copyright: Published in the public domain.
-  institution:
-    name: The AOP Alliance
-  authors: []
+  authors:
+  - name: The AOP Alliance
 - type: software
   title: Maven Artifact
   version: 3.6.2

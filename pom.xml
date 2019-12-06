@@ -57,7 +57,7 @@
                     <artifactId>cff-maven-plugin</artifactId>
                     <version>0.3.4</version>
                     <configuration>
-                        <input>${project.basedir}/CITATION_input.yml</input>
+                        <input>${project.basedir}/cff-templates/CITATION_input.yml</input>
                         <includeEmail>false</includeEmail>
                         <referenceTemplates>
                             <referenceTemplate>
