@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2019-12-06
+
+### Fixed
+
+- When there was an existing reference in the input file, added fields like "date-released" 
+where located after the references.
+
 ## [0.3.1] - 2019-12-06
 
 ### Fixed
@@ -68,6 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 First public release
 
 [Unreleased]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.3.1...v0.3.1
 [0.3.1]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.6...v0.3.0
 [0.2.6]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.5...v0.2.6

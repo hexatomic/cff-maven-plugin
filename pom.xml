@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.corpus-tools</groupId>
     <artifactId>cff-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.3.1</version>
+    <version>0.3.2</version>
     <name>cff Maven Plugin</name>
     <url>http://maven.apache.org</url>
     <licenses>
@@ -53,8 +55,9 @@
                 <plugin>
                     <groupId>org.corpus-tools</groupId>
                     <artifactId>cff-maven-plugin</artifactId>
-                    <version>0.3.1</version>
+                    <version>0.3.2</version>
                     <configuration>
+                        <input>${project.basedir}/CITATION_input.yml</input>
                         <includeEmail>false</includeEmail>
                         <referenceTemplates>
                             <referenceTemplate>
