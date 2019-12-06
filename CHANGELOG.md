@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- SCM URL information is added as `repository-code` field
+
 ## [0.2.6] - 2019-12-05
 
 ### Fixed
