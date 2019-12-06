@@ -82,7 +82,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   @Component
   private ProjectBuilder mavenProjectBuilder;
-  private final OkHttpClient http =
+  protected final OkHttpClient http =
       new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
   private final TemplateLoader handlebarsTemplateLoader = new FileTemplateLoader("", "");
   private final Handlebars handlebars = new Handlebars(handlebarsTemplateLoader);
