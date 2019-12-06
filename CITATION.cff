@@ -1,7 +1,7 @@
 cff-version: 1.1.0
 message: If you use this software, please cite it as below.
 title: cff Maven Plugin
-version: 0.2.6
+version: 0.3.1
 date-released: 2019-12-06
 authors:
 - name: Thomas Krause
@@ -1941,7 +1941,7 @@ references:
   version: '1'
   abbreviation: javax.inject:javax.inject
   license: Apache-2.0
-  notes: More license information can be found in the THIRD-PARTY/javax_inject directory.
+  notes: More license information can be found in the THIRD-PARTY/javax.inject directory.
   authors: []
   repository-code: http://code.google.com/p/atinject/source/checkout
 - type: software
@@ -1958,7 +1958,7 @@ references:
   version: 0.3.3
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.inject
   license: EPL-1.0
-  notes: More license information can be found in the THIRD-PARTY/org_eclipse_sisu_inject
+  notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.inject
     directory.
   authors: []
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.inject.git/tree/org.eclipse.sisu.inject/
@@ -1967,7 +1967,7 @@ references:
   version: 0.3.3
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.plexus
   license: EPL-1.0
-  notes: More license information can be found in the THIRD-PARTY/org_eclipse_sisu_plexus
+  notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.plexus
     directory.
   authors: []
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.plexus.git/tree/org.eclipse.sisu.plexus/
@@ -1976,7 +1976,7 @@ references:
   version: 1.3.50
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib
   license: Apache-2.0
-  notes: More license information can be found in the THIRD-PARTY/org_jetbrains_kotlin_kotlin_stdlib
+  notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib
     directory.
   authors:
   - name: Kotlin Team
@@ -1986,7 +1986,7 @@ references:
   version: 1.3.50
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib-common
   license: Apache-2.0
-  notes: More license information can be found in the THIRD-PARTY/org_jetbrains_kotlin_kotlin_stdlib_common
+  notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib_common
     directory.
   authors:
   - name: Kotlin Team
