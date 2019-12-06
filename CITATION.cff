@@ -1,12 +1,37 @@
 cff-version: 1.1.0
 message: If you use this software, please cite it as below.
-title: cff Maven Plugin
-version: 0.3.1
-date-released: 2019-12-06
+title: CFF Maven Plugin
 authors:
-- name: Thomas Krause
+- family-names: Krause
+  given-names: Thomas
+  orcid: https://orcid.org/0000-0003-3731-2422
+- family-names: Druskat
+  given-names: Stephan
+  orcid: https://orcid.org/0000-0003-4925-7248
+version: 0.3.2
+date-released: 2019-12-06
 repository-code: https://github.com/hexatomic/cff-maven-plugin
 references:
+- authors:
+  - family-names: Druskat
+    given-names: Stephan
+    orcid: https://orcid.org/0000-0003-4925-7248
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+    orcid: https://orcid.org/0000-0002-7064-4069
+  - family-names: Chue Hong
+    given-names: Neil
+    orcid: https://orcid.org/0000-0002-8876-7606
+  - family-names: Haines
+    given-names: Robert
+    orcid: https://orcid.org/0000-0002-9538-7919
+  - family-names: Baker
+    given-names: James
+    orcid: https://orcid.org/0000-0002-2682-6922
+    title: Citation File Format (CFF)
+    version: 1.1.0
+    doi: 10.5281/zenodo.1003149
+    date-released: 2019-11-13
 - type: software
   title: Animal Sniffer Annotations
   version: '1.14'
