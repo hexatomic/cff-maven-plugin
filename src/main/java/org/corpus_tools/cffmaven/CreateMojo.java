@@ -37,10 +37,6 @@ import org.snakeyaml.engine.v2.common.FlowStyle;
     requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class CreateMojo extends AbstractCffMojo {
 
-  @Parameter(defaultValue = "${basedir}/CITATION.cff")
-  private File output;
-
-
   @Parameter
   private File input;
 

@@ -12,6 +12,8 @@ references:
   version: '1.14'
   abbreviation: org.codehaus.mojo:animal-sniffer-annotations
   license: MIT
+  notes: More license information can be found in the THIRD-PARTY/Animal_Sniffer_Annotations
+    directory.
   authors:
   - name: Kohsuke Kaw
   - name: Stephen Connolly
@@ -21,6 +23,8 @@ references:
   version: 3.8.1
   abbreviation: org.apache.commons:commons-lang3
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Commons_Lang
+    directory.
   authors:
   - name: Daniel Rall
   - name: Stephen Colebourne
@@ -45,6 +49,8 @@ references:
   version: 3.2.1
   abbreviation: org.apache.maven.shared:maven-shared-utils
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Maven_Shared_Utils
+    directory.
   authors:
   - name: Hervé Boutemy
   - name: Andreas Gudian
@@ -129,6 +135,8 @@ references:
   version: 3.3.3
   abbreviation: org.apache.maven.wagon:wagon-provider-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Maven_Wagon_API
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -215,6 +223,7 @@ references:
   version: '1.0'
   abbreviation: javax.enterprise:cdi-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/CDI_APIs directory.
   authors:
   - name: Pete Muir
   - name: Shane Bryzak
@@ -226,6 +235,7 @@ references:
   version: 2.0.0
   abbreviation: org.checkerframework:checker-compat-qual
   license: GPL-2.0 WITH Classpath-exception-2.0
+  notes: More license information can be found in the THIRD-PARTY/Checker_Qual directory.
   authors:
   - name: Michael Ernst
   - name: Werner M. Dietl
@@ -240,6 +250,7 @@ references:
   version: 1.3.2
   abbreviation: commons-io:commons-io
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Commons_IO directory.
   authors:
   - name: Scott Sanders
   - name: dIon Gillard
@@ -257,6 +268,8 @@ references:
   version: 3.0.2
   abbreviation: com.google.code.findbugs:jsr305
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/FindBugs_jsr305
+    directory.
   authors: []
   repository-code: https://code.google.com/p/jsr-305/
 - type: software
@@ -264,6 +277,8 @@ references:
   version: 4.2.1
   abbreviation: com.google.inject:guice
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Google_Guice_Core_Library
+    directory.
   authors: []
   repository-code: https://github.com/google/guice/guice
 - type: software
@@ -271,6 +286,8 @@ references:
   version: 25.1-android
   abbreviation: com.google.guava:guava
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Guava_Google_Core_Libraries_for_Java
+    directory.
   authors:
   - name: Kevin Bourrillion
   repository-code: https://github.com/google/guava/guava
@@ -279,6 +296,7 @@ references:
   version: 4.1.2
   abbreviation: com.github.jknack:handlebars
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Handlebars directory.
   authors:
   - name: Edgar Espina
 - type: software
@@ -286,6 +304,8 @@ references:
   version: '13.0'
   abbreviation: org.jetbrains:annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/IntelliJ_IDEA_Annotations
+    directory.
   authors:
   - name: JetBrains Team
   repository-code: https://github.com/JetBrains/intellij-community
@@ -294,6 +314,8 @@ references:
   version: '1.1'
   abbreviation: com.google.j2objc:j2objc-annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/J2ObjC_Annotations
+    directory.
   authors: []
   repository-code: http://svn.sonatype.org/spice/tags/oss-parent-7/j2objc-annotations
 - type: software
@@ -301,6 +323,7 @@ references:
   version: '20190722'
   abbreviation: org.json:json
   license: JSON
+  notes: More license information can be found in the THIRD-PARTY/JSON_in_Java directory.
   authors:
   - name: Douglas Crockford
   repository-code: https://github.com/douglascrockford/JSON-java.git
@@ -309,6 +332,8 @@ references:
   version: '1.0'
   abbreviation: javax.annotation:jsr250-api
   license: CDDL-1.0
+  notes: More license information can be found in the THIRD-PARTY/JSR_250_Common_Annotations_for_the_JavaTM_Platform
+    directory.
   authors: []
 - type: software
   title: Java/J2EE AOP standards
@@ -326,6 +351,7 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-artifact
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -412,6 +438,8 @@ references:
   version: 1.4.1
   abbreviation: org.apache.maven.resolver:maven-resolver-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_API
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -498,6 +526,8 @@ references:
   version: 1.4.1
   abbreviation: org.apache.maven.resolver:maven-resolver-impl
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Implementation
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -584,6 +614,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-resolver-provider
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Provider
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -670,6 +702,8 @@ references:
   version: 1.4.1
   abbreviation: org.apache.maven.resolver:maven-resolver-spi
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_SPI
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -756,6 +790,8 @@ references:
   version: 1.4.1
   abbreviation: org.apache.maven.resolver:maven-resolver-util
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Utilities
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -842,6 +878,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-builder-support
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Builder_Support
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -928,6 +966,7 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-compat
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Compat directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1014,6 +1053,7 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-core
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Core directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1100,6 +1140,7 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-model
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Model directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1186,6 +1227,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-model-builder
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Model_Builder
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1272,6 +1315,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-plugin-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_API
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1358,6 +1403,8 @@ references:
   version: '3.4'
   abbreviation: org.apache.maven.plugin-tools:maven-plugin-annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_Tools_Java_5_Annotations
+    directory.
   authors:
   - name: Hervé Boutemy
   - name: Arnaud Héritier
@@ -1438,6 +1485,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-repository-metadata
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Repository_Metadata_Model
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1524,6 +1573,7 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-settings
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Settings directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1610,6 +1660,8 @@ references:
   version: 3.6.2
   abbreviation: org.apache.maven:maven-settings-builder
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Settings_Builder
+    directory.
   authors:
   - name: Robert Scholte
   - name: Arnaud Héritier
@@ -1696,6 +1748,7 @@ references:
   version: 2.2.2
   abbreviation: com.squareup.okio:okio
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Okio directory.
   authors:
   - name: Square, Inc.
   repository-code: https://github.com/square/okio/
@@ -1704,6 +1757,8 @@ references:
   version: 2.0.0
   abbreviation: org.codehaus.plexus:plexus-component-annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Component_Annotations
+    directory.
   authors:
   - name: Jason van Zyl
   - name: Pete Kazmier
@@ -1736,6 +1791,8 @@ references:
   version: '1.4'
   abbreviation: org.sonatype.plexus:plexus-cipher
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Cipher_encryption_decryption_Component
+    directory.
   authors: []
   repository-code: http://svn.sonatype.org/spice/tags/plexus-cipher-1.4
 - type: software
@@ -1743,6 +1800,8 @@ references:
   version: 2.6.0
   abbreviation: org.codehaus.plexus:plexus-classworlds
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Classworlds
+    directory.
   authors:
   - name: Jason van Zyl
   - name: Pete Kazmier
@@ -1775,6 +1834,8 @@ references:
   version: 3.2.1
   abbreviation: org.codehaus.plexus:plexus-utils
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Common_Utilities
+    directory.
   authors:
   - name: Jason van Zyl
   - name: Pete Kazmier
@@ -1807,6 +1868,8 @@ references:
   version: '1.25'
   abbreviation: org.codehaus.plexus:plexus-interpolation
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Interpolation_API
+    directory.
   authors:
   - name: Jason van Zyl
   - name: Pete Kazmier
@@ -1839,6 +1902,8 @@ references:
   version: '1.4'
   abbreviation: org.sonatype.plexus:plexus-sec-dispatcher
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Security_Dispatcher_Component
+    directory.
   authors: []
   repository-code: http://svn.sonatype.org/spice/tags/plexus-sec-dispatcher-1.4
 - type: software
@@ -1846,6 +1911,8 @@ references:
   version: 1.7.25
   abbreviation: org.slf4j:slf4j-api
   license: MIT
+  notes: More license information can be found in the THIRD-PARTY/SLF4J_API_Module
+    directory.
   authors:
   - name: Ceki Gulcu
   repository-code: https://github.com/qos-ch/slf4j/slf4j-api
@@ -1854,6 +1921,8 @@ references:
   version: '2.0'
   abbreviation: org.snakeyaml:snakeyaml-engine
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/SnakeYAML_Engine
+    directory.
   authors:
   - name: Andrey Somov
   - name: Alexander Maslov
@@ -1863,6 +1932,8 @@ references:
   version: 2.1.3
   abbreviation: com.google.errorprone:error_prone_annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/error_prone_annotations
+    directory.
   authors: []
   repository-code: https://github.com/google/error-prone/error_prone_annotations
 - type: software
@@ -1870,6 +1941,7 @@ references:
   version: '1'
   abbreviation: javax.inject:javax.inject
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/javax_inject directory.
   authors: []
   repository-code: http://code.google.com/p/atinject/source/checkout
 - type: software
@@ -1877,6 +1949,7 @@ references:
   version: 4.2.2
   abbreviation: com.squareup.okhttp3:okhttp
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/okhttp directory.
   authors:
   - name: Square, Inc.
   repository-code: https://github.com/square/okhttp
@@ -1885,6 +1958,8 @@ references:
   version: 0.3.3
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.inject
   license: EPL-1.0
+  notes: More license information can be found in the THIRD-PARTY/org_eclipse_sisu_inject
+    directory.
   authors: []
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.inject.git/tree/org.eclipse.sisu.inject/
 - type: software
@@ -1892,6 +1967,8 @@ references:
   version: 0.3.3
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.plexus
   license: EPL-1.0
+  notes: More license information can be found in the THIRD-PARTY/org_eclipse_sisu_plexus
+    directory.
   authors: []
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.plexus.git/tree/org.eclipse.sisu.plexus/
 - type: software
@@ -1899,6 +1976,8 @@ references:
   version: 1.3.50
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/org_jetbrains_kotlin_kotlin_stdlib
+    directory.
   authors:
   - name: Kotlin Team
   repository-code: https://github.com/JetBrains/kotlin
@@ -1907,6 +1986,8 @@ references:
   version: 1.3.50
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib-common
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/org_jetbrains_kotlin_kotlin_stdlib_common
+    directory.
   authors:
   - name: Kotlin Team
   repository-code: https://github.com/JetBrains/kotlin

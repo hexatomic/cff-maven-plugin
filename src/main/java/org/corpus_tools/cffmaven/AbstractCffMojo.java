@@ -7,6 +7,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -87,6 +88,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   private final Handlebars handlebars = new Handlebars(handlebarsTemplateLoader);
   @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
   protected File thirdPartyFolder;
+  @Parameter(defaultValue = "${basedir}/CITATION.cff")
+  protected File output;
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
@@ -239,6 +242,14 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       } else {
         getLog().error("Unknown license for " + artifact.toString());
       }
+      Object title = reference.get("title");
+      if (title instanceof String) {
+        File thirdPartyFolder = getArtifactFolder((String) reference.get("title"));
+        Path relativePath = output.getParentFile().toPath().relativize(thirdPartyFolder.toPath());
+        reference.put("notes", "More license information can be found in the "
+            + relativePath.toString() + " directory.");
+      }
+
     }
     // Add author information
     List<Map<String, Object>> authorList = new LinkedList<>();

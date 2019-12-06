@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - SCM URL information is added as `repository-code` field
+- Add notice which points to the third-party folder of this artifact (#5)
 
 ## [0.2.6] - 2019-12-05
 
