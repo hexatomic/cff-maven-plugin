@@ -280,7 +280,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     if (scm != null) {
       String scmUrl = scm.getUrl();
       if (scmUrl != null && !scmUrl.isEmpty()) {
-        if (scmUrl.startsWith("scm:git:")) {
+        if (scmUrl.startsWith("scm:") || scmUrl.startsWith("git@")) {
           getLog().warn("Invalid SCM URL " + scmUrl + " detected .It will be ignored.");
         } else {
           return scmUrl;

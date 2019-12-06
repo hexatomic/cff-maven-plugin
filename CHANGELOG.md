@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `institution` was not correctly used in the example templates
+- Ignore more invalid SCM URL patterns
 
 ## [0.3.3] - 2019-12-06
 
