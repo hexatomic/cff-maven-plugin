@@ -290,7 +290,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   protected File getArtifactFolder(String artifactTitle) {
     if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
-      return new File(thirdPartyFolder, artifactTitle.replaceAll("\\W+", "_"));
+      return new File(thirdPartyFolder, artifactTitle.replaceAll("[^a-zA-Z_0-9.]+", "_"));
     } else {
       return null;
     }
