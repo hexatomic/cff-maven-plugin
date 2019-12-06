@@ -8,11 +8,15 @@ authors:
 - family-names: Druskat
   given-names: Stephan
   orcid: https://orcid.org/0000-0003-4925-7248
-version: 0.3.3
+version: 0.3.4
 date-released: 2019-12-06
 repository-code: https://github.com/hexatomic/cff-maven-plugin
 references:
-- authors:
+- title: Citation File Format (CFF)
+  version: 1.1.0
+  doi: 10.5281/zenodo.1003149
+  date-released: 2019-11-13T00:00:00Z
+  authors:
   - family-names: Druskat
     given-names: Stephan
     orcid: https://orcid.org/0000-0003-4925-7248
@@ -28,10 +32,6 @@ references:
   - family-names: Baker
     given-names: James
     orcid: https://orcid.org/0000-0002-2682-6922
-    title: Citation File Format (CFF)
-    version: 1.1.0
-    doi: 10.5281/zenodo.1003149
-    date-released: 2019-11-13
 - type: software
   title: Animal Sniffer Annotations
   version: '1.14'
@@ -368,9 +368,8 @@ references:
   url: http://aopalliance.sourceforge.net/
   notes: Library for interoperability for Java AOP implementations.
   copyright: Published in the public domain.
-  institution:
-    name: The AOP Alliance
-  authors: []
+  authors:
+  - name: The AOP Alliance
 - type: software
   title: Maven Artifact
   version: 3.6.2

@@ -104,8 +104,7 @@ version: '{{version}}'
 license: CC-PDDC
 url: http://aopalliance.sourceforge.net/
 notes: Library for interoperability for Java AOP implementations.
-copyright: Published as public domain.
-institution: 
-   name: The AOP Alliance 
-authors: []
+copyright: Published in the public domain.
+authors:
+-  name: The AOP Alliance 
 ```
