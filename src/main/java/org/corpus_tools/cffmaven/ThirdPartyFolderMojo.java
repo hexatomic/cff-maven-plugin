@@ -34,9 +34,6 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
       Pattern.compile("(meta-info/)?((notice|dependencies|about|license)"
           + "(\\.md|\\.txt|\\.html|\\.rst)?)|(about_files/.+)", Pattern.CASE_INSENSITIVE);
 
-  @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
-  private File thirdPartyFolder;
-
   @Parameter(defaultValue = "true")
   private boolean deleteFolder;
 
@@ -73,42 +70,40 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
 
   private void createThirdPartyFolder(String title, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) {
-    if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
-      // Create a sub-directory for this artifact
-      File artifactFolder = new File(thirdPartyFolder, title.replaceAll("\\W+", "_"));
-      // Inspect the JAR file to copy all available license texts and notices
-      if (artifact.getFile() != null && artifact.getFile().isFile()) {
-        try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
-          Enumeration<? extends ZipEntry> entries = artifactFile.entries();
-          while (entries.hasMoreElements()) {
-            ZipEntry currentEntry = entries.nextElement();
-            String entryPath =
-                currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
-            getLog().debug("Checking zip file entry \"" + entryPath
-                + "\" for inclusion in third party folder.");
-            if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
-              // copy this file to the output folder
-              File outputFile = new File(artifactFolder, entryPath);
-              if (outputFile.exists()) {
-                getLog().warn("Not overwriting existing file " + outputFile.getPath());
-              } else {
-                getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
-                    + artifact.getArtifactId() + " to " + outputFile.getPath());
-                if (outputFile.getParentFile().isDirectory()
-                    || outputFile.getParentFile().mkdirs()) {
-                  try (InputStream is = artifactFile.getInputStream(currentEntry)) {
-                    Files.copy(is, outputFile.toPath());
-                  }
+    // Create a sub-directory for this artifact
+    File artifactFolder = getArtifactFolder(title);
+    // Inspect the JAR file to copy all available license texts and notices
+    if (artifactFolder != null && artifact.getFile() != null && artifact.getFile().isFile()) {
+      try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
+        Enumeration<? extends ZipEntry> entries = artifactFile.entries();
+        while (entries.hasMoreElements()) {
+          ZipEntry currentEntry = entries.nextElement();
+          String entryPath =
+              currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
+          getLog().debug(
+              "Checking zip file entry \"" + entryPath + "\" for inclusion in third party folder.");
+          if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
+            // copy this file to the output folder
+            File outputFile = new File(artifactFolder, entryPath);
+            if (outputFile.exists()) {
+              getLog().warn("Not overwriting existing file " + outputFile.getPath());
+            } else {
+              getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
+                  + artifact.getArtifactId() + " to " + outputFile.getPath());
+              if (outputFile.getParentFile().isDirectory() || outputFile.getParentFile().mkdirs()) {
+                try (InputStream is = artifactFile.getInputStream(currentEntry)) {
+                  Files.copy(is, outputFile.toPath());
                 }
               }
             }
           }
-        } catch (IOException ex) {
-          getLog().warn("Could not open artifact file " + artifact.getFile()
-              + ". No 3rd party files will be extracted from it.", ex);
         }
+      } catch (IOException ex) {
+        getLog().warn("Could not open artifact file " + artifact.getFile()
+            + ". No 3rd party files will be extracted from it.", ex);
       }
     }
+
   }
 
 }

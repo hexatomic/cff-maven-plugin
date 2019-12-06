@@ -85,6 +85,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
   private final TemplateLoader handlebarsTemplateLoader = new FileTemplateLoader("", "");
   private final Handlebars handlebars = new Handlebars(handlebarsTemplateLoader);
+  @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
+  protected File thirdPartyFolder;
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
@@ -273,6 +275,14 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
     }
     return null;
+  }
+
+  protected File getArtifactFolder(String artifactTitle) {
+    if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
+      return new File(thirdPartyFolder, artifactTitle.replaceAll("\\W+", "_"));
+    } else {
+      return null;
+    }
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
