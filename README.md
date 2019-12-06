@@ -46,21 +46,21 @@ mvn cff:third-party-folder
 ```
 
 
-| Parameter          | Default Value            | Description                                                                                                   |
-| ------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `thirdPartyFolder` | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder |
-| `deleteFolder`     | `true`                   | If `true`, deletes the contents of the given third party folder before copying the license files.             |
+| Parameter      | Default Value | Description                                                                                       |
+| -------------- | ------------- | ------------------------------------------------------------------------------------------------- |
+| `deleteFolder` | `true`        | If `true`, deletes the contents of the given third party folder before copying the license files. |
 
 ### Common parameters
 
 The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
 
-| Parameter              | Default Value | Description                                                                                                                                                                                                    |
-| ---------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `includeEmail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
-| `referenceTemplates`   | \<empty\>     | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
-| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
-| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
+| Parameter              | Default Value            | Description                                                                                                                                                                                                    |
+| ---------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `includeEmail`         | `true`                   | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
+| `referenceTemplates`   | \<empty\>                | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
+| `thirdPartyFolder`     | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder                                                                                                  |
+| `p2IgnorePatchLevel`   | `true`                   | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
+| `p2ReconstructGroupId` | `false`                  | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
 
 #### Curated reference templates
 
