@@ -136,19 +136,21 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   private void createReferenceFromP2(Map<String, Object> reference, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
-
+    
     if (!createReferenceFromIncludedPom(reference, artifact, projectBuildingRequest)) {
+      List<Map<String, Object>> authorList = new LinkedList<>();
+
       Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
       if (remoteLicense.isPresent()) {
         reference.put("license", remoteLicense.get().getSpdx());
-        List<Map<String, Object>> authorList = new LinkedList<>();
         for (String name : remoteLicense.get().getAuthors()) {
           Map<String, Object> author = new LinkedHashMap<>();
           author.put("name", name);
           authorList.add(author);
         }
-        reference.put("authors", authorList);
       }
+
+      reference.put("authors", authorList);
     }
   }
 
