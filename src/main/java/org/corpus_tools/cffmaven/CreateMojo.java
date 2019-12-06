@@ -37,10 +37,6 @@ import org.snakeyaml.engine.v2.common.FlowStyle;
     requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class CreateMojo extends AbstractCffMojo {
 
-  @Parameter(defaultValue = "${basedir}/CITATION.cff")
-  private File output;
-
-
   @Parameter
   private File input;
 
@@ -101,9 +97,15 @@ public class CreateMojo extends AbstractCffMojo {
       author.put("name", dev.getName());
       authors.add(author);
     }
-    if (!authors.isEmpty()) {
-      cff.putIfAbsent("authors", authors);
+    cff.putIfAbsent("authors", authors);
+
+
+    // Add primary SCM information to CFF
+    String scmUrl = getRepositoryCodeUrl(project.getScm());
+    if (scmUrl != null) {
+      cff.put("repository-code", scmUrl);
     }
+
 
     // get existing references and add new ones to the list
     List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));

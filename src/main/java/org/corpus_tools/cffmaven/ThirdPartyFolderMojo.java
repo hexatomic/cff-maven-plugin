@@ -6,9 +6,13 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Enumeration;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import okhttp3.HttpUrl;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -18,6 +22,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
+import org.json.JSONArray;
 
 /**
  * Extracts third-party license files like "LICENSE.txt", "NOTICE" or "about.html" into a folder.
@@ -33,9 +38,6 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
   private static final Pattern INCLUDE_THIRD_PARTY_FILE_PATTERN =
       Pattern.compile("(meta-info/)?((notice|dependencies|about|license)"
           + "(\\.md|\\.txt|\\.html|\\.rst)?)|(about_files/.+)", Pattern.CASE_INSENSITIVE);
-
-  @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
-  private File thirdPartyFolder;
 
   @Parameter(defaultValue = "true")
   private boolean deleteFolder;
@@ -73,9 +75,9 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
 
   private void createThirdPartyFolder(String title, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) {
-    if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
-      // Create a sub-directory for this artifact
-      File artifactFolder = new File(thirdPartyFolder, title.replaceAll("\\W+", "_"));
+    // Create a sub-directory for this artifact
+    File artifactFolder = getArtifactFolder(title);
+    if (artifactFolder != null) {
       // Inspect the JAR file to copy all available license texts and notices
       if (artifact.getFile() != null && artifact.getFile().isFile()) {
         try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
@@ -107,6 +109,72 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
           getLog().warn("Could not open artifact file " + artifact.getFile()
               + ". No 3rd party files will be extracted from it.", ex);
         }
+      }
+
+      // check if any files have been added
+      String[] children = artifactFolder.list();
+      if (children == null || children.length == 0) {
+        // Folder is empty, attempt to download the license
+        try {
+          Map<String, Object> reference = createReference(artifact, projectBuildingRequest);
+          Object licenseUrl = reference.get("license-url");
+          Object licenseId = reference.get("license");
+
+          String licenseFileName = "LICENSE.txt";
+          Optional<String> licenseText = Optional.empty();
+
+          if (licenseUrl instanceof String) {
+            HttpUrl url = HttpUrl.parse((String) licenseUrl);
+            Request downloadRequest = new Request.Builder().url(url).build();
+
+            getLog()
+                .info("Downloading license for " + artifact.toString() + " from URL " + licenseUrl);
+            try (Response response = http.newCall(downloadRequest).execute()) {
+              if (response.code() == 200) {
+                licenseText = Optional.ofNullable(response.body().string());
+              }
+            } catch (IOException e) {
+              getLog().error("License download for URL " + licenseUrl + " failed.", e);
+            }
+          }
+
+          if (!licenseText.isPresent() && licenseId instanceof String) {
+            // try to use the SPDX identifier to download the license
+            licenseFileName = licenseId + ".txt";
+
+            HttpUrl url = HttpUrl
+                .parse("https://raw.githubusercontent.com/spdx/license-list-data/master/text/"
+                    + (String) licenseId + ".txt");
+            Request downloadRequest = new Request.Builder().url(url).build();
+
+            getLog()
+                .info("Downloading license for " + artifact.toString() + " from SPDX repository");
+
+            try (Response response = http.newCall(downloadRequest).execute()) {
+              if (response.code() == 200) {
+                licenseText = Optional.ofNullable(response.body().string());
+              }
+            } catch (IOException e) {
+              getLog().error("License download for URL " + licenseUrl + " failed.", e);
+            }
+          }
+
+          if (licenseText.isPresent()) {
+            if (artifactFolder.mkdirs()) {
+              // Write out as LICENSE.txt
+              File outputFile = new File(artifactFolder, licenseFileName);
+              try {
+                FileUtils.writeStringToFile(outputFile, licenseText.get());
+              } catch (IOException e) {
+                getLog().error("Writing license file to " + outputFile.getPath() + " failed.", e);
+              }
+            }
+          }
+
+        } catch (ProjectBuildingException e) {
+          getLog().error("Could not construct Maven project descriptor", e);
+        }
+
       }
     }
   }

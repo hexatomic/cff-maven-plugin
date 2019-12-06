@@ -7,6 +7,7 @@ import com.github.jknack.handlebars.io.TemplateLoader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ import org.apache.maven.artifact.resolver.ArtifactResolutionException;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Developer;
 import org.apache.maven.model.License;
+import org.apache.maven.model.Scm;
 import org.apache.maven.model.building.ModelBuildingRequest;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugins.annotations.Component;
@@ -60,7 +62,6 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
 
-
   @Parameter(defaultValue = "true")
   private boolean includeEmail;
   @Parameter(defaultValue = "true")
@@ -81,10 +82,14 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   @Component
   private ProjectBuilder mavenProjectBuilder;
-  private final OkHttpClient http =
+  protected final OkHttpClient http =
       new OkHttpClient.Builder().readTimeout(30, TimeUnit.SECONDS).build();
   private final TemplateLoader handlebarsTemplateLoader = new FileTemplateLoader("", "");
   private final Handlebars handlebars = new Handlebars(handlebarsTemplateLoader);
+  @Parameter(defaultValue = "${basedir}/THIRD-PARTY")
+  protected File thirdPartyFolder;
+  @Parameter(defaultValue = "${basedir}/CITATION.cff")
+  protected File output;
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
@@ -237,6 +242,14 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       } else {
         getLog().error("Unknown license for " + artifact.toString());
       }
+      Object title = reference.get("title");
+      if (title instanceof String) {
+        File thirdPartyFolder = getArtifactFolder((String) reference.get("title"));
+        Path relativePath = output.getParentFile().toPath().relativize(thirdPartyFolder.toPath());
+        reference.put("notes", "More license information can be found in the "
+            + relativePath.toString() + " directory.");
+      }
+
     }
     // Add author information
     List<Map<String, Object>> authorList = new LinkedList<>();
@@ -252,6 +265,35 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
     }
     reference.put("authors", authorList);
+
+    // Add SCM URL if available
+    String scmUrl = getRepositoryCodeUrl(project.getScm());
+    if (scmUrl != null) {
+      reference.put("repository-code", scmUrl);
+    }
+  }
+
+  protected String getRepositoryCodeUrl(Scm scm) {
+
+    if (scm != null) {
+      String scmUrl = scm.getUrl();
+      if (scmUrl != null && !scmUrl.isEmpty()) {
+        if (scmUrl.startsWith("scm:git:")) {
+          getLog().warn("Invalid SCM URL " + scmUrl + " detected .It will be ignored.");
+        } else {
+          return scmUrl;
+        }
+      }
+    }
+    return null;
+  }
+
+  protected File getArtifactFolder(String artifactTitle) {
+    if (thirdPartyFolder != null && !thirdPartyFolder.getPath().isEmpty()) {
+      return new File(thirdPartyFolder, artifactTitle.replaceAll("\\W+", "_"));
+    } else {
+      return null;
+    }
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {

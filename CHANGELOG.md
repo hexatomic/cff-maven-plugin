@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2019-12-06
+
+### Added
+
+- SCM URL information is added as `repository-code` field
+- Add notice which points to the third-party folder of this artifact (#5)
+- Download license to third-party folder if its empty otherwise
+
 ## [0.2.6] - 2019-12-05
 
 ### Fixed
@@ -53,9 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 First public release
 
-[Fixed]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.2...vFixed
-[Fixed]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.1...vFixed
-[Unreleased]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.6...HEAD
+[Unreleased]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.6...v0.3.0
 [0.2.6]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.4...v0.2.5
 [0.2.4]: https://github.com/hexatomic/cff-maven-plugin/compare/v0.2.3...v0.2.4

@@ -1,7 +1,7 @@
 
 # Citation File Format Maven plugin
 
-[![Build Status](https://travis-ci.org/hexatomic/cff-maven-plugin.svg?branch=develop)](https://travis-ci.org/hexatomic/cff-maven-plugin)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.corpus-tools/cff-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.corpus-tools/cff-maven-plugin) [![Build Status](https://travis-ci.org/hexatomic/cff-maven-plugin.svg?branch=develop)](https://travis-ci.org/hexatomic/cff-maven-plugin)
 
 This is a helper plugin to create a [CFF](https://citation-file-format.github.io/) file for
 a Maven project.
@@ -31,11 +31,10 @@ be applied to find a corresponding Maven Central artifact or query the [Clearly 
 
 
 
-| Parameter                  | Default Value             | Description                                                                                                                                                                                                                                                                                                         |
-| -------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `output`                   | `${basedir}/CITATION.cff` | The output file                                                                                                                                                                                                                                                                                                     |
-| `input`                    | \<empty\>                 | A CFF input file that will be extended. E.g. if you want to add additional information to the CFF file that is not automatically generated, you can write this information into the input file and and the plugin will extend the input file with new information, but will not override existing existing entries. |
-| `skipExistingDependencies` | `true`                    | If `true`, don't replace existing reference entries from the input file.                                                                                                                                                                                                                                            |
+| Parameter                  | Default Value | Description                                                                                                                                                                                                                                                                                                         |
+| -------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `input`                    | \<empty\>     | A CFF input file that will be extended. E.g. if you want to add additional information to the CFF file that is not automatically generated, you can write this information into the input file and and the plugin will extend the input file with new information, but will not override existing existing entries. |
+| `skipExistingDependencies` | `true`        | If `true`, don't replace existing reference entries from the input file.                                                                                                                                                                                                                                            |
 
 ### cff:third-party-folder
 
@@ -46,21 +45,23 @@ mvn cff:third-party-folder
 ```
 
 
-| Parameter          | Default Value            | Description                                                                                                   |
-| ------------------ | ------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `thirdPartyFolder` | `${basedir}/THIRD-PARTY` | If available, third-party license files like `NOTICE` or `about.html` are added to a subfolder of this folder |
-| `deleteFolder`     | `true`                   | If `true`, deletes the contents of the given third party folder before copying the license files.             |
+| Parameter      | Default Value | Description                                                                                       |
+| -------------- | ------------- | ------------------------------------------------------------------------------------------------- |
+| `deleteFolder` | `true`        | If `true`, deletes the contents of the given third party folder before copying the license files. |
 
 ### Common parameters
 
 The following parameters are accepted by all goals and configure the basic behavior like the artifact resolution heuristics.
 
-| Parameter              | Default Value | Description                                                                                                                                                                                                    |
-| ---------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `includeEmail`         | `true`        | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
-| `referenceTemplates`   | \<empty\>     | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
-| `p2IgnorePatchLevel`   | `true`        | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
-| `p2ReconstructGroupId` | `false`       | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
+| Parameter                | Default Value             | Description                                                                                                                                                                                                    |
+| ------------------------ | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `output`                 | `${basedir}/CITATION.cff` | The output file                                                                                                                                                                                                |
+| `thirdPartyFolder`       | `${basedir}/THIRD-PARTY`  | If available, third-party license files like `NOTICE` or `about.html` are added to a                                                                                                                           |
+| `includeEmail`           | `true`                    | If `true`, include the e-mail information from the Maven metadata into author information.                                                                                                                     |
+| `referenceTemplates`     | \<empty\>                 | A list of templates for references that is used as replacement for the automatic generated reference entry. This allows to add curated entries when the automatic heuristics fail or information is incorrect. |
+| subfolder of this folder |
+| `p2IgnorePatchLevel`     | `true`                    | Ignore any patch level information when applying the heuristics to P2 artifacts                                                                                                                                |
+| `p2ReconstructGroupId`   | `false`                   | For P2 bundles, try to reconstruct a group ID from the bundle name.                                                                                                                                            |
 
 #### Curated reference templates
 
