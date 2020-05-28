@@ -37,6 +37,8 @@ import org.snakeyaml.engine.v2.common.FlowStyle;
     requiresDependencyCollection = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class CreateMojo extends AbstractCffMojo {
 
+  protected static final String REFERENCES = "references";
+
   @Parameter
   private File input;
 
@@ -82,8 +84,8 @@ public class CreateMojo extends AbstractCffMojo {
 
     // set basic properties like title
     cff.putIfAbsent("message", "If you use this software, please cite it as below.");
-    cff.putIfAbsent("title", project.getName());
-    cff.putIfAbsent("version", project.getVersion());
+    cff.putIfAbsent(TITLE, project.getName());
+    cff.putIfAbsent(VERSION, project.getVersion());
     if (dateReleased == null) {
       // add current date
       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -109,8 +111,8 @@ public class CreateMojo extends AbstractCffMojo {
 
 
     // get existing references and add new ones to the list
-    List<Map<String, Object>> references = mapExistingReferences(cff.get("references"));
-    Set<String> existingTitles = references.stream().map(ref -> ref.get("title"))
+    List<Map<String, Object>> references = mapExistingReferences(cff.get(REFERENCES));
+    Set<String> existingTitles = references.stream().map(ref -> ref.get(TITLE))
         .filter(title -> title != null).map(title -> title.toString()).collect(Collectors.toSet());
 
     TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
@@ -151,7 +153,7 @@ public class CreateMojo extends AbstractCffMojo {
             // no pattern matched
             newRef = createReference(artifact, projectBuildingRequest);
           }
-          String newRefTitle = (String) newRef.getOrDefault("title", "");
+          String newRefTitle = (String) newRef.getOrDefault(TITLE, "");
           if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
             getLog().info("Ignoring existing dependency " + artifact.toString());
           } else if (!newReferences.containsKey(newRefTitle)) {
@@ -170,8 +172,8 @@ public class CreateMojo extends AbstractCffMojo {
     }
 
     // Remove references first, then add them again to place them at the end of the file.s
-    cff.remove("references");
-    cff.put("references", references);
+    cff.remove(REFERENCES);
+    cff.put(REFERENCES, references);
 
     // Write out the YAML file again
     DumpSettings dumpSettings = DumpSettings.builder().setDefaultFlowStyle(FlowStyle.BLOCK).build();
