@@ -257,8 +257,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
       Object title = reference.get(TITLE);
       if (title instanceof String) {
-        File thirdPartyFolder = getArtifactFolder((String) reference.get(TITLE));
-        Path relativePath = output.getParentFile().toPath().relativize(thirdPartyFolder.toPath());
+        File artifactFolder = getArtifactFolder((String) reference.get(TITLE));
+        Path relativePath = output.getParentFile().toPath().relativize(artifactFolder.toPath());
         reference.put("notes", "More license information can be found in the "
             + relativePath.toString() + " directory.");
       }
