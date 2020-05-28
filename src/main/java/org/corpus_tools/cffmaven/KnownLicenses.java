@@ -21,7 +21,7 @@ public class KnownLicenses {
     licenseMap.put(norm(SPDX_APACHE20), SPDX_APACHE20);
     licenseMap.put(norm("Apache License 2.0"), SPDX_APACHE20);
     licenseMap.put(norm("Apache License, Version 2.0"), SPDX_APACHE20);
-    licenseMap.put(norm("Apache 2.0"), "Apache-2.0");
+    licenseMap.put(norm("Apache 2.0"), SPDX_APACHE20);
     licenseMap.put(norm("The Apache Software License, Version 2.0"), SPDX_APACHE20);
     licenseMap.put(norm("http://www.apache.org/licenses/LICENSE-2.0.txt"), SPDX_APACHE20);
 
