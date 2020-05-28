@@ -1,1 +1,11 @@
 language: java
+
+addons:
+  sonarcloud:
+    organization: "hexatomic"
+    token:
+      secure: jiTh2kKO9XCUKODBu7UlYMYGJmbkLBSORQP9JmpdiSDqRh4Lxj+7YD11RMcig3Qn9pTm92DX+i1Gvg0V9ys3MIy91cUOgU2hN3CN95JA1Zij31KRMfPEeMN8dnqiGnkKj/U+i/hbQA9EC44HwutaowIdIdLSadACz+HnmpSC3k3/aMVK7E9jcGsyl1OUdSR5a30HB8xl4AfjebtBMtfFM3nzZft6sr44EOacsx0Xg1uJbK9vs4sh4zeZLXR7enBqEJVhBDynUzpSSmKCbsOFVo3wohijzhURz02Tid0rngeklrtsbMhI1cDtsgfS+95NkRgGXUA2hKZCtHtSJ+RKOX5R827MPU8WzC4WqElaU1+D0NWS1ChqS+OIkoE5JLoRjL8zpk0AaQKS29qsGLUziag6NLzbcE7U6WCEk+Cs8RBI5hm/3yWdc7XxYrh827JIJjOdlCWhFdVsvJIeBidNYGOco2CCr191WVG4jgW8reGTZf2p2463hUZocvrfKND8+T/AinWzH8KftWs4XdKa6smr0sUHskzSf8SKTj2HXFMaLO2kwtcH3APxZixYuPSjrrESLzLh/gPSd87KuDshfHgHh2pw95LOQJKNYwRG5632Gi7exK2LWOK5kX5TguyJO6J6DY51Ah5zufYFSSkbZbKgsUVyrIIXiSD4LFcIKNQ=
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=hexatomic_cff-maven-plugin
