@@ -86,7 +86,7 @@ public class CreateMojo extends AbstractCffMojo {
     cff.putIfAbsent("version", project.getVersion());
     if (dateReleased == null) {
       // add current date
-      SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-dd");
+      SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
       cff.putIfAbsent("date-released", df.format(new Date()));
     } else {
       cff.put("date-released", dateReleased);
