@@ -73,7 +73,6 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
     }
   }
 
-
   private void createThirdPartyFolder(String title, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) {
     // Create a sub-directory for this artifact
@@ -87,20 +86,24 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
             ZipEntry currentEntry = entries.nextElement();
             String entryPath =
                 currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
-            getLog().debug("Checking zip file entry \"" + entryPath
-                + "\" for inclusion in third party folder.");
-            if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
-              // copy this file to the output folder
-              File outputFile = new File(artifactFolder, entryPath);
-              if (outputFile.exists()) {
-                getLog().warn("Not overwriting existing file " + outputFile.getPath());
-              } else {
-                getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
-                    + artifact.getArtifactId() + " to " + outputFile.getPath());
-                if (outputFile.getParentFile().isDirectory()
-                    || outputFile.getParentFile().mkdirs()) {
-                  try (InputStream is = artifactFile.getInputStream(currentEntry)) {
-                    Files.copy(is, outputFile.toPath());
+
+            if (!entryPath.contains("..")) {
+
+              getLog().debug("Checking zip file entry \"" + entryPath
+                  + "\" for inclusion in third party folder.");
+              if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
+                // copy this file to the output folder
+                File outputFile = new File(artifactFolder, entryPath);
+                if (outputFile.exists()) {
+                  getLog().warn("Not overwriting existing file " + outputFile.getPath());
+                } else {
+                  getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
+                      + artifact.getArtifactId() + " to " + outputFile.getPath());
+                  if (outputFile.getParentFile().isDirectory()
+                      || outputFile.getParentFile().mkdirs()) {
+                    try (InputStream is = artifactFile.getInputStream(currentEntry)) {
+                      Files.copy(is, outputFile.toPath());
+                    }
                   }
                 }
               }
