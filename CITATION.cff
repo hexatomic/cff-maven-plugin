@@ -9,7 +9,7 @@ authors:
   given-names: Stephan
   orcid: https://orcid.org/0000-0003-4925-7248
 version: 0.5.0-SNAPSHOT
-date-released: 2020-05-28
+date-released: 2021-03-17
 repository-code: https://github.com/hexatomic/cff-maven-plugin
 references:
 - title: Citation File Format (CFF)
@@ -157,7 +157,7 @@ references:
   repository-code: https://github.com/apache/maven-shared-utils/tree/maven-shared-utils-3.2.1
 - type: software
   title: 'Apache Maven Wagon :: API'
-  version: 3.3.3
+  version: 3.3.4
   abbreviation: org.apache.maven.wagon:wagon-provider-api
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Apache_Maven_Wagon_API
@@ -242,7 +242,7 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven-wagon/tree/wagon-3.3.3/wagon-provider-api
+  repository-code: https://github.com/apache/maven-wagon/tree/wagon-3.3.4/wagon-provider-api
 - type: software
   title: CDI APIs
   version: '1.0'
@@ -318,7 +318,7 @@ references:
   repository-code: https://github.com/google/guava/guava
 - type: software
   title: Handlebars
-  version: 4.1.2
+  version: 4.2.0
   abbreviation: com.github.jknack:handlebars
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Handlebars directory.
@@ -345,9 +345,9 @@ references:
   repository-code: http://svn.sonatype.org/spice/tags/oss-parent-7/j2objc-annotations
 - type: software
   title: JSON in Java
-  version: '20190722'
+  version: '20210307'
   abbreviation: org.json:json
-  license: JSON
+  license-url: http://json.org/license.html
   notes: More license information can be found in the THIRD-PARTY/JSON_in_Java directory.
   authors:
   - name: Douglas Crockford
@@ -372,7 +372,7 @@ references:
   - name: The AOP Alliance
 - type: software
   title: Maven Artifact
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-artifact
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Artifact directory.
@@ -456,7 +456,7 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-artifact
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-artifact
 - type: software
   title: Maven Artifact Resolver API
   version: 1.4.1
@@ -635,7 +635,7 @@ references:
   repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-impl
 - type: software
   title: Maven Artifact Resolver Provider
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-resolver-provider
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Provider
@@ -720,7 +720,7 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-resolver-provider
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-resolver-provider
 - type: software
   title: Maven Artifact Resolver SPI
   version: 1.4.1
@@ -899,7 +899,7 @@ references:
   repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-util
 - type: software
   title: Maven Builder Support
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-builder-support
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Builder_Support
@@ -984,10 +984,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-builder-support
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-builder-support
 - type: software
   title: Maven Compat
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-compat
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Compat directory.
@@ -1071,10 +1071,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-compat
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-compat
 - type: software
   title: Maven Core
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-core
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Core directory.
@@ -1158,10 +1158,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-core
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-core
 - type: software
   title: Maven Model
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-model
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Model directory.
@@ -1245,10 +1245,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-model
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-model
 - type: software
   title: Maven Model Builder
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-model-builder
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Model_Builder
@@ -1333,10 +1333,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-model-builder
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-model-builder
 - type: software
   title: Maven Plugin API
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-plugin-api
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_API
@@ -1421,92 +1421,98 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-plugin-api
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-plugin-api
 - type: software
-  title: Maven Plugin Tools Java 5 Annotations
-  version: '3.4'
+  title: Maven Plugin Tools Java Annotations
+  version: 3.6.0
   abbreviation: org.apache.maven.plugin-tools:maven-plugin-annotations
   license: Apache-2.0
-  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_Tools_Java_5_Annotations
+  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_Tools_Java_Annotations
     directory.
   authors:
-  - name: Hervé Boutemy
+  - name: Robert Scholte
   - name: Arnaud Héritier
+  - name: Anders Hammar
   - name: Barrie Treloar
   - name: Benson Margulies
-  - name: Brett Porter
   - name: Brian Fox
-  - name: Carlos Sanchez
+  - name: Tamas Cservenak
   - name: Dennis Lundberg
-  - name: Daniel Fabulich
   - name: Daniel Kulp
   - name: Emmanuel Venisse
-  - name: John Casey
+  - name: Guillaume Boué
+  - name: Hervé Boutemy
+  - name: Igor Fedorenko
   - name: Jason van Zyl
   - name: Karl Heinz Marbaise
   - name: Kristian Rosenvold
-  - name: Mark Hobson
   - name: Milos Kleint
-  - name: Maria Odea B. Ching
   - name: Olivier Lamy
-  - name: Paul Gier
-  - name: Robert Scholte
+  - name: Michael Osipov
   - name: Ralph Goers
   - name: Stephane Nicoll
   - name: Stephen Connolly
-  - name: Mark Struberg
+  - name: Tibor Digaňa
   - name: Vincent Siveton
   - name: Wayne Fay
-  - name: Andreas Gudian
-  - name: Anders Hammar
+  - name: Andreas Dangel
   - name: Brian Demers
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-  - name: Tamas Cservenak
+  - name: Chris Graham
   - name: Dan Tran
   - name: Damian Bradicich
+  - name: Brett Porter
+  - name: Daniel Fabulich
   - name: Fabrizio Giustina
   - name: Evgeny Mandrikov
   - name: Andrew Williams
-  - name: Igor Fedorenko
   - name: Dominik Bartholdi
   - name: Jeff Jensen
   - name: Lukas Theussl
+  - name: Mark Hobson
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-  - name: Michael Osipov
+  - name: Manfred Moser
   - name: Nicolas de Loof
+  - name: Maria Odea B. Ching
+  - name: Paul Gier
+  - name: Petar Tahchiev
   - name: Raphaël Piéroni
+  - name: Christian Schulte
   - name: Simone Tripodi
+  - name: Christian Stein
+  - name: Mark Struberg
   - name: Tony Chemit
-  - name: Tibor Digaňa
   - name: Vincent Massol
+  - name: Andreas Gudian
   - name: Allan Q. Ramirez
   - name: Henri Yandell
+  - name: Carlos Sanchez
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
   - name: Felipe Leme
+  - name: John Casey
   - name: Jesse McConnell
   - name: Joakim Erdfelt
+  - name: Johnny Ruiz III
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
+  - name: Kenney Westerhof
   - name: Mike Perham
   - name: Oleg Gusakov
   - name: Patrick Schneider
-  - name: Petar Tahchiev
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  - name: Johnny Ruiz III
-  - name: Kenney Westerhof
-  repository-code: http://svn.apache.org/viewvc/maven/plugin-tools/tags/maven-plugin-tools-3.4/maven-plugin-annotations
+  repository-code: https://github.com/apache/maven-plugin-tools/tree/maven-plugin-tools-3.6.0/maven-plugin-annotations
 - type: software
   title: Maven Repository Metadata Model
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-repository-metadata
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Repository_Metadata_Model
@@ -1591,10 +1597,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-repository-metadata
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-repository-metadata
 - type: software
   title: Maven Settings
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-settings
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Settings directory.
@@ -1678,10 +1684,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-settings
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-settings
 - type: software
   title: Maven Settings Builder
-  version: 3.6.2
+  version: 3.6.3
   abbreviation: org.apache.maven:maven-settings-builder
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Maven_Settings_Builder
@@ -1766,10 +1772,10 @@ references:
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
   - name: Wendy Smoak
-  repository-code: https://github.com/apache/maven/tree/maven-3.6.2/maven-settings-builder
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-settings-builder
 - type: software
   title: Okio
-  version: 2.2.2
+  version: 2.8.0
   abbreviation: com.squareup.okio:okio
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Okio directory.
@@ -1778,7 +1784,7 @@ references:
   repository-code: https://github.com/square/okio/
 - type: software
   title: 'Plexus :: Component Annotations'
-  version: 2.0.0
+  version: 2.1.0
   abbreviation: org.codehaus.plexus:plexus-component-annotations
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/Plexus_Component_Annotations
@@ -1942,7 +1948,7 @@ references:
   repository-code: https://github.com/qos-ch/slf4j/slf4j-api
 - type: software
   title: SnakeYAML Engine
-  version: '2.0'
+  version: 2.2.1
   abbreviation: org.snakeyaml:snakeyaml-engine
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/SnakeYAML_Engine
@@ -1970,7 +1976,7 @@ references:
   repository-code: http://code.google.com/p/atinject/source/checkout
 - type: software
   title: okhttp
-  version: 4.2.2
+  version: 4.9.1
   abbreviation: com.squareup.okhttp3:okhttp
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/okhttp directory.
@@ -1979,7 +1985,7 @@ references:
   repository-code: https://github.com/square/okhttp
 - type: software
   title: org.eclipse.sisu.inject
-  version: 0.3.3
+  version: 0.3.4
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.inject
   license: EPL-1.0
   notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.inject
@@ -1988,7 +1994,7 @@ references:
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.inject.git/tree/org.eclipse.sisu.inject/
 - type: software
   title: org.eclipse.sisu.plexus
-  version: 0.3.3
+  version: 0.3.4
   abbreviation: org.eclipse.sisu:org.eclipse.sisu.plexus
   license: EPL-1.0
   notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.plexus
@@ -1997,7 +2003,7 @@ references:
   repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.plexus.git/tree/org.eclipse.sisu.plexus/
 - type: software
   title: org.jetbrains.kotlin:kotlin-stdlib
-  version: 1.3.50
+  version: 1.4.10
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib
@@ -2007,7 +2013,7 @@ references:
   repository-code: https://github.com/JetBrains/kotlin
 - type: software
   title: org.jetbrains.kotlin:kotlin-stdlib-common
-  version: 1.3.50
+  version: 1.4.0
   abbreviation: org.jetbrains.kotlin:kotlin-stdlib-common
   license: Apache-2.0
   notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib_common
