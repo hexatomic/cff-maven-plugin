@@ -19,15 +19,15 @@ From: 'Codehaus Plexus' (http://codehaus-plexus.github.io/)
 From: 'The Apache Software Foundation' (https://www.apache.org/)
   - Apache Commons Lang (http://commons.apache.org/proper/commons-lang/) org.apache.commons:commons-lang3:jar:3.8.1
     License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
-  - Maven Artifact (https://maven.apache.org/ref/3.6.2/maven-artifact/) org.apache.maven:maven-artifact:jar:3.6.2
+  - Maven Artifact (https://maven.apache.org/ref/3.6.3/maven-artifact/) org.apache.maven:maven-artifact:jar:3.6.3
     License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
-  - Maven Builder Support (https://maven.apache.org/ref/3.6.2/maven-builder-support/) org.apache.maven:maven-builder-support:jar:3.6.2
+  - Maven Builder Support (https://maven.apache.org/ref/3.6.3/maven-builder-support/) org.apache.maven:maven-builder-support:jar:3.6.3
     License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
-  - Maven Model (https://maven.apache.org/ref/3.6.2/maven-model/) org.apache.maven:maven-model:jar:3.6.2
+  - Maven Model (https://maven.apache.org/ref/3.6.3/maven-model/) org.apache.maven:maven-model:jar:3.6.3
     License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 From: 'The Eclipse Foundation' (http://www.eclipse.org/)
-  - org.eclipse.sisu.inject (http://www.eclipse.org/sisu/org.eclipse.sisu.inject/) org.eclipse.sisu:org.eclipse.sisu.inject:eclipse-plugin:0.3.3
+  - org.eclipse.sisu.inject (http://www.eclipse.org/sisu/org.eclipse.sisu.inject/) org.eclipse.sisu:org.eclipse.sisu.inject:eclipse-plugin:0.3.4
     License: Eclipse Public License, Version 1.0  (http://www.eclipse.org/legal/epl-v10.html)
 
 
