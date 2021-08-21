@@ -1,3069 +1,2034 @@
-cff-version: 1.0.3
+cff-version: 1.2.0
+type: software
 message: If you use this software, please cite it as below.
-title: cff Maven Plugin
-version: 0.1.0-SNAPSHOT
+title: CFF Maven Plugin
 authors:
-- name: Thomas Krause
+- family-names: Krause
+  given-names: Thomas
+  orcid: https://orcid.org/0000-0003-3731-2422
 - family-names: Druskat
-  first-names: Stephan
+  given-names: Stephan
   orcid: https://orcid.org/0000-0003-4925-7248
+version: 0.5.0-SNAPSHOT
+date-released: 2021-08-21
+repository-code: https://github.com/hexatomic/cff-maven-plugin
 references:
-- type: software
-  title: AOP alliance (aopalliance)
-  version: '1.0'
-  license: OTHER
+- title: Citation File Format (CFF)
+  version: 1.2.0
+  type: standard
+  doi: 10.5281/zenodo.1003149
+  date-released: 2021-08-09
   authors:
-  - name: The AOP alliance (aopalliance) 1.0 Team
+  - family-names: Druskat
+    given-names: Stephan
+    orcid: https://orcid.org/0000-0003-4925-7248
+  - family-names: Spaaks
+    given-names: Jurriaan H.
+    orcid: https://orcid.org/0000-0002-7064-4069
+  - family-names: Chue Hong
+    given-names: Neil
+    orcid: https://orcid.org/0000-0002-8876-7606
+  - family-names: Haines
+    given-names: Robert
+    orcid: https://orcid.org/0000-0002-9538-7919
+  - family-names: Baker
+    given-names: James
+    orcid: https://orcid.org/0000-0002-2682-6922
 - type: software
-  title: Animal Sniffer Annotations (animal-sniffer-annotations)
+  title: Animal Sniffer Annotations
   version: '1.14'
+  abbreviation: org.codehaus.mojo:animal-sniffer-annotations
   license: MIT
+  notes: More license information can be found in the THIRD-PARTY/Animal_Sniffer_Annotations
+    directory.
   authors:
   - name: Kohsuke Kaw
-    email: kohsuke (dot) kawaguchi (at) sun (dot) com
   - name: Stephen Connolly
-    email: stephen (dot) alan (dot) connolly (at) gmail (dot) com
+  repository-code: http://fisheye.codehaus.org/browse/mojo/tags/animal-sniffer-parent-1.14/animal-sniffer-annotations
 - type: software
-  title: Apache Commons IO (commons-io)
-  version: '2.5'
-  license: Apache-2.0
-  authors:
-  - name: Scott Sanders
-    email: sanders@apache.org
-  - name: dIon Gillard
-    email: dion@apache.org
-  - name: Nicola Ken Barozzi
-    email: nicolaken@apache.org
-  - name: Henri Yandell
-    email: bayard@apache.org
-  - name: Stephen Colebourne
-  - name: Jeremias Maerki
-    email: jeremias@apache.org
-  - name: Matthew Hawthorne
-    email: matth@apache.org
-  - name: Martin Cooper
-    email: martinc@apache.org
-  - name: Rob Oxspring
-    email: roxspring@apache.org
-  - name: Jochen Wiedmann
-    email: jochen.wiedmann@gmail.com
-  - name: Niall Pemberton
-  - name: Jukka Zitting
-  - name: Gary Gregory
-    email: ggregory@apache.org
-  - name: Kristian Rosenvold
-    email: krosenvold@apache.org
-- type: software
-  title: Apache Commons Lang (commons-lang3)
+  title: Apache Commons Lang
   version: 3.8.1
+  abbreviation: org.apache.commons:commons-lang3
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Commons_Lang
+    directory.
   authors:
   - name: Daniel Rall
-    email: dlr@finemaltcoding.com
   - name: Stephen Colebourne
-    email: scolebourne@joda.org
   - name: Henri Yandell
-    email: bayard@apache.org
   - name: Steven Caswell
-    email: stevencaswell@apache.org
   - name: Robert Burrell Donkin
-    email: rdonkin@apache.org
   - name: Gary D. Gregory
-    email: ggregory@apache.org
   - name: Fredrik Westermarck
   - name: James Carman
-    email: jcarman@apache.org
   - name: Niall Pemberton
   - name: Matt Benson
   - name: Joerg Schaible
-    email: joerg.schaible@gmx.de
   - name: Oliver Heger
-    email: oheger@apache.org
   - name: Paul Benedict
-    email: pbenedict@apache.org
   - name: Benedikt Ritter
-    email: britter@apache.org
   - name: Duncan Jones
-    email: djones@apache.org
   - name: Loic Guibert
-    email: lguibert@apache.org
   - name: Rob Tompkins
-    email: chtompki@apache.org
+  repository-code: https://git-wip-us.apache.org/repos/asf?p=commons-lang.git
 - type: software
-  title: Apache Maven Shared Utils (maven-shared-utils)
+  title: Apache Maven Shared Utils
   version: 3.2.1
+  abbreviation: org.apache.maven.shared:maven-shared-utils
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Maven_Shared_Utils
+    directory.
   authors:
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-shared-utils/tree/maven-shared-utils-3.2.1
 - type: software
-  title: 'Apache Maven Wagon :: API (wagon-provider-api)'
-  version: 3.3.3
+  title: 'Apache Maven Wagon :: API'
+  version: 3.3.4
+  abbreviation: org.apache.maven.wagon:wagon-provider-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Apache_Maven_Wagon_API
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-wagon/tree/wagon-3.3.4/wagon-provider-api
 - type: software
-  title: CDI APIs (cdi-api)
+  title: CDI APIs
   version: '1.0'
+  abbreviation: javax.enterprise:cdi-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/CDI_APIs directory.
   authors:
   - name: Pete Muir
-    email: pmuir@redhat.com
   - name: Shane Bryzak
   - name: David Allen
   - name: Nicklas Karlsson
+  repository-code: http://fisheye.jboss.org/browse/Weld/api/tags/1.0/build/tags/weld-parent-6/weld-api-bom/weld-api-parent/cdi-api
 - type: software
-  title: Checker Qual (checker-compat-qual)
+  title: Checker Qual
   version: 2.0.0
-  license: GPL-2.0-with-classpath-exception
+  abbreviation: org.checkerframework:checker-compat-qual
+  license: GPL-2.0 WITH Classpath-exception-2.0
+  notes: More license information can be found in the THIRD-PARTY/Checker_Qual directory.
   authors:
   - name: Michael Ernst
-    email: mernst@cs.washington.edu
   - name: Werner M. Dietl
-    email: wdietl@uwaterloo.ca
   - name: Suzanne Millstein
-    email: smillst@cs.washington.edu
   - name: David McArthur
-    email: mcarthur@cs.washington.edu
-  - name: David McArthur
-    email: jthaine@cs.washington.edu
   - name: Dan Brown
-    email: dbro@cs.washington.edu
   - name: Jonathan G. Burke
-    email: jburke@cs.washington.edu
+  repository-code: https://github.com/typetools/checker-framework.git
 - type: software
-  title: FindBugs-jsr305 (jsr305)
+  title: Commons IO
+  version: 1.3.2
+  abbreviation: commons-io:commons-io
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Commons_IO directory.
+  authors:
+  - name: Scott Sanders
+  - name: dIon Gillard
+  - name: Nicola Ken Barozzi
+  - name: Henri Yandell
+  - name: Stephen Colebourne
+  - name: Jeremias Maerki
+  - name: Matthew Hawthorne
+  - name: Martin Cooper
+  - name: Rob Oxspring
+  - name: Jochen Wiedmann
+  repository-code: http://svn.apache.org/viewvc/jakarta/commons/proper/io/trunk
+- type: software
+  title: FindBugs-jsr305
   version: 3.0.2
+  abbreviation: com.google.code.findbugs:jsr305
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/FindBugs_jsr305
+    directory.
   authors:
-  - name: The FindBugs-jsr305 (jsr305) 3.0.2 Team
+  - name: The FindBugs-jsr305 3.0.2 Team
+  repository-code: https://code.google.com/p/jsr-305/
 - type: software
-  title: Google Guice - Core Library (guice)
+  title: Google Guice - Core Library
   version: 4.2.1
+  abbreviation: com.google.inject:guice
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Google_Guice_Core_Library
+    directory.
   authors:
-  - name: null
+  - name: The Google Guice - Core Library 4.2.1 Team
+  repository-code: https://github.com/google/guice/guice
 - type: software
-  title: 'Guava: Google Core Libraries for Java (guava)'
+  title: 'Guava: Google Core Libraries for Java'
   version: 25.1-android
+  abbreviation: com.google.guava:guava
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Guava_Google_Core_Libraries_for_Java
+    directory.
   authors:
   - name: Kevin Bourrillion
-    email: kevinb@google.com
+  repository-code: https://github.com/google/guava/guava
 - type: software
-  title: IntelliJ IDEA Annotations (annotations)
-  version: '13.0'
+  title: Handlebars
+  version: 4.2.0
+  abbreviation: com.github.jknack:handlebars
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Handlebars directory.
+  authors:
+  - name: Edgar Espina
+- type: software
+  title: IntelliJ IDEA Annotations
+  version: '13.0'
+  abbreviation: org.jetbrains:annotations
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/IntelliJ_IDEA_Annotations
+    directory.
   authors:
   - name: JetBrains Team
+  repository-code: https://github.com/JetBrains/intellij-community
 - type: software
-  title: J2ObjC Annotations (j2objc-annotations)
+  title: J2ObjC Annotations
   version: '1.1'
+  abbreviation: com.google.j2objc:j2objc-annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/J2ObjC_Annotations
+    directory.
   authors:
-  - name: The J2ObjC Annotations (j2objc-annotations) 1.1 Team
+  - name: The J2ObjC Annotations 1.1 Team
+  repository-code: http://svn.sonatype.org/spice/tags/oss-parent-7/j2objc-annotations
 - type: software
-  title: JSON in Java (json)
-  version: '20190722'
+  title: JSON in Java
+  version: '20210307'
+  abbreviation: org.json:json
   license: JSON
+  notes: More license information can be found in the THIRD-PARTY/JSON_in_Java directory.
   authors:
   - name: Douglas Crockford
-    email: douglas@crockford.com
+  repository-code: https://github.com/douglascrockford/JSON-java.git
 - type: software
-  title: JSR-250 Common Annotations for the JavaTM Platform (jsr250-api)
+  title: JSR-250 Common Annotations for the JavaTM Platform
   version: '1.0'
-  license: NOASSERTION
+  abbreviation: javax.annotation:jsr250-api
+  license: CDDL-1.0
+  notes: More license information can be found in the THIRD-PARTY/JSR_250_Common_Annotations_for_the_JavaTM_Platform
+    directory.
   authors:
-  - name: The JSR-250 Common Annotations for the JavaTM Platform (jsr250-api) 1.0
-      Team
+  - name: The JSR-250 Common Annotations for the JavaTM Platform 1.0 Team
 - type: software
-  title: Maven Artifact (maven-artifact)
-  version: 3.6.2
+  title: Java/J2EE AOP standards
+  abbreviation: aopalliance
+  version: '1.0'
+  license: CC-PDDC
+  url: http://aopalliance.sourceforge.net/
+  notes: Library for interoperability for Java AOP implementations.
+  copyright: Published in the public domain.
+  authors:
+  - name: The AOP Alliance
+- type: software
+  title: Maven Artifact
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-artifact
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-artifact
 - type: software
-  title: Maven Artifact Resolver API (maven-resolver-api)
+  title: Maven Artifact Resolver API
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_API
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-api
 - type: software
-  title: Maven Artifact Resolver Implementation (maven-resolver-impl)
+  title: Maven Artifact Resolver Implementation
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-impl
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Implementation
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-impl
 - type: software
-  title: Maven Artifact Resolver Provider (maven-resolver-provider)
-  version: 3.6.2
+  title: Maven Artifact Resolver Provider
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-resolver-provider
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Provider
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-resolver-provider
 - type: software
-  title: Maven Artifact Resolver SPI (maven-resolver-spi)
+  title: Maven Artifact Resolver SPI
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-spi
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_SPI
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-spi
 - type: software
-  title: Maven Artifact Resolver Utilities (maven-resolver-util)
+  title: Maven Artifact Resolver Utilities
   version: 1.4.1
+  abbreviation: org.apache.maven.resolver:maven-resolver-util
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Artifact_Resolver_Utilities
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-resolver/tree/maven-resolver-1.4.1/maven-resolver-util
 - type: software
-  title: Maven Builder Support (maven-builder-support)
-  version: 3.6.2
+  title: Maven Builder Support
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-builder-support
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Builder_Support
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-builder-support
 - type: software
-  title: Maven Compat (maven-compat)
-  version: 3.6.2
+  title: Maven Compat
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-compat
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Compat directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-compat
 - type: software
-  title: Maven Core (maven-core)
-  version: 3.6.2
+  title: Maven Core
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-core
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Core directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-core
 - type: software
-  title: Maven Model (maven-model)
-  version: 3.6.2
+  title: Maven Model
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-model
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Model directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-model
 - type: software
-  title: Maven Model Builder (maven-model-builder)
-  version: 3.6.2
+  title: Maven Model Builder
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-model-builder
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Model_Builder
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-model-builder
 - type: software
-  title: Maven Plugin API (maven-plugin-api)
-  version: 3.6.2
+  title: Maven Plugin API
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-plugin-api
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_API
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-plugin-api
 - type: software
-  title: Maven Plugin Tools Java 5 Annotations (maven-plugin-annotations)
-  version: '3.4'
+  title: Maven Plugin Tools Java Annotations
+  version: 3.6.0
+  abbreviation: org.apache.maven.plugin-tools:maven-plugin-annotations
   license: Apache-2.0
-  authors:
-  - name: Hervé Boutemy
-    email: hboutemy@apache.org
-  - name: Arnaud Héritier
-    email: aheritier@apache.org
-  - name: Barrie Treloar
-    email: baerrach@apache.org
-  - name: Benson Margulies
-    email: bimargulies@apache.org
-  - name: Brett Porter
-    email: brett@apache.org
-  - name: Brian Fox
-    email: brianf@apache.org
-  - name: Carlos Sanchez
-    email: carlos@apache.org
-  - name: Dennis Lundberg
-    email: dennisl@apache.org
-  - name: Daniel Fabulich
-    email: dfabulich@apache.org
-  - name: Daniel Kulp
-    email: dkulp@apache.org
-  - name: Emmanuel Venisse
-    email: evenisse@apache.org
-  - name: John Casey
-    email: jdcasey@apache.org
-  - name: Jason van Zyl
-  - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
-  - name: Kristian Rosenvold
-    email: krosenvold@apache.org
-  - name: Mark Hobson
-    email: markh@apache.org
-  - name: Milos Kleint
-  - name: Maria Odea B. Ching
-  - name: Olivier Lamy
-    email: olamy@apache.org
-  - name: Paul Gier
-    email: pgier@apache.org
-  - name: Robert Scholte
-    email: rfscholte@apache.org
-  - name: Ralph Goers
-    email: rgoers@apache.org
-  - name: Stephane Nicoll
-    email: snicoll@apache.org
-  - name: Stephen Connolly
-    email: stephenc@apache.org
-  - name: Mark Struberg
-    email: struberg@apache.org
-  - name: Vincent Siveton
-    email: vsiveton@apache.org
-  - name: Wayne Fay
-    email: wfay@apache.org
-  - name: Andreas Gudian
-    email: agudian@apache.org
-  - name: Anders Hammar
-    email: andham@apache.org
-  - name: Brian Demers
-    email: bdemers@apache.org
-  - name: Fabrice Bellingard
-  - name: Benjamin Bentmann
-    email: bentmann@apache.org
-  - name: Tamas Cservenak
-    email: cstamas@apache.org
-  - name: Dan Tran
-    email: dantran@apache.org
-  - name: Damian Bradicich
-    email: dbradicich@apache.org
-  - name: Fabrizio Giustina
-    email: fgiust@apache.org
-  - name: Evgeny Mandrikov
-    email: godin@apache.org
-  - name: Andrew Williams
-    email: handyande@apache.org
-  - name: Igor Fedorenko
-    email: igor@ifedorenko.com
-  - name: Dominik Bartholdi
-    email: imod@apache.org
-  - name: Jeff Jensen
-  - name: Lukas Theussl
-    email: ltheussl@apache.org
-  - name: Mauro Talevi
-  - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
-  - name: Michael Osipov
-    email: michaelo@apache.org
-  - name: Nicolas de Loof
-  - name: Raphaël Piéroni
-    email: rafale@apache.org
-  - name: Simone Tripodi
-    email: simonetripodi@apache.org
-  - name: Tony Chemit
-    email: tchemit@apache.org
-  - name: Tibor Digaňa
-    email: tibordigana@apache.org
-  - name: Vincent Massol
-    email: vmassol@apache.org
-  - name: Allan Q. Ramirez
-  - name: Henri Yandell
-  - name: Chris Stevenson
-  - name: David Blevins
-  - name: Daniel Rall
-  - name: Edwin Punzalan
-    email: epunzalan@apache.org
-  - name: Felipe Leme
-  - name: Jesse McConnell
-    email: jmcconnell@apache.org
-  - name: Joakim Erdfelt
-    email: joakime@apache.org
-  - name: James Strachan
-  - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
-  - name: Mike Perham
-    email: mperham@gmail.com
-  - name: Oleg Gusakov
-  - name: Patrick Schneider
-    email: pschneider@gmail.com
-  - name: Petar Tahchiev
-    email: ptahchiev@apache.org
-  - name: Rahul Thakur
-  - name: Shinobu Kuwai
-  - name: Torbjorn Eikli Smorgrav
-  - name: Trygve Laugstol
-    email: trygvis@apache.org
-  - name: Wendy Smoak
-    email: wsmoak@apache.org
-  - name: Johnny Ruiz III
-    email: jruiz@apache.org
-  - name: Kenney Westerhof
-    email: kenney@apache.org
-- type: software
-  title: Maven Repository Metadata Model (maven-repository-metadata)
-  version: 3.6.2
-  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Plugin_Tools_Java_Annotations
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven-plugin-tools/tree/maven-plugin-tools-3.6.0/maven-plugin-annotations
 - type: software
-  title: Maven Settings (maven-settings)
-  version: 3.6.2
+  title: Maven Repository Metadata Model
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-repository-metadata
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Repository_Metadata_Model
+    directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-repository-metadata
 - type: software
-  title: Maven Settings Builder (maven-settings-builder)
-  version: 3.6.2
+  title: Maven Settings
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-settings
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Settings directory.
   authors:
   - name: Robert Scholte
-    email: rfscholte@apache.org
   - name: Arnaud Héritier
-    email: aheritier@apache.org
   - name: Anders Hammar
-    email: andham@apache.org
   - name: Barrie Treloar
-    email: baerrach@apache.org
   - name: Benson Margulies
-    email: bimargulies@apache.org
   - name: Brian Fox
-    email: brianf@apache.org
   - name: Tamas Cservenak
-    email: cstamas@apache.org
   - name: Dennis Lundberg
-    email: dennisl@apache.org
   - name: Daniel Kulp
-    email: dkulp@apache.org
   - name: Emmanuel Venisse
-    email: evenisse@apache.org
   - name: Guillaume Boué
-    email: gboue@apache.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Igor Fedorenko
-    email: igor@ifedorenko.com
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Milos Kleint
   - name: Olivier Lamy
-    email: olamy@apache.org
   - name: Michael Osipov
-    email: michaelo@apache.org
   - name: Ralph Goers
-    email: rgoers@apache.org
   - name: Stephane Nicoll
-    email: snicoll@apache.org
   - name: Stephen Connolly
-    email: stephenc@apache.org
   - name: Tibor Digaňa
-    email: tibordigana@apache.org
   - name: Vincent Siveton
-    email: vsiveton@apache.org
   - name: Wayne Fay
-    email: wfay@apache.org
   - name: Andreas Dangel
-    email: adangel@apache.org
   - name: Brian Demers
-    email: bdemers@apache.org
   - name: Fabrice Bellingard
   - name: Benjamin Bentmann
-    email: bentmann@apache.org
   - name: Chris Graham
-    email: chrisgwarp@apache.org
   - name: Dan Tran
-    email: dantran@apache.org
   - name: Damian Bradicich
-    email: dbradicich@apache.org
   - name: Brett Porter
-    email: brett@apache.org
   - name: Daniel Fabulich
-    email: dfabulich@apache.org
   - name: Fabrizio Giustina
-    email: fgiust@apache.org
   - name: Evgeny Mandrikov
-    email: godin@apache.org
   - name: Andrew Williams
-    email: handyande@apache.org
   - name: Dominik Bartholdi
-    email: imod@apache.org
   - name: Jeff Jensen
   - name: Lukas Theussl
-    email: ltheussl@apache.org
   - name: Mark Hobson
-    email: markh@apache.org
   - name: Mauro Talevi
   - name: Mirko Friedenhagen
-    email: mfriedenhagen@apache.org
   - name: Manfred Moser
-    email: mmoser@apache.org
   - name: Nicolas de Loof
   - name: Maria Odea B. Ching
   - name: Paul Gier
-    email: pgier@apache.org
   - name: Petar Tahchiev
-    email: ptahchiev@apache.org
   - name: Raphaël Piéroni
-    email: rafale@apache.org
   - name: Christian Schulte
-    email: schulte@apache.org
   - name: Simone Tripodi
-    email: simonetripodi@apache.org
   - name: Christian Stein
-    email: sor@apache.org
   - name: Mark Struberg
-    email: struberg@apache.org
   - name: Tony Chemit
-    email: tchemit@apache.org
   - name: Vincent Massol
-    email: vmassol@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Allan Q. Ramirez
   - name: Henri Yandell
   - name: Carlos Sanchez
-    email: carlos@apache.org
   - name: Chris Stevenson
   - name: David Blevins
   - name: Daniel Rall
   - name: Edwin Punzalan
-    email: epunzalan@apache.org
   - name: Felipe Leme
   - name: John Casey
-    email: jdcasey@apache.org
   - name: Jesse McConnell
-    email: jmcconnell@apache.org
   - name: Joakim Erdfelt
-    email: joakime@apache.org
   - name: Johnny Ruiz III
-    email: jruiz@apache.org
   - name: James Strachan
   - name: Ernesto Tolentino Jr.
-    email: jtolentino@apache.org
   - name: Kenney Westerhof
-    email: kenney@apache.org
   - name: Mike Perham
-    email: mperham@gmail.com
   - name: Oleg Gusakov
   - name: Patrick Schneider
-    email: pschneider@gmail.com
   - name: Rahul Thakur
   - name: Shinobu Kuwai
   - name: Torbjorn Eikli Smorgrav
   - name: Trygve Laugstol
-    email: trygvis@apache.org
   - name: Wendy Smoak
-    email: wsmoak@apache.org
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-settings
 - type: software
-  title: Okio (okio)
-  version: 2.2.2
+  title: Maven Settings Builder
+  version: 3.6.3
+  abbreviation: org.apache.maven:maven-settings-builder
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Maven_Settings_Builder
+    directory.
+  authors:
+  - name: Robert Scholte
+  - name: Arnaud Héritier
+  - name: Anders Hammar
+  - name: Barrie Treloar
+  - name: Benson Margulies
+  - name: Brian Fox
+  - name: Tamas Cservenak
+  - name: Dennis Lundberg
+  - name: Daniel Kulp
+  - name: Emmanuel Venisse
+  - name: Guillaume Boué
+  - name: Hervé Boutemy
+  - name: Igor Fedorenko
+  - name: Jason van Zyl
+  - name: Karl Heinz Marbaise
+  - name: Kristian Rosenvold
+  - name: Milos Kleint
+  - name: Olivier Lamy
+  - name: Michael Osipov
+  - name: Ralph Goers
+  - name: Stephane Nicoll
+  - name: Stephen Connolly
+  - name: Tibor Digaňa
+  - name: Vincent Siveton
+  - name: Wayne Fay
+  - name: Andreas Dangel
+  - name: Brian Demers
+  - name: Fabrice Bellingard
+  - name: Benjamin Bentmann
+  - name: Chris Graham
+  - name: Dan Tran
+  - name: Damian Bradicich
+  - name: Brett Porter
+  - name: Daniel Fabulich
+  - name: Fabrizio Giustina
+  - name: Evgeny Mandrikov
+  - name: Andrew Williams
+  - name: Dominik Bartholdi
+  - name: Jeff Jensen
+  - name: Lukas Theussl
+  - name: Mark Hobson
+  - name: Mauro Talevi
+  - name: Mirko Friedenhagen
+  - name: Manfred Moser
+  - name: Nicolas de Loof
+  - name: Maria Odea B. Ching
+  - name: Paul Gier
+  - name: Petar Tahchiev
+  - name: Raphaël Piéroni
+  - name: Christian Schulte
+  - name: Simone Tripodi
+  - name: Christian Stein
+  - name: Mark Struberg
+  - name: Tony Chemit
+  - name: Vincent Massol
+  - name: Andreas Gudian
+  - name: Allan Q. Ramirez
+  - name: Henri Yandell
+  - name: Carlos Sanchez
+  - name: Chris Stevenson
+  - name: David Blevins
+  - name: Daniel Rall
+  - name: Edwin Punzalan
+  - name: Felipe Leme
+  - name: John Casey
+  - name: Jesse McConnell
+  - name: Joakim Erdfelt
+  - name: Johnny Ruiz III
+  - name: James Strachan
+  - name: Ernesto Tolentino Jr.
+  - name: Kenney Westerhof
+  - name: Mike Perham
+  - name: Oleg Gusakov
+  - name: Patrick Schneider
+  - name: Rahul Thakur
+  - name: Shinobu Kuwai
+  - name: Torbjorn Eikli Smorgrav
+  - name: Trygve Laugstol
+  - name: Wendy Smoak
+  repository-code: https://github.com/apache/maven/tree/maven-3.6.3/maven-settings-builder
+- type: software
+  title: Okio
+  version: 2.8.0
+  abbreviation: com.squareup.okio:okio
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Okio directory.
   authors:
   - name: Square, Inc.
+  repository-code: https://github.com/square/okio/
 - type: software
-  title: 'Plexus :: Component Annotations (plexus-component-annotations)'
-  version: 2.0.0
+  title: 'Plexus :: Component Annotations'
+  version: 2.1.0
+  abbreviation: org.codehaus.plexus:plexus-component-annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Component_Annotations
+    directory.
   authors:
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Pete Kazmier
   - name: James Taylor
-    email: james@jamestaylor.org
   - name: Dan Diephouse
-    email: dan@envoisolutions.com
   - name: Kasper Nielsen
-    email: apache@kav.dk
   - name: Ben Walding
-    email: bwalding@codehaus.org
   - name: Mark Wilkinson
-    email: mhw@kremvax.net
   - name: Michal Maczka
-    email: mmaczka@interia.pl
   - name: Emmanuel Venisse
-    email: evenisse@codehaus.org
   - name: Trygve Laugstøl
-    email: trygvis@codehaus.org
   - name: Kenney Westerhof
-    email: kenney@codehaus.org
   - name: Carlos Sanchez
-    email: carlos@codehaus.org
   - name: Brett Porter
-    email: brett@codehaus.org
   - name: John Casey
-    email: jdcasey@codehaus.org
   - name: Andrew Williams
-    email: andy@handyande.co.uk
   - name: Rahul Thakur
-    email: rahul.thakur.xdev@gmail.com
   - name: Joakim Erdfelt
-    email: joakim@erdfelt.com
   - name: Olivier Lamy
-    email: olamy@codehaus.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Oleg Gusakov
-    email: olegy@codehaus.org
   - name: Vincent Siveton
-    email: vsiveton@codehaus.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Michael Osipov
-    email: 1983-01-06@gmx.net
+  repository-code: https://github.com/codehaus-plexus/plexus-containers/plexus-component-annotations
 - type: software
-  title: 'Plexus Cipher: encryption/decryption Component (plexus-cipher)'
+  title: 'Plexus Cipher: encryption/decryption Component'
   version: '1.4'
+  abbreviation: org.sonatype.plexus:plexus-cipher
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Cipher_encryption_decryption_Component
+    directory.
   authors:
-  - name: 'The Plexus Cipher: encryption/decryption Component (plexus-cipher) 1.4
-      Team'
+  - name: 'The Plexus Cipher: encryption/decryption Component 1.4 Team'
+  repository-code: http://svn.sonatype.org/spice/tags/plexus-cipher-1.4
 - type: software
-  title: Plexus Classworlds (plexus-classworlds)
+  title: Plexus Classworlds
   version: 2.6.0
+  abbreviation: org.codehaus.plexus:plexus-classworlds
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Classworlds
+    directory.
   authors:
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Pete Kazmier
   - name: James Taylor
-    email: james@jamestaylor.org
   - name: Dan Diephouse
-    email: dan@envoisolutions.com
   - name: Kasper Nielsen
-    email: apache@kav.dk
   - name: Ben Walding
-    email: bwalding@codehaus.org
   - name: Mark Wilkinson
-    email: mhw@kremvax.net
   - name: Michal Maczka
-    email: mmaczka@interia.pl
   - name: Emmanuel Venisse
-    email: evenisse@codehaus.org
   - name: Trygve Laugstøl
-    email: trygvis@codehaus.org
   - name: Kenney Westerhof
-    email: kenney@codehaus.org
   - name: Carlos Sanchez
-    email: carlos@codehaus.org
   - name: Brett Porter
-    email: brett@codehaus.org
   - name: John Casey
-    email: jdcasey@codehaus.org
   - name: Andrew Williams
-    email: andy@handyande.co.uk
   - name: Rahul Thakur
-    email: rahul.thakur.xdev@gmail.com
   - name: Joakim Erdfelt
-    email: joakim@erdfelt.com
   - name: Olivier Lamy
-    email: olamy@codehaus.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Oleg Gusakov
-    email: olegy@codehaus.org
   - name: Vincent Siveton
-    email: vsiveton@codehaus.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Michael Osipov
-    email: 1983-01-06@gmx.net
+  repository-code: http://github.com/codehaus-plexus/plexus-classworlds/tree/plexus-classworlds-2.6.0/
 - type: software
-  title: Plexus Common Utilities (plexus-utils)
+  title: Plexus Common Utilities
   version: 3.2.1
+  abbreviation: org.codehaus.plexus:plexus-utils
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Common_Utilities
+    directory.
   authors:
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Pete Kazmier
   - name: James Taylor
-    email: james@jamestaylor.org
   - name: Dan Diephouse
-    email: dan@envoisolutions.com
   - name: Kasper Nielsen
-    email: apache@kav.dk
   - name: Ben Walding
-    email: bwalding@codehaus.org
   - name: Mark Wilkinson
-    email: mhw@kremvax.net
   - name: Michal Maczka
-    email: mmaczka@interia.pl
   - name: Emmanuel Venisse
-    email: evenisse@codehaus.org
   - name: Trygve Laugstøl
-    email: trygvis@codehaus.org
   - name: Kenney Westerhof
-    email: kenney@codehaus.org
   - name: Carlos Sanchez
-    email: carlos@codehaus.org
   - name: Brett Porter
-    email: brett@codehaus.org
   - name: John Casey
-    email: jdcasey@codehaus.org
   - name: Andrew Williams
-    email: andy@handyande.co.uk
   - name: Rahul Thakur
-    email: rahul.thakur.xdev@gmail.com
   - name: Joakim Erdfelt
-    email: joakim@erdfelt.com
   - name: Olivier Lamy
-    email: olamy@codehaus.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Oleg Gusakov
-    email: olegy@codehaus.org
   - name: Vincent Siveton
-    email: vsiveton@codehaus.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Michael Osipov
-    email: 1983-01-06@gmx.net
+  repository-code: http://github.com/codehaus-plexus/plexus-utils
 - type: software
-  title: Plexus Interpolation API (plexus-interpolation)
+  title: Plexus Interpolation API
   version: '1.25'
+  abbreviation: org.codehaus.plexus:plexus-interpolation
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Interpolation_API
+    directory.
   authors:
   - name: Jason van Zyl
-    email: jason@maven.org
   - name: Pete Kazmier
   - name: James Taylor
-    email: james@jamestaylor.org
   - name: Dan Diephouse
-    email: dan@envoisolutions.com
   - name: Kasper Nielsen
-    email: apache@kav.dk
   - name: Ben Walding
-    email: bwalding@codehaus.org
   - name: Mark Wilkinson
-    email: mhw@kremvax.net
   - name: Michal Maczka
-    email: mmaczka@interia.pl
   - name: Emmanuel Venisse
-    email: evenisse@codehaus.org
   - name: Trygve Laugstøl
-    email: trygvis@codehaus.org
   - name: Kenney Westerhof
-    email: kenney@codehaus.org
   - name: Carlos Sanchez
-    email: carlos@codehaus.org
   - name: Brett Porter
-    email: brett@codehaus.org
   - name: John Casey
-    email: jdcasey@codehaus.org
   - name: Andrew Williams
-    email: andy@handyande.co.uk
   - name: Rahul Thakur
-    email: rahul.thakur.xdev@gmail.com
   - name: Joakim Erdfelt
-    email: joakim@erdfelt.com
   - name: Olivier Lamy
-    email: olamy@codehaus.org
   - name: Hervé Boutemy
-    email: hboutemy@apache.org
   - name: Oleg Gusakov
-    email: olegy@codehaus.org
   - name: Vincent Siveton
-    email: vsiveton@codehaus.org
   - name: Kristian Rosenvold
-    email: krosenvold@apache.org
   - name: Andreas Gudian
-    email: agudian@apache.org
   - name: Karl Heinz Marbaise
-    email: khmarbaise@apache.org
   - name: Michael Osipov
-    email: 1983-01-06@gmx.net
+  repository-code: http://github.com/codehaus-plexus/plexus-interpolation/tree/plexus-interpolation-1.25/
 - type: software
-  title: Plexus Security Dispatcher Component (plexus-sec-dispatcher)
+  title: Plexus Security Dispatcher Component
   version: '1.4'
+  abbreviation: org.sonatype.plexus:plexus-sec-dispatcher
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Plexus_Security_Dispatcher_Component
+    directory.
   authors:
-  - name: The Plexus Security Dispatcher Component (plexus-sec-dispatcher) 1.4 Team
+  - name: The Plexus Security Dispatcher Component 1.4 Team
+  repository-code: http://svn.sonatype.org/spice/tags/plexus-sec-dispatcher-1.4
 - type: software
-  title: SLF4J API Module (slf4j-api)
+  title: SLF4J API Module
   version: 1.7.25
+  abbreviation: org.slf4j:slf4j-api
   license: MIT
+  notes: More license information can be found in the THIRD-PARTY/SLF4J_API_Module
+    directory.
   authors:
   - name: Ceki Gulcu
-    email: ceki@qos.ch
+  repository-code: https://github.com/qos-ch/slf4j/slf4j-api
 - type: software
-  title: SnakeYAML Engine (snakeyaml-engine)
-  version: '2.0'
+  title: SnakeYAML Engine
+  version: 2.2.1
+  abbreviation: org.snakeyaml:snakeyaml-engine
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/SnakeYAML_Engine
+    directory.
   authors:
   - name: Andrey Somov
-    email: public.somov@gmail.com
   - name: Alexander Maslov
-    email: alexander.maslov@gmail.com
+  repository-code: https://bitbucket.org/asomov/snakeyaml-engine/src
 - type: software
-  title: error-prone annotations (error_prone_annotations)
+  title: error-prone annotations
   version: 2.1.3
+  abbreviation: com.google.errorprone:error_prone_annotations
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/error_prone_annotations
+    directory.
   authors:
-  - name: The error-prone annotations (error_prone_annotations) 2.1.3 Team
+  - name: The error-prone annotations 2.1.3 Team
+  repository-code: https://github.com/google/error-prone/error_prone_annotations
 - type: software
-  title: javax.inject (javax.inject)
+  title: javax.inject
   version: '1'
+  abbreviation: javax.inject:javax.inject
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/javax.inject directory.
   authors:
-  - name: The javax.inject (javax.inject) 1 Team
+  - name: The javax.inject 1 Team
+  repository-code: http://code.google.com/p/atinject/source/checkout
 - type: software
-  title: okhttp (okhttp)
-  version: 4.2.2
+  title: okhttp
+  version: 4.9.1
+  abbreviation: com.squareup.okhttp3:okhttp
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/okhttp directory.
   authors:
   - name: Square, Inc.
+  repository-code: https://github.com/square/okhttp
 - type: software
-  title: org.eclipse.sisu.inject (org.eclipse.sisu.inject)
-  version: 0.3.3
+  title: org.eclipse.sisu.inject
+  version: 0.3.4
+  abbreviation: org.eclipse.sisu:org.eclipse.sisu.inject
   license: EPL-1.0
+  notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.inject
+    directory.
   authors:
-  - name: The org.eclipse.sisu.inject (org.eclipse.sisu.inject) 0.3.3 Team
+  - name: The org.eclipse.sisu.inject 0.3.4 Team
+  repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.inject.git/tree/org.eclipse.sisu.inject/
 - type: software
-  title: org.eclipse.sisu.plexus (org.eclipse.sisu.plexus)
-  version: 0.3.3
+  title: org.eclipse.sisu.plexus
+  version: 0.3.4
+  abbreviation: org.eclipse.sisu:org.eclipse.sisu.plexus
   license: EPL-1.0
+  notes: More license information can be found in the THIRD-PARTY/org.eclipse.sisu.plexus
+    directory.
   authors:
-  - name: The org.eclipse.sisu.plexus (org.eclipse.sisu.plexus) 0.3.3 Team
+  - name: The org.eclipse.sisu.plexus 0.3.4 Team
+  repository-code: http://git.eclipse.org/c/sisu/org.eclipse.sisu.plexus.git/tree/org.eclipse.sisu.plexus/
 - type: software
-  title: org.jetbrains.kotlin:kotlin-stdlib (kotlin-stdlib)
-  version: 1.3.50
+  title: org.jetbrains.kotlin:kotlin-stdlib
+  version: 1.4.10
+  abbreviation: org.jetbrains.kotlin:kotlin-stdlib
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib
+    directory.
   authors:
   - name: Kotlin Team
+  repository-code: https://github.com/JetBrains/kotlin
 - type: software
-  title: org.jetbrains.kotlin:kotlin-stdlib-common (kotlin-stdlib-common)
-  version: 1.3.50
+  title: org.jetbrains.kotlin:kotlin-stdlib-common
+  version: 1.4.0
+  abbreviation: org.jetbrains.kotlin:kotlin-stdlib-common
   license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/org.jetbrains.kotlin_kotlin_stdlib_common
+    directory.
   authors:
   - name: Kotlin Team
+  repository-code: https://github.com/JetBrains/kotlin
