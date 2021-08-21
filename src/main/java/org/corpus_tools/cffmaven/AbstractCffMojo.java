@@ -168,7 +168,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
             + ". Creating fallback information.");
         LinkedHashMap<String, Object> author = new LinkedHashMap<>();
         author.put("name",
-            "The " + reference.get("title") + " " + reference.get("version") + " Team");
+            "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
         authorSet.add(author);
       }
 
@@ -294,7 +294,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
           + ". Creating fallback information.");
       Map<String, Object> author = new LinkedHashMap<>();
       author.put("name",
-          "The " + reference.get("title") + " " + reference.get("version") + " Team");
+          "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
       authorSet.add(author);
     }
     reference.put("authors", new LinkedList<>(authorSet));
