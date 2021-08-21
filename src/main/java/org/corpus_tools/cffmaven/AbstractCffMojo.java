@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -149,7 +150,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
 
     if (!createReferenceFromIncludedPom(reference, artifact, projectBuildingRequest)) {
-      List<Map<String, Object>> authorList = new LinkedList<>();
+      LinkedHashSet<Map<String, Object>> authorSet = new LinkedHashSet<>();
 
       Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
       if (remoteLicense.isPresent()) {
@@ -157,11 +158,11 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         for (String name : remoteLicense.get().getAuthors()) {
           Map<String, Object> author = new LinkedHashMap<>();
           author.put("name", name);
-          authorList.add(author);
+          authorSet.add(author);
         }
       }
 
-      reference.put("authors", authorList);
+      reference.put("authors", new LinkedList<>(authorSet));
     }
   }
 
@@ -265,7 +266,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
     }
     // Add author information
-    List<Map<String, Object>> authorList = new LinkedList<>();
+    LinkedHashSet<Map<String, Object>> authorSet = new LinkedHashSet<>();
     for (Developer dev : project.getDevelopers()) {
       Map<String, Object> author = new LinkedHashMap<>();
 
@@ -274,10 +275,10 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         if (includeEmail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
           author.put("email", dev.getEmail());
         }
-        authorList.add(author);
+        authorSet.add(author);
       }
     }
-    reference.put("authors", authorList);
+    reference.put("authors", new LinkedList<>(authorSet));
 
     // Add SCM URL if available
     String scmUrl = getRepositoryCodeUrl(project.getScm());
