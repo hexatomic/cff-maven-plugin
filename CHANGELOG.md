@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Support CFF version 1.2.0
 - Updated checkstyle to 8.29
 
 ## [0.4.0] - 2019-12-06
