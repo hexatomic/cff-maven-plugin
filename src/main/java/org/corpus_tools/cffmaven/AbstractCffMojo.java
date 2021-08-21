@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +63,10 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
       HttpUrl.parse("https://api.clearlydefined.io/definitions");
 
+  protected static final String TITLE = "title";
+  protected static final String VERSION = "version";
+
+
 
   @Parameter(defaultValue = "true")
   private boolean includeEmail;
@@ -102,8 +107,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
     reference.put("type", "software");
-    reference.put("title", artifact.getArtifactId());
-    reference.put("version", artifact.getVersion());
+    reference.put(TITLE, artifact.getArtifactId());
+    reference.put(VERSION, artifact.getVersion());
 
     if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
       createReferenceFromP2(reference, artifact, projectBuildingRequest);
@@ -145,7 +150,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
 
     if (!createReferenceFromIncludedPom(reference, artifact, projectBuildingRequest)) {
-      List<Map<String, Object>> authorList = new LinkedList<>();
+      LinkedHashSet<Map<String, Object>> authorSet = new LinkedHashSet<>();
 
       Optional<RemoteLicenseInformation> remoteLicense = queryLicenseFromClearlyDefined(artifact);
       if (remoteLicense.isPresent()) {
@@ -153,11 +158,21 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         for (String name : remoteLicense.get().getAuthors()) {
           Map<String, Object> author = new LinkedHashMap<>();
           author.put("name", name);
-          authorList.add(author);
+          authorSet.add(author);
         }
       }
 
-      reference.put("authors", authorList);
+      // If no authors are specified, use generic fallback author info
+      if (authorSet.isEmpty()) {
+        getLog().info("No author info found for P2 artifact " + artifact.getId()
+            + ". Creating fallback information.");
+        LinkedHashMap<String, Object> author = new LinkedHashMap<>();
+        author.put("name",
+            "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+        authorSet.add(author);
+      }
+
+      reference.put("authors", new LinkedList<>(authorSet));
     }
   }
 
@@ -175,7 +190,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
               props.load(propertyInputStream);
               String groupId = props.getProperty("groupId");
               String artifactId = props.getProperty("artifactId");
-              String version = props.getProperty("version");
+              String version = props.getProperty(VERSION);
               if (groupId != null && artifactId != null && version != null) {
                 // use the original maven artifact information
                 Artifact newArtifact = new DefaultArtifact(groupId, artifactId, version,
@@ -220,11 +235,11 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     MavenProject project = result.getProject();
 
     if (project.getName() != null && !project.getName().isEmpty()) {
-      reference.put("title", project.getName());
+      reference.put(TITLE, project.getName());
       reference.put("abbreviation", project.getGroupId() + ":" + project.getArtifactId());
     }
     if (project.getVersion() != null && !project.getVersion().isEmpty()) {
-      reference.put("version", project.getVersion());
+      reference.put(VERSION, project.getVersion());
     }
 
     // Add license information
@@ -251,17 +266,17 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       } else {
         getLog().error("Unknown license for " + artifact.toString());
       }
-      Object title = reference.get("title");
+      Object title = reference.get(TITLE);
       if (title instanceof String) {
-        File thirdPartyFolder = getArtifactFolder((String) reference.get("title"));
-        Path relativePath = output.getParentFile().toPath().relativize(thirdPartyFolder.toPath());
+        File artifactFolder = getArtifactFolder((String) reference.get(TITLE));
+        Path relativePath = output.getParentFile().toPath().relativize(artifactFolder.toPath());
         reference.put("notes", "More license information can be found in the "
             + relativePath.toString() + " directory.");
       }
 
     }
     // Add author information
-    List<Map<String, Object>> authorList = new LinkedList<>();
+    LinkedHashSet<Map<String, Object>> authorSet = new LinkedHashSet<>();
     for (Developer dev : project.getDevelopers()) {
       Map<String, Object> author = new LinkedHashMap<>();
 
@@ -270,10 +285,19 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         if (includeEmail && dev.getEmail() != null && !dev.getEmail().isEmpty()) {
           author.put("email", dev.getEmail());
         }
-        authorList.add(author);
+        authorSet.add(author);
       }
     }
-    reference.put("authors", authorList);
+    // If no authors are specified, use generic fallback author info
+    if (authorSet.isEmpty()) {
+      getLog().info("No author info found for Maven artifact " + artifact.getArtifactId()
+          + ". Creating fallback information.");
+      Map<String, Object> author = new LinkedHashMap<>();
+      author.put("name",
+          "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+      authorSet.add(author);
+    }
+    reference.put("authors", new LinkedList<>(authorSet));
 
     // Add SCM URL if available
     String scmUrl = getRepositoryCodeUrl(project.getScm());
