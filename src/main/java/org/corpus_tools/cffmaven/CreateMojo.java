@@ -62,7 +62,8 @@ public class CreateMojo extends AbstractCffMojo {
     LoadSettings yamlLoadSettings = LoadSettings.builder().build();
     Load yamlLoad = new Load(yamlLoadSettings);
     Map<String, Object> cff = new LinkedHashMap<>();
-    cff.putIfAbsent("cff-version", "1.1.0");
+    cff.putIfAbsent("cff-version", "1.2.0");
+    cff.putIfAbsent("type", "software");
 
     if (input != null && input.isFile()) {
       try (FileInputStream inputFile = new FileInputStream(input)) {

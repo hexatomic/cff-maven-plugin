@@ -1,4 +1,4 @@
-cff-version: 1.1.0
+cff-version: 1.2.0
 message: If you use this software, please cite it as below.
 title: CFF Maven Plugin
 authors:
@@ -10,7 +10,8 @@ authors:
    orcid: https://orcid.org/0000-0003-4925-7248
 references:
 -  title: Citation File Format (CFF)
-   version: 1.1.0
+   version: 1.2.0
+   type: standard
    doi: 10.5281/zenodo.1003149
    date-released: 2019-11-13T00:00:00Z
    authors:
