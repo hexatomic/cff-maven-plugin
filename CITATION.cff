@@ -261,7 +261,7 @@ references:
   title: Checker Qual
   version: 2.0.0
   abbreviation: org.checkerframework:checker-compat-qual
-  license: GPL-2.0 WITH Classpath-exception-2.0
+  license: GPL-2.0-with-classpath-exception
   notes: More license information can be found in the THIRD-PARTY/Checker_Qual directory.
   authors:
   - name: Michael Ernst

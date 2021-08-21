@@ -30,7 +30,7 @@ public class KnownLicenses {
         SPDX_GPL20CLASSPATHEX);
     licenseMap.put(
         norm("GNU General Public License, version 2 (GPL2), with the classpath exception"),
-        "GPL-2.0 WITH Classpath-exception-2.0");
+        SPDX_GPL20CLASSPATHEX);
 
     licenseMap.put(norm(SPDX_MIT), SPDX_MIT);
     licenseMap.put(norm("MIT license"), SPDX_MIT);
