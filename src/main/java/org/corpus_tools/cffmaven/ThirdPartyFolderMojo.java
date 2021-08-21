@@ -60,7 +60,7 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
       if (!isIgnored(artifact)) {
         try {
           Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
-          String newRefTitle = (String) newRef.getOrDefault("title", "");
+          String newRefTitle = (String) newRef.getOrDefault(TITLE, "");
           String titleForThirdParty = (String) newRefTitle;
           // remove additional information like stuff in (...) at the end
           titleForThirdParty = titleForThirdParty.replaceFirst("\\s*\\([^)]*\\)$", "");

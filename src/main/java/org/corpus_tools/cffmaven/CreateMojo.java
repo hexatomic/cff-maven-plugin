@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public class CreateMojo extends AbstractCffMojo {
    * {@inheritDoc}
    */
   public void execute() throws MojoExecutionException {
-    
+
 
     LoadSettings yamlLoadSettings = LoadSettings.builder().build();
     Load yamlLoad = new Load(yamlLoadSettings);
@@ -95,13 +96,22 @@ public class CreateMojo extends AbstractCffMojo {
       cff.put("date-released", dateReleased);
     }
 
-    List<HashMap<String, Object>> authors = new LinkedList<>();
+    LinkedHashSet<Map<String, Object>> authors = new LinkedHashSet<>();
     for (Developer dev : project.getModel().getDevelopers()) {
       HashMap<String, Object> author = new HashMap<>();
       author.put("name", dev.getName());
       authors.add(author);
     }
-    cff.putIfAbsent("authors", authors);
+
+    // If no authors are specified, use generic fallback author info
+    if (authors.isEmpty()) {
+      getLog().info("No author info found for this project. Creating fallback information.");
+      HashMap<String, Object> author = new HashMap<>();
+      author.put("name", "The " + cff.get(TITLE) + " " + cff.get(VERSION) + " Team");
+      authors.add(author);
+    }
+
+    cff.putIfAbsent("authors", new LinkedList<>(authors));
 
 
     // Add primary SCM information to CFF

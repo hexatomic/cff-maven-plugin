@@ -65,7 +65,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   protected static final String TITLE = "title";
   protected static final String VERSION = "version";
-  
+
 
 
   @Parameter(defaultValue = "true")
@@ -160,6 +160,16 @@ public abstract class AbstractCffMojo extends AbstractMojo {
           author.put("name", name);
           authorSet.add(author);
         }
+      }
+
+      // If no authors are specified, use generic fallback author info
+      if (authorSet.isEmpty()) {
+        getLog().info("No author info found for P2 artifact " + artifact.getId()
+            + ". Creating fallback information.");
+        LinkedHashMap<String, Object> author = new LinkedHashMap<>();
+        author.put("name",
+            "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+        authorSet.add(author);
       }
 
       reference.put("authors", new LinkedList<>(authorSet));
@@ -277,6 +287,15 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         }
         authorSet.add(author);
       }
+    }
+    // If no authors are specified, use generic fallback author info
+    if (authorSet.isEmpty()) {
+      getLog().info("No author info found for Maven artifact " + artifact.getArtifactId()
+          + ". Creating fallback information.");
+      Map<String, Object> author = new LinkedHashMap<>();
+      author.put("name",
+          "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+      authorSet.add(author);
     }
     reference.put("authors", new LinkedList<>(authorSet));
 
