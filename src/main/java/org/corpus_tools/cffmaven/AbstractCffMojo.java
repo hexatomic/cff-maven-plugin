@@ -333,7 +333,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     // query the REST API of ClearlyDefined
     // https://api.clearlydefined.io/api-docs/
     List<String> patterns = new LinkedList<>();
-    if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+    if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
       Optional<String> minorVersion = Optional.empty();
       Matcher minorVersionMatcher = MINOR_VERSION_HEURISTIC.matcher(artifact.getVersion());
       if (minorVersionMatcher.matches()) {
