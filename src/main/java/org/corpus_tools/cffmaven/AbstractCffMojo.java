@@ -57,7 +57,7 @@ import org.snakeyaml.engine.v2.api.Load;
  */
 public abstract class AbstractCffMojo extends AbstractMojo {
 
-  protected static final String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
+  protected static final Pattern P2_PLUGIN_GROUP_ID = Pattern.compile("p2.eclipse(\\.|\\-)plugin");
   protected static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
   protected static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
@@ -110,7 +110,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     reference.put(TITLE, artifact.getArtifactId());
     reference.put(VERSION, artifact.getVersion());
 
-    if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+    if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
       createReferenceFromP2(reference, artifact, projectBuildingRequest);
     } else {
       createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
