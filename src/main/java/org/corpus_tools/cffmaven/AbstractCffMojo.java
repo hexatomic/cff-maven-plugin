@@ -57,8 +57,8 @@ import org.snakeyaml.engine.v2.api.Load;
  */
 public abstract class AbstractCffMojo extends AbstractMojo {
 
-  protected static final String P2_PLUGIN_GROUP_ID = "p2.eclipse-plugin";
-  protected static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
+  protected static final Pattern P2_PLUGIN_GROUP_ID = Pattern.compile("p2.eclipse[.\\-]plugin");
+  protected static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^(\\d\\.\\d)\\..*");
   protected static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
       HttpUrl.parse("https://api.clearlydefined.io/definitions");
@@ -110,7 +110,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     reference.put(TITLE, artifact.getArtifactId());
     reference.put(VERSION, artifact.getVersion());
 
-    if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+    if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
       createReferenceFromP2(reference, artifact, projectBuildingRequest);
     } else {
       createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
@@ -333,7 +333,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     // query the REST API of ClearlyDefined
     // https://api.clearlydefined.io/api-docs/
     List<String> patterns = new LinkedList<>();
-    if (P2_PLUGIN_GROUP_ID.equals(artifact.getGroupId())) {
+    if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
       Optional<String> minorVersion = Optional.empty();
       Matcher minorVersionMatcher = MINOR_VERSION_HEURISTIC.matcher(artifact.getVersion());
       if (minorVersionMatcher.matches()) {
