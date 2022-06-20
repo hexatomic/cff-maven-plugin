@@ -57,7 +57,7 @@ import org.snakeyaml.engine.v2.api.Load;
  */
 public abstract class AbstractCffMojo extends AbstractMojo {
 
-  protected static final Pattern P2_PLUGIN_GROUP_ID = Pattern.compile("p2.eclipse(\\.|\\-)plugin");
+  protected static final Pattern P2_PLUGIN_GROUP_ID = Pattern.compile("p2.eclipse[.\\-]plugin");
   protected static final Pattern MINOR_VERSION_HEURISTIC = Pattern.compile("^([0-9]\\.[0-9])\\..*");
   protected static final Pattern ARTIFACTID_HEURISTIC_SUFFIX = Pattern.compile("(.*)(\\.)([^.]+)$");
   protected static final HttpUrl DEFINITIONS_ENDPOINT =
