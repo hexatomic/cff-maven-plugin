@@ -79,30 +79,40 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
     File artifactFolder = getArtifactFolder(title);
     if (artifactFolder != null) {
       // Inspect the JAR file to copy all available license texts and notices
-      if (artifact.getFile() != null && artifact.getFile().isFile()) {
-        try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
-          Enumeration<? extends ZipEntry> entries = artifactFile.entries();
-          while (entries.hasMoreElements()) {
-            ZipEntry currentEntry = entries.nextElement();
-            String entryPath =
-                currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
+      File file = artifact.getFile();
+      if (file != null && file.isFile()) {
+        // Ignore empty ZIP files
+        try {
+          if (Files.size(file.toPath()) > 0) {
+            getLog().info("Artifact file " + file
+                + " is empty. No 3rd party files will be extracted from it.");
 
-            if (!entryPath.contains("..")) {
+          } else {
+            try (ZipFile artifactFile = new ZipFile(file)) {
+              Enumeration<? extends ZipEntry> entries = artifactFile.entries();
+              while (entries.hasMoreElements()) {
+                ZipEntry currentEntry = entries.nextElement();
+                String entryPath =
+                    currentEntry.getName().replace('\\', '/').replaceFirst("^META-INF/", "");
 
-              getLog().debug("Checking zip file entry \"" + entryPath
-                  + "\" for inclusion in third party folder.");
-              if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
-                // copy this file to the output folder
-                File outputFile = new File(artifactFolder, entryPath);
-                if (outputFile.exists()) {
-                  getLog().warn("Not overwriting existing file " + outputFile.getPath());
-                } else {
-                  getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
-                      + artifact.getArtifactId() + " to " + outputFile.getPath());
-                  if (outputFile.getParentFile().isDirectory()
-                      || outputFile.getParentFile().mkdirs()) {
-                    try (InputStream is = artifactFile.getInputStream(currentEntry)) {
-                      Files.copy(is, outputFile.toPath());
+                if (!entryPath.contains("..")) {
+
+                  getLog().debug("Checking zip file entry \"" + entryPath
+                      + "\" for inclusion in third party folder.");
+                  if (INCLUDE_THIRD_PARTY_FILE_PATTERN.matcher(entryPath).matches()) {
+                    // copy this file to the output folder
+                    File outputFile = new File(artifactFolder, entryPath);
+                    if (outputFile.exists()) {
+                      getLog().warn("Not overwriting existing file " + outputFile.getPath());
+                    } else {
+                      getLog().info("Copying " + entryPath + " from " + artifact.getGroupId() + ":"
+                          + artifact.getArtifactId() + " to " + outputFile.getPath());
+                      if (outputFile.getParentFile().isDirectory()
+                          || outputFile.getParentFile().mkdirs()) {
+                        try (InputStream is = artifactFile.getInputStream(currentEntry)) {
+                          Files.copy(is, outputFile.toPath());
+                        }
+                      }
                     }
                   }
                 }
@@ -110,9 +120,10 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
             }
           }
         } catch (IOException ex) {
-          getLog().warn("Could not open artifact file " + artifact.getFile()
+          getLog().warn("Could not open artifact file " + file
               + ". No 3rd party files will be extracted from it.", ex);
         }
+
       }
 
       // check if any files have been added
