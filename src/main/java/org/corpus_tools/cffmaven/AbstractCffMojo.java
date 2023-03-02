@@ -5,6 +5,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.FileTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -180,7 +181,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     // try to get the real artifact information from the JAR-file
     File file = artifact.getFile();
-    if (file != null && artifact.getFile().isFile() && !"pom".equals(artifact.getType())) {
+    if (file != null && artifact.getFile().isFile()
+        && "jar".equals(Files.getFileExtension(file.getName()))) {
       try {
         try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
           Enumeration<? extends ZipEntry> entries = artifactFile.entries();
@@ -224,8 +226,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
           }
         }
       } catch (ZipException ex) {
-        getLog().warn("Could not open JAR for artifact " + artifact.getId()
-            + " for inspection. Error message: " + ex.getMessage());
+        getLog().warn("Could not open JAR for artifact " + artifact.getId() + " (type "
+            + artifact.getType() + ") for inspection. Error message: " + ex.getMessage());
       } catch (IOException ex) {
         getLog().error(
             "Could not open JAR file " + artifact.getFile().getPath() + " for inspection", ex);
