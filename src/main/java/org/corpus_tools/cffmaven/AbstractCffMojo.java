@@ -180,7 +180,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     // try to get the real artifact information from the JAR-file
     File file = artifact.getFile();
-    if (file != null && artifact.getFile().isFile()) {
+    if (file != null && artifact.getFile().isFile() && !"pom".equals(artifact.getType())) {
       try {
         try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
           Enumeration<? extends ZipEntry> entries = artifactFile.entries();

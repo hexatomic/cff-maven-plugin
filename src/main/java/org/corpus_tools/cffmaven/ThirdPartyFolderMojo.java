@@ -81,7 +81,7 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
     if (artifactFolder != null) {
       // Inspect the JAR file to copy all available license texts and notices
       File file = artifact.getFile();
-      if (file != null && file.isFile()) {
+      if (file != null && file.isFile() && !"pom".equals(artifact.getType())) {
 
         try (ZipFile artifactFile = new ZipFile(file)) {
           Enumeration<? extends ZipEntry> entries = artifactFile.entries();
