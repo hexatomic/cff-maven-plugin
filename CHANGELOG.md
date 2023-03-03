@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2022-06-20 
+
+### Fixed
+
+- Use a pattern instead of a fixed string to determine if this is a P2 artififact.
+
+
+## [0.5.0] - 2021-08-21
+
 ### Changed
 
 - Support CFF version 1.2.0
