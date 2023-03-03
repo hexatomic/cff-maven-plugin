@@ -5,6 +5,7 @@ import com.github.jknack.handlebars.Handlebars;
 import com.github.jknack.handlebars.Template;
 import com.github.jknack.handlebars.io.FileTemplateLoader;
 import com.github.jknack.handlebars.io.TemplateLoader;
+import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -167,8 +169,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
         getLog().info("No author info found for P2 artifact " + artifact.getId()
             + ". Creating fallback information.");
         LinkedHashMap<String, Object> author = new LinkedHashMap<>();
-        author.put("name",
-            "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+        author.put("name", "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
         authorSet.add(author);
       }
 
@@ -179,46 +180,54 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   private boolean createReferenceFromIncludedPom(Map<String, Object> reference, Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     // try to get the real artifact information from the JAR-file
-    if (artifact.getFile() != null && artifact.getFile().isFile()) {
-      try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
-        Enumeration<? extends ZipEntry> entries = artifactFile.entries();
-        while (entries.hasMoreElements()) {
-          ZipEntry currentEntry = entries.nextElement();
-          if (currentEntry.getName().endsWith("/pom.properties")) {
-            try (InputStream propertyInputStream = artifactFile.getInputStream(currentEntry)) {
-              Properties props = new Properties();
-              props.load(propertyInputStream);
-              String groupId = props.getProperty("groupId");
-              String artifactId = props.getProperty("artifactId");
-              String version = props.getProperty(VERSION);
-              if (groupId != null && artifactId != null && version != null) {
-                // use the original maven artifact information
-                Artifact newArtifact = new DefaultArtifact(groupId, artifactId, version,
-                    artifact.getScope(), artifact.getType(), artifact.getClassifier(),
-                    artifact.getArtifactHandler());
-                // Don't try to fetch snapshot dependencies
-                if (!newArtifact.isSnapshot()) {
-                  try {
-                    createReferenceFromMavenArtifact(reference, newArtifact,
-                        projectBuildingRequest);
-                    return true;
-                  } catch (ProjectBuildingException ex) {
-                    if (ex.getCause() instanceof ArtifactResolutionException) {
-                      getLog().warn("Replacing artifact " + artifact.toString() + " with "
-                          + newArtifact.toString() + " failed because the new one was not found.");
-                    } else {
-                      getLog().warn("Replacing artifact " + artifact.toString() + " with "
-                          + newArtifact.toString() + " failed", ex);
+    File file = artifact.getFile();
+    if (file != null && artifact.getFile().isFile()
+        && "jar".equals(Files.getFileExtension(file.getName()))) {
+      try {
+        try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
+          Enumeration<? extends ZipEntry> entries = artifactFile.entries();
+          while (entries.hasMoreElements()) {
+            ZipEntry currentEntry = entries.nextElement();
+            if (currentEntry.getName().endsWith("/pom.properties")) {
+              try (InputStream propertyInputStream = artifactFile.getInputStream(currentEntry)) {
+                Properties props = new Properties();
+                props.load(propertyInputStream);
+                String groupId = props.getProperty("groupId");
+                String artifactId = props.getProperty("artifactId");
+                String version = props.getProperty(VERSION);
+                if (groupId != null && artifactId != null && version != null) {
+                  // use the original maven artifact information
+                  Artifact newArtifact = new DefaultArtifact(groupId, artifactId, version,
+                      artifact.getScope(), artifact.getType(), artifact.getClassifier(),
+                      artifact.getArtifactHandler());
+                  // Don't try to fetch snapshot dependencies
+                  if (!newArtifact.isSnapshot()) {
+                    try {
+                      createReferenceFromMavenArtifact(reference, newArtifact,
+                          projectBuildingRequest);
+                      return true;
+                    } catch (ProjectBuildingException ex) {
+                      if (ex.getCause() instanceof ArtifactResolutionException) {
+                        getLog().warn("Replacing artifact " + artifact.toString() + " with "
+                            + newArtifact.toString()
+                            + " failed because the new one was not found.");
+                      } else {
+                        getLog().warn("Replacing artifact " + artifact.toString() + " with "
+                            + newArtifact.toString() + " failed", ex);
+                      }
                     }
                   }
+                } else {
+                  getLog().error("Invalid pom.properties detected: " + groupId + "/" + artifactId
+                      + "/" + version);
                 }
-              } else {
-                getLog().error("Invalid pom.properties detected: " + groupId + "/" + artifactId
-                    + "/" + version);
               }
             }
           }
         }
+      } catch (ZipException ex) {
+        getLog().warn("Could not open JAR for artifact " + artifact.getId() + " (type "
+            + artifact.getType() + ") for inspection. Error message: " + ex.getMessage());
       } catch (IOException ex) {
         getLog().error(
             "Could not open JAR file " + artifact.getFile().getPath() + " for inspection", ex);
@@ -293,8 +302,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       getLog().info("No author info found for Maven artifact " + artifact.getArtifactId()
           + ". Creating fallback information.");
       Map<String, Object> author = new LinkedHashMap<>();
-      author.put("name",
-          "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
+      author.put("name", "The " + reference.get(TITLE) + " " + reference.get(VERSION) + " Team");
       authorSet.add(author);
     }
     reference.put("authors", new LinkedList<>(authorSet));

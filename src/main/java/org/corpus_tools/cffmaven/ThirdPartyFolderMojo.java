@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -79,8 +80,11 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
     File artifactFolder = getArtifactFolder(title);
     if (artifactFolder != null) {
       // Inspect the JAR file to copy all available license texts and notices
-      if (artifact.getFile() != null && artifact.getFile().isFile()) {
-        try (ZipFile artifactFile = new ZipFile(artifact.getFile())) {
+      File file = artifact.getFile();
+      if (file != null && file.isFile()
+          && "jar".equals(com.google.common.io.Files.getFileExtension(file.getName()))) {
+
+        try (ZipFile artifactFile = new ZipFile(file)) {
           Enumeration<? extends ZipEntry> entries = artifactFile.entries();
           while (entries.hasMoreElements()) {
             ZipEntry currentEntry = entries.nextElement();
@@ -109,10 +113,17 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
               }
             }
           }
+
+
+        } catch (ZipException ex) {
+          getLog().warn("Could not open file for artifact " + artifact.getId() + ". Error message: "
+              + ex.getMessage());
         } catch (IOException ex) {
-          getLog().warn("Could not open artifact file " + artifact.getFile()
+          getLog().warn("Could not open file for artifact " + artifact.getId()
               + ". No 3rd party files will be extracted from it.", ex);
+
         }
+
       }
 
       // check if any files have been added

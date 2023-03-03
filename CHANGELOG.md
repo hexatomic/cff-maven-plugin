@@ -6,11 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Only try to open jar-files when expecting artifact contents. Trying to open
+  other file types will create an exception about an empty ZIP file.
+
 ## [0.6.0] - 2022-06-20 
 
 ### Fixed
 
-- Use a pattern instead of a fixed string to determine if this is a P2 artififact.
+- Use a pattern instead of a fixed string to determine if this is a P2 artifact.
 
 
 ## [0.5.0] - 2021-08-21
