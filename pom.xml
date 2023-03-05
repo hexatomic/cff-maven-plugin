@@ -151,7 +151,8 @@
 				<configuration>
 					<cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
 					<localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-					<postBuildHookScript>verify</postBuildHookScript> <!-- no extension required -->
+					<postBuildHookScript>verify</postBuildHookScript>
+					<addTestClassPath>true</addTestClassPath>
 				</configuration>
 				<executions>
 					<execution>
@@ -209,21 +210,9 @@
 			<version>2.11.0</version>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.plugin-testing</groupId>
-			<artifactId>maven-plugin-testing-harness</artifactId>
-			<version>3.3.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>4.3.1</version>
+			<groupId>io.github.java-diff-utils</groupId>
+			<artifactId>java-diff-utils</artifactId>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
