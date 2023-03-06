@@ -8,37 +8,81 @@ import com.github.difflib.patch.Patch;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileDiff {
 
   public static void compare(File expected, File actual) throws Exception {
-    if (!actual.isFile()) {
-      throw new FileNotFoundException("Could not find generated file: " + actual);
+    compare(expected, actual, true);
+  }
+
+  public static void compare(File expected, File actual, boolean ignoreDateReleased)
+      throws Exception {
+    if (!actual.exists()) {
+      throw new FileNotFoundException("\"" + actual + "\" is missing");
     }
-    List<String> expectedLines = Files.readAllLines(expected.toPath());
-    List<String> actualLines = Files.readAllLines(actual.toPath());
-    Patch<String> diff = DiffUtils.diff(expectedLines, actualLines);
 
-    // Ignore all deltas which are only changing the date
-    List<AbstractDelta<String>> deltas =
-        diff.getDeltas().stream().filter(d -> !canIgnoreDelta(d)).collect(Collectors.toList());
+    if (expected.isFile()) {
+      List<String> expectedLines = Files.readAllLines(expected.toPath());
+      List<String> actualLines = Files.readAllLines(actual.toPath());
+      Patch<String> diff = DiffUtils.diff(expectedLines, actualLines);
+
+      // Ignore all deltas which are only changing the date
+      List<AbstractDelta<String>> deltas = ignoreDateReleased
+          ? diff.getDeltas().stream().filter(d -> !canIgnoreDelta(d)).collect(Collectors.toList())
+          : diff.getDeltas();
 
 
-    if (!deltas.isEmpty()) {
+      if (!deltas.isEmpty()) {
 
-      List<String> unifiedDiff = UnifiedDiffUtils.generateUnifiedDiff(expected.getPath(),
-          actual.getPath(), expectedLines, diff, 0);
+        String unifiedDiff =
+            getUnifiedDiff(expected.getPath(), actual.getPath(), expectedLines, diff);
 
-      StringBuilder sb = new StringBuilder(actual + " has wrong content:\n");
-      for (String row : unifiedDiff) {
-        sb.append(row);
-        sb.append("\n");
+        throw new Exception(unifiedDiff);
       }
+    } else if (expected.isDirectory()) {
+      // Collect a sorted list of all file paths for both sided and compare this textual
+      // representation of the file tree
+      ArrayList<String> expectedFiles =
+          Files.walk(expected.toPath()).map(expected.toPath()::relativize).map(Path::toString)
+              .sorted().collect(Collectors.toCollection(ArrayList::new));
+      ArrayList<String> actualFiles = Files.walk(actual.toPath()).map(actual.toPath()::relativize)
+          .map(Path::toString).sorted().collect(Collectors.toCollection(ArrayList::new));
 
-      throw new Exception(sb.toString());
+      Patch<String> diff = DiffUtils.diff(expectedFiles, actualFiles);
+      if (!diff.getDeltas().isEmpty()) {
+        String unifiedDiff = getUnifiedDiff("expected-files", "actual-files", expectedFiles, diff);
+        throw new Exception(unifiedDiff);
+      }
+      // Check that all files (not directories) are the same
+      for (int i = 0; i < expectedFiles.size(); i++) {
+        File expectedFile = new File(expected, expectedFiles.get(i));
+        File actualFile = new File(actual, actualFiles.get(i));
+        if (expectedFile.isFile()) {
+          if (actualFile.isFile()) {
+            compare(expectedFile, actualFile, ignoreDateReleased);
+          } else {
+            throw new Exception("\"" + actualFile.getPath() + "\" is not a file.");
+          }
+        }
+      }
     }
+  }
+
+  private static String getUnifiedDiff(String expectedFileName, String actualFileName,
+      List<String> expectedLines, Patch<String> diff) {
+    List<String> unifiedDiff = UnifiedDiffUtils.generateUnifiedDiff(expectedFileName,
+        actualFileName, expectedLines, diff, 0);
+
+    StringBuilder sb = new StringBuilder(actualFileName + " has wrong content:\n");
+    for (String row : unifiedDiff) {
+      sb.append(row);
+      sb.append("\n");
+    }
+    return sb.toString();
   }
 
   private static boolean canIgnoreDelta(AbstractDelta<String> delta) {
@@ -47,8 +91,6 @@ public class FileDiff {
         String sourceLine = delta.getSource().getLines().get(0);
         String targetLine = delta.getTarget().getLines().get(0);
         if (sourceLine.startsWith("date-released:") && targetLine.startsWith("date-released:")) {
-          return true;
-        } else if (sourceLine.startsWith("version:") && targetLine.startsWith("version:")) {
           return true;
         }
       }
