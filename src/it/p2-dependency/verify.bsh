@@ -1,0 +1,10 @@
+import java.io.File;
+import org.corpus_tools.cffmaven.FileDiff;
+
+File expectedFile = new File("src/it/p2-dependency/CITATION.cff");
+File actualFile = new File( basedir, "CITATION.cff" );
+FileDiff.compare(expectedFile, actualFile);
+
+File expectedFolder = new File("src/it/p2-dependency/THIRD-PARTY");
+File actualFolder = new File( basedir, "THIRD-PARTY" );
+FileDiff.compare(expectedFolder, actualFolder, false);
