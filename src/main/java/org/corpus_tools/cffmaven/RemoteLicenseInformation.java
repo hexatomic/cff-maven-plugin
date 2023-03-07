@@ -1,9 +1,12 @@
 package org.corpus_tools.cffmaven;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class RemoteLicenseInformation {
+public class RemoteLicenseInformation implements Serializable {
+  private static final long serialVersionUID = -9210187411126111132L;
+
   private String spdx;
   private List<String> authors = new LinkedList<>();
   private long score = 0;

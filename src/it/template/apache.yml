@@ -1,0 +1,8 @@
+type: software
+title: Apache Software Product
+abbreviation: '{{artifactId}}'
+version: '{{version}}'
+license: APACHE-2
+license-url: https://www.apache.org/licenses/LICENSE-2.0.txt
+authors:
+  name: The Apache Software Foundation

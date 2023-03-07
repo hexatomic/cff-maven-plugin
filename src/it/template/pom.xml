@@ -1,0 +1,60 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.corpus-tools</groupId>
+	<artifactId>cff-template-test</artifactId>
+	<packaging>jar</packaging>
+	<version>2.2.0</version>
+	<developers>
+		<developer>
+			<name>John Doe</name>
+		</developer>
+	</developers>
+
+	<repositories>
+		<repository>
+			<id>test-deps-repo</id>
+			<url>file:///${project.basedir}/../../../src/test/resources/test-deps-repo</url>
+		</repository>
+	</repositories>
+	
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.corpus-tools</groupId>
+				<artifactId>cff-maven-plugin</artifactId>
+				<version>0.8.0</version>
+				<configuration>
+					<input>CITATION.input.cff</input>
+					<dateReleased>2000-01-01</dateReleased>
+					<referenceTemplates>
+						<referenceTemplate>
+							<pattern>commons-.*:.*</pattern>
+							<template>apache.yml</template>
+						</referenceTemplate>
+					</referenceTemplates>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk18on</artifactId>
+			<version>1.72</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.corpus-tools</groupId>
+			<artifactId>license-url-only</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
+</project>

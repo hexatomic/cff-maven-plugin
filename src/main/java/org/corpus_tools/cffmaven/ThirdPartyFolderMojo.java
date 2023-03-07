@@ -23,6 +23,11 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
+import org.ehcache.Cache;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.config.units.EntryUnit;
+import org.ehcache.config.units.MemoryUnit;
 
 /**
  * Extracts third-party license files like "LICENSE.txt", "NOTICE" or "about.html" into a folder.
@@ -41,6 +46,18 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
 
   @Parameter(defaultValue = "true")
   private boolean deleteFolder;
+
+  private Cache<String, String> downloadedLicensesCache;
+
+  /** Constructor. */
+  public ThirdPartyFolderMojo() {
+    super();
+
+    downloadedLicensesCache = getCacheManager().createCache("downloadedLicenses",
+        CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class, String.class,
+            ResourcePoolsBuilder.newResourcePoolsBuilder().heap(100, EntryUnit.ENTRIES).disk(100,
+                MemoryUnit.MB, true)));
+  }
 
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
@@ -72,6 +89,9 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
         }
       }
     }
+
+    closeCache();
+    downloadedLicensesCache = null;
   }
 
   private void createThirdPartyFolder(String title, Artifact artifact,
@@ -140,17 +160,27 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
 
           if (licenseUrl instanceof String) {
             HttpUrl url = HttpUrl.parse((String) licenseUrl);
-            Request downloadRequest = new Request.Builder().url(url).build();
 
-            getLog()
-                .info("Downloading license for " + artifact.toString() + " from URL " + licenseUrl);
-            try (Response response = http.newCall(downloadRequest).execute()) {
-              if (response.code() == 200) {
-                licenseText = Optional.ofNullable(response.body().string());
+            if (downloadedLicensesCache.containsKey(url.toString())) {
+              licenseText = Optional.ofNullable(downloadedLicensesCache.get(url.toString()));
+            } else {
+              Request downloadRequest = new Request.Builder().url(url).build();
+
+              getLog().info(
+                  "Downloading license for " + artifact.toString() + " from URL " + licenseUrl);
+              try (Response response = http.newCall(downloadRequest).execute()) {
+                if (response.code() == 200) {
+                  licenseText = Optional.ofNullable(response.body().string());
+                  if (licenseText.isPresent()) {
+                    downloadedLicensesCache.put(url.toString(), licenseText.get());
+                  }
+                }
+              } catch (IOException e) {
+                getLog().error("License download for URL " + licenseUrl + " failed.", e);
               }
-            } catch (IOException e) {
-              getLog().error("License download for URL " + licenseUrl + " failed.", e);
             }
+
+
           }
 
           if (!licenseText.isPresent() && licenseId instanceof String) {
@@ -160,17 +190,25 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
             HttpUrl url = HttpUrl
                 .parse("https://raw.githubusercontent.com/spdx/license-list-data/master/text/"
                     + (String) licenseId + ".txt");
-            Request downloadRequest = new Request.Builder().url(url).build();
 
-            getLog()
-                .info("Downloading license for " + artifact.toString() + " from SPDX repository");
+            if (downloadedLicensesCache.containsKey(url.toString())) {
+              licenseText = Optional.ofNullable(downloadedLicensesCache.get(url.toString()));
+            } else {
+              Request downloadRequest = new Request.Builder().url(url).build();
 
-            try (Response response = http.newCall(downloadRequest).execute()) {
-              if (response.code() == 200) {
-                licenseText = Optional.ofNullable(response.body().string());
+              getLog()
+                  .info("Downloading license for " + artifact.toString() + " from SPDX repository");
+
+              try (Response response = http.newCall(downloadRequest).execute()) {
+                if (response.code() == 200) {
+                  licenseText = Optional.ofNullable(response.body().string());
+                  if (licenseText.isPresent()) {
+                    downloadedLicensesCache.put(url.toString(), licenseText.get());
+                  }
+                }
+              } catch (IOException e) {
+                getLog().error("License download for URL " + licenseUrl + " failed.", e);
               }
-            } catch (IOException e) {
-              getLog().error("License download for URL " + licenseUrl + " failed.", e);
             }
           }
 

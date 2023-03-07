@@ -47,9 +47,18 @@ import org.apache.maven.project.ProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
 import org.apache.maven.project.ProjectBuildingResult;
+import org.ehcache.Cache;
+import org.ehcache.PersistentCacheManager;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.CacheManagerBuilder;
+import org.ehcache.config.builders.CacheManagerConfiguration;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.config.units.EntryUnit;
+import org.ehcache.config.units.MemoryUnit;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.snakeyaml.engine.v2.api.Load;
+import org.snakeyaml.engine.v2.api.LoadSettings;
 
 /**
  * Common functionality of the different CFF Mojos.
@@ -102,23 +111,53 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   @Parameter
   protected List<String> ignoredArtifacts;
 
+  @Parameter
+  private List<TemplateConfiguration> referenceTemplates;
+
   private List<Pattern> ignoredPatterns;
 
+  private Cache<String, RemoteLicenseInformation> remoteLicenseCache;
+  private PersistentCacheManager cacheManager;
+  private Map<Pattern, File> templatePatterns;
+
+  private Load yamlLoad = new Load(LoadSettings.builder().build());
 
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
-    LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
-    reference.put("type", "software");
-    reference.put(TITLE, artifact.getArtifactId());
-    reference.put(VERSION, artifact.getVersion());
+    Map<String, Object> templateRef = null;
 
-    if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
-      createReferenceFromP2(reference, artifact, projectBuildingRequest);
-    } else {
-      createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
+    for (Map.Entry<Pattern, File> entry : getTemplatePatterns().entrySet()) {
+      getLog().debug(
+          "Testing artifact " + artifact.toString() + " with pattern " + entry.getKey().pattern());
+      if (entry.getKey().matcher(artifact.toString()).matches()) {
+        try {
+          getLog().info("Adding reference " + artifact.toString() + " from template "
+              + entry.getValue().getPath());
+          templateRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
+              entry.getValue(), yamlLoad);
+          break;
+        } catch (IOException e) {
+          getLog().error("Could create reference from template " + entry.getValue().getPath(), e);
+        }
+      }
     }
 
-    return reference;
+    if (templateRef == null) {
+      // no pattern matched, use P2 or Maven information
+      LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
+      reference.put("type", "software");
+      reference.put(TITLE, artifact.getArtifactId());
+      reference.put(VERSION, artifact.getVersion());
+
+      if (P2_PLUGIN_GROUP_ID.matcher(artifact.getGroupId()).matches()) {
+        createReferenceFromP2(reference, artifact, projectBuildingRequest);
+      } else {
+        createReferenceFromMavenArtifact(reference, artifact, projectBuildingRequest);
+      }
+      return reference;
+    } else {
+      return templateRef;
+    }
   }
 
 
@@ -338,6 +377,11 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
+
+    if (getRemoteLicenseCache().containsKey(artifact.getId())) {
+      return Optional.ofNullable(getRemoteLicenseCache().get(artifact.getId()));
+    }
+
     // query the REST API of ClearlyDefined
     // https://api.clearlydefined.io/api-docs/
     List<String> patterns = new LinkedList<>();
@@ -404,7 +448,9 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       return Optional.empty();
     } else {
       // return the entry with the highest score
-      return Optional.of(remoteLicensesByScore.lastEntry().getValue());
+      RemoteLicenseInformation result = remoteLicensesByScore.lastEntry().getValue();
+      getRemoteLicenseCache().put(artifact.getId(), result);
+      return Optional.of(result);
     }
 
   }
@@ -486,5 +532,47 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     return false;
   }
 
+  protected Map<Pattern, File> getTemplatePatterns() {
+    if (templatePatterns == null) {
+      templatePatterns = new LinkedHashMap<>();
+      if (referenceTemplates != null) {
+        for (TemplateConfiguration config : referenceTemplates) {
+          Pattern p = Pattern.compile(config.getPattern());
+          templatePatterns.put(p, config.getTemplate());
+        }
+      }
+    }
+    return templatePatterns;
+  }
+
+
+  protected PersistentCacheManager getCacheManager() {
+    if (cacheManager == null) {
+      CacheManagerConfiguration<PersistentCacheManager> cacheConfig =
+          CacheManagerBuilder.persistence(System.getProperty("user.home")
+              + "/.m2/repository/.cache/cff-maven-plugin/" + this.getClass().getSimpleName());
+
+      cacheManager = CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
+    }
+    return cacheManager;
+  }
+
+
+  protected Cache<String, RemoteLicenseInformation> getRemoteLicenseCache() {
+    if (remoteLicenseCache == null) {
+
+      remoteLicenseCache = getCacheManager().createCache("remoteLicense",
+          CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class,
+              RemoteLicenseInformation.class, ResourcePoolsBuilder.newResourcePoolsBuilder()
+                  .heap(100, EntryUnit.ENTRIES).disk(100, MemoryUnit.MB, true)));
+    }
+    return remoteLicenseCache;
+  }
+
+  protected void closeCache() {
+    getCacheManager().close();
+    cacheManager = null;
+    remoteLicenseCache = null;
+  }
 
 }

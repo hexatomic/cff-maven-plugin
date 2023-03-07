@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+type: software
+message: If you use this software, please cite it as below.
+title: A very special test
+authors:
+- name: John Doe
+version: 2.2.0
+date-released: 2000-01-01
+references:
+- type: software
+  title: Apache Software Product
+  abbreviation: commons-io
+  version: 2.11.0
+  license: APACHE-2
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.txt
+  authors:
+    name: The Apache Software Foundation
+- type: software
+  title: Bouncy Castle Provider
+  version: '1.72'
+  abbreviation: org.bouncycastle:bcprov-jdk18on
+  license: MIT
+  notes: More license information can be found in the THIRD-PARTY/Bouncy_Castle_Provider
+    directory.
+  authors:
+  - name: The Legion of the Bouncy Castle Inc.
+    email: feedback-crypto@bouncycastle.org
+  repository-code: https://github.com/bcgit/bc-java
+- type: software
+  title: license-url-only
+  version: 1.0.0
+  abbreviation: org.corpus-tools:license-url-only
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.txt
+  notes: More license information can be found in the THIRD-PARTY/license_url_only
+    directory.
+  authors:
+  - name: John Doe

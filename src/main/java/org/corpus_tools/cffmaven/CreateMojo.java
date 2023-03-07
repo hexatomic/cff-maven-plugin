@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Developer;
@@ -50,18 +49,12 @@ public class CreateMojo extends AbstractCffMojo {
   @Parameter
   private String dateReleased;
 
-
-  @Parameter
-  private List<TemplateConfiguration> referenceTemplates;
-
   /**
    * {@inheritDoc}
    */
   public void execute() throws MojoExecutionException {
 
-
-    LoadSettings yamlLoadSettings = LoadSettings.builder().build();
-    Load yamlLoad = new Load(yamlLoadSettings);
+    Load yamlLoad = new Load(LoadSettings.builder().build());
     Map<String, Object> cff = new LinkedHashMap<>();
     cff.putIfAbsent("cff-version", "1.2.0");
     cff.putIfAbsent("type", "software");
@@ -128,42 +121,10 @@ public class CreateMojo extends AbstractCffMojo {
 
     TreeMap<String, Map<String, Object>> newReferences = new TreeMap<>();
 
-    Map<Pattern, File> templatePatterns = new LinkedHashMap<Pattern, File>();
-    if (referenceTemplates != null) {
-      for (TemplateConfiguration config : referenceTemplates) {
-        Pattern p = Pattern.compile(config.getPattern().toString());
-        templatePatterns.put(p, config.getTemplate());
-      }
-    }
-
     for (Artifact artifact : project.getArtifacts()) {
-
       if (!isIgnored(artifact)) {
         try {
-
-          Map<String, Object> newRef = null;
-
-          for (Map.Entry<Pattern, File> entry : templatePatterns.entrySet()) {
-            getLog().debug("Testing artifact " + artifact.toString() + " with pattern "
-                + entry.getKey().pattern());
-            if (entry.getKey().matcher(artifact.toString()).matches()) {
-              try {
-                getLog().info("Adding reference " + artifact.toString() + " from template "
-                    + entry.getValue().getPath());
-                newRef = createReferenceFromTemplate(artifact, projectBuildingRequest,
-                    entry.getValue(), yamlLoad);
-                break;
-              } catch (IOException e) {
-                getLog().error("Could create reference from template " + entry.getValue().getPath(),
-                    e);
-              }
-            }
-          }
-
-          if (newRef == null) {
-            // no pattern matched
-            newRef = createReference(artifact, projectBuildingRequest);
-          }
+          Map<String, Object> newRef = createReference(artifact, projectBuildingRequest);
           String newRefTitle = (String) newRef.getOrDefault(TITLE, "");
           if (skipExistingDependencies && existingTitles.contains(newRefTitle)) {
             getLog().info("Ignoring existing dependency " + artifact.toString());
@@ -195,6 +156,8 @@ public class CreateMojo extends AbstractCffMojo {
     } catch (IOException ex) {
       getLog().error("Could not write Citation file", ex);
     }
+
+    closeCache();
   }
 
   private List<Map<String, Object>> mapExistingReferences(Object existingReferences) {

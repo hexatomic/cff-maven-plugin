@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+type: software
+message: If you use this software, please cite it as below.
+title: cff-default-config-test
+version: 0.8.0-SNAPSHOT
+date-released: 2023-03-07
+authors:
+- name: The cff-default-config-test 0.8.0-SNAPSHOT Team
+references:
+- type: software
+  title: Commons IO
+  version: 1.3.2
+  abbreviation: commons-io:commons-io
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Commons_IO directory.
+  authors:
+  - name: Scott Sanders
+    email: sanders@apache.org
+  - name: dIon Gillard
+    email: dion@apache.org
+  - name: Nicola Ken Barozzi
+    email: nicolaken@apache.org
+  - name: Henri Yandell
+    email: bayard@apache.org
+  - name: Stephen Colebourne
+  - name: Jeremias Maerki
+    email: jeremias@apache.org
+  - name: Matthew Hawthorne
+    email: matth@apache.org
+  - name: Martin Cooper
+    email: martinc@apache.org
+  - name: Rob Oxspring
+    email: roxspring@apache.org
+  - name: Jochen Wiedmann
+    email: jochen.wiedmann@gmail.com
+  repository-code: http://svn.apache.org/viewvc/jakarta/commons/proper/io/trunk
+- type: software
+  title: Handlebars
+  version: 4.2.0
+  abbreviation: com.github.jknack:handlebars
+  license: Apache-2.0
+  notes: More license information can be found in the THIRD-PARTY/Handlebars directory.
+  authors:
+  - name: Edgar Espina
+- type: software
+  title: SLF4J API Module
+  version: 1.7.25
+  abbreviation: org.slf4j:slf4j-api
+  license: MIT
+  notes: More license information can be found in the THIRD-PARTY/SLF4J_API_Module
+    directory.
+  authors:
+  - name: Ceki Gulcu
+    email: ceki@qos.ch
+  repository-code: https://github.com/qos-ch/slf4j/slf4j-api
