@@ -15,7 +15,7 @@
 	<repositories>
 		<repository>
 			<id>test-deps-repo</id>
-			<url>file:///${project.basedir}/../../src/test/resources/test-deps-repo</url>
+			<url>file:///${project.basedir}/../../../src/test/resources/test-deps-repo</url>
 		</repository>
 	</repositories>
 	
