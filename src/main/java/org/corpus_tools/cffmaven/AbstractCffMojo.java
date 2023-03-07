@@ -47,6 +47,14 @@ import org.apache.maven.project.ProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.apache.maven.project.ProjectBuildingRequest;
 import org.apache.maven.project.ProjectBuildingResult;
+import org.ehcache.Cache;
+import org.ehcache.PersistentCacheManager;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.CacheManagerBuilder;
+import org.ehcache.config.builders.CacheManagerConfiguration;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
+import org.ehcache.config.units.EntryUnit;
+import org.ehcache.config.units.MemoryUnit;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.snakeyaml.engine.v2.api.Load;
@@ -103,6 +111,26 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   protected List<String> ignoredArtifacts;
 
   private List<Pattern> ignoredPatterns;
+
+
+  private Cache<String, RemoteLicenseInformation> remoteLicenseCache;
+
+  public AbstractCffMojo() {
+    CacheManagerConfiguration<PersistentCacheManager> cacheConfig = CacheManagerBuilder
+        .persistence(System.getProperty("user.home") + "/.m2/repository/.cache/cff-maven-plugin");
+
+    PersistentCacheManager cacheManager =
+        CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
+
+
+    remoteLicenseCache = cacheManager.createCache("remoteLicense",
+        CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class,
+            RemoteLicenseInformation.class, ResourcePoolsBuilder.newResourcePoolsBuilder()
+                .heap(100, EntryUnit.ENTRIES).disk(100, MemoryUnit.MB, true)));
+
+    cacheManager.close();
+
+  }
 
 
   protected Map<String, Object> createReference(Artifact artifact,
@@ -338,6 +366,11 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   }
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
+
+    if (remoteLicenseCache.containsKey(artifact.getId())) {
+      return Optional.ofNullable(remoteLicenseCache.get(artifact.getId()));
+    }
+
     // query the REST API of ClearlyDefined
     // https://api.clearlydefined.io/api-docs/
     List<String> patterns = new LinkedList<>();
@@ -404,7 +437,9 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       return Optional.empty();
     } else {
       // return the entry with the highest score
-      return Optional.of(remoteLicensesByScore.lastEntry().getValue());
+      RemoteLicenseInformation result = remoteLicensesByScore.lastEntry().getValue();
+      remoteLicenseCache.put(artifact.getId(), result);
+      return Optional.of(result);
     }
 
   }
