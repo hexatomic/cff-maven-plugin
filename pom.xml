@@ -46,6 +46,7 @@
 		<jacoco.version>0.8.8</jacoco.version>
 		<jacoco.propertyName>invoker.mavenOpts</jacoco.propertyName>
 		<jacoco.includes>org.corpus_tools.cffmaven.*</jacoco.includes>
+		<sonar.coverage.jacoco.xmlReportPaths>${basedir}/target/jacoco.exec</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<build>
 		<pluginManagement>
