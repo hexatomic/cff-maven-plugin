@@ -112,19 +112,18 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   private List<Pattern> ignoredPatterns;
 
-
   private Cache<String, RemoteLicenseInformation> remoteLicenseCache;
+  private PersistentCacheManager cacheManager;
 
   protected AbstractCffMojo() {
     CacheManagerConfiguration<PersistentCacheManager> cacheConfig =
         CacheManagerBuilder.persistence(System.getProperty("user.home")
             + "/.m2/repository/.cache/cff-maven-plugin/" + this.getClass().getSimpleName());
 
-    PersistentCacheManager cacheManager =
-        CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
+    cacheManager = CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
 
 
-    remoteLicenseCache = cacheManager.createCache("remoteLicense",
+    remoteLicenseCache = getCacheManager().createCache("remoteLicense",
         CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class,
             RemoteLicenseInformation.class, ResourcePoolsBuilder.newResourcePoolsBuilder()
                 .heap(100, EntryUnit.ENTRIES).disk(100, MemoryUnit.MB, true)));
@@ -518,6 +517,11 @@ public abstract class AbstractCffMojo extends AbstractMojo {
       }
     }
     return false;
+  }
+
+
+  public PersistentCacheManager getCacheManager() {
+    return cacheManager;
   }
 
 
