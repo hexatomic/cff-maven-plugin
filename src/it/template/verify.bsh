@@ -1,0 +1,6 @@
+import java.io.File;
+import org.corpus_tools.cffmaven.FileDiff;
+
+File expectedFile = new File("src/it/template/CITATION.cff");
+File actualFile = new File( basedir, "CITATION.cff" );
+FileDiff.compare(expectedFile, actualFile);
