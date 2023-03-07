@@ -1,0 +1,12 @@
+type: software
+title: Bouncy Castle Provider
+version: '{{version}}'
+abbreviation: org.bouncycastle:bcprov-jdk18on
+license: MIT
+license-url: https://raw.githubusercontent.com/bcgit/bc-java/master/LICENSE.html
+notes: More license information can be found in the THIRD-PARTY/Bouncy_Castle_Provider
+  directory.
+authors:
+- name: The Legion of the Bouncy Castle Inc.
+  email: feedback-crypto@bouncycastle.org
+repository-code: https://github.com/bcgit/bc-java

@@ -15,3 +15,14 @@ references:
   license-url: https://www.apache.org/licenses/LICENSE-2.0.txt
   authors:
     name: The Apache Software Foundation
+- type: software
+  title: Bouncy Castle Provider
+  version: '1.72'
+  abbreviation: org.bouncycastle:bcprov-jdk18on
+  license: MIT
+  notes: More license information can be found in the THIRD-PARTY/Bouncy_Castle_Provider
+    directory.
+  authors:
+  - name: The Legion of the Bouncy Castle Inc.
+    email: feedback-crypto@bouncycastle.org
+  repository-code: https://github.com/bcgit/bc-java
