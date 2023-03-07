@@ -1,0 +1,7 @@
+type: software
+title: Apache Software Product
+abbreviation: '{{artifactId}}'
+version: '{{version}}'
+license: APACHE-2
+authors:
+  name: The Apache Software Foundation
