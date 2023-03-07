@@ -195,6 +195,8 @@ public class CreateMojo extends AbstractCffMojo {
     } catch (IOException ex) {
       getLog().error("Could not write Citation file", ex);
     }
+
+    closeCache();
   }
 
   private List<Map<String, Object>> mapExistingReferences(Object existingReferences) {
