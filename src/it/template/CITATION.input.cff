@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+type: software
+message: If you use this software, please cite it as below.
+title: A very special test
+authors:
+- name: John Doe
