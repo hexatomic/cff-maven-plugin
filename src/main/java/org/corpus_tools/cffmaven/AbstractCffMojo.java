@@ -115,22 +115,6 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   private Cache<String, RemoteLicenseInformation> remoteLicenseCache;
   private PersistentCacheManager cacheManager;
 
-  protected AbstractCffMojo() {
-    CacheManagerConfiguration<PersistentCacheManager> cacheConfig =
-        CacheManagerBuilder.persistence(System.getProperty("user.home")
-            + "/.m2/repository/.cache/cff-maven-plugin/" + this.getClass().getSimpleName());
-
-    cacheManager = CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
-
-
-    remoteLicenseCache = getCacheManager().createCache("remoteLicense",
-        CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class,
-            RemoteLicenseInformation.class, ResourcePoolsBuilder.newResourcePoolsBuilder()
-                .heap(100, EntryUnit.ENTRIES).disk(100, MemoryUnit.MB, true)));
-
-  }
-
-
   protected Map<String, Object> createReference(Artifact artifact,
       ProjectBuildingRequest projectBuildingRequest) throws ProjectBuildingException {
     LinkedHashMap<String, Object> reference = new LinkedHashMap<>();
@@ -365,8 +349,8 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   private Optional<RemoteLicenseInformation> queryLicenseFromClearlyDefined(Artifact artifact) {
 
-    if (remoteLicenseCache.containsKey(artifact.getId())) {
-      return Optional.ofNullable(remoteLicenseCache.get(artifact.getId()));
+    if (getRemoteLicenseCache().containsKey(artifact.getId())) {
+      return Optional.ofNullable(getRemoteLicenseCache().get(artifact.getId()));
     }
 
     // query the REST API of ClearlyDefined
@@ -436,7 +420,7 @@ public abstract class AbstractCffMojo extends AbstractMojo {
     } else {
       // return the entry with the highest score
       RemoteLicenseInformation result = remoteLicensesByScore.lastEntry().getValue();
-      remoteLicenseCache.put(artifact.getId(), result);
+      getRemoteLicenseCache().put(artifact.getId(), result);
       return Optional.of(result);
     }
 
@@ -520,9 +504,33 @@ public abstract class AbstractCffMojo extends AbstractMojo {
   }
 
 
-  public PersistentCacheManager getCacheManager() {
+  protected PersistentCacheManager getCacheManager() {
+    if (cacheManager == null) {
+      CacheManagerConfiguration<PersistentCacheManager> cacheConfig =
+          CacheManagerBuilder.persistence(System.getProperty("user.home")
+              + "/.m2/repository/.cache/cff-maven-plugin/" + this.getClass().getSimpleName());
+
+      cacheManager = CacheManagerBuilder.newCacheManagerBuilder().with(cacheConfig).build(true);
+    }
     return cacheManager;
   }
 
+
+  protected Cache<String, RemoteLicenseInformation> getRemoteLicenseCache() {
+    if (remoteLicenseCache == null) {
+
+      remoteLicenseCache = getCacheManager().createCache("remoteLicense",
+          CacheConfigurationBuilder.newCacheConfigurationBuilder(String.class,
+              RemoteLicenseInformation.class, ResourcePoolsBuilder.newResourcePoolsBuilder()
+                  .heap(100, EntryUnit.ENTRIES).disk(100, MemoryUnit.MB, true)));
+    }
+    return remoteLicenseCache;
+  }
+
+  protected void closeCache() {
+    getCacheManager().close();
+    cacheManager = null;
+    remoteLicenseCache = null;
+  }
 
 }

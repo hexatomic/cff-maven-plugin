@@ -89,6 +89,9 @@ public class ThirdPartyFolderMojo extends AbstractCffMojo {
         }
       }
     }
+
+    closeCache();
+    downloadedLicensesCache = null;
   }
 
   private void createThirdPartyFolder(String title, Artifact artifact,
