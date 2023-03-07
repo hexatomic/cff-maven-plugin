@@ -534,10 +534,10 @@ public abstract class AbstractCffMojo extends AbstractMojo {
 
   protected Map<Pattern, File> getTemplatePatterns() {
     if (templatePatterns == null) {
-      templatePatterns = new LinkedHashMap<Pattern, File>();
+      templatePatterns = new LinkedHashMap<>();
       if (referenceTemplates != null) {
         for (TemplateConfiguration config : referenceTemplates) {
-          Pattern p = Pattern.compile(config.getPattern().toString());
+          Pattern p = Pattern.compile(config.getPattern());
           templatePatterns.put(p, config.getTemplate());
         }
       }
