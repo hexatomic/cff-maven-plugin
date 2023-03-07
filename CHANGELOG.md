@@ -6,10 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2023-03-07
+
 ### Fixed 
 
 - The `third-party-folder` goal now also actually respects the
-  `referenceTemplates` parameter. In case you have these configured, this also
+  `referenceTemplates` parameter. In case you have it configured, this also
   speeds the lookup for P2 artifacts and makes sure the information in
   `CITATION.cff` and the `THIRD-PARTY` folder are synchronized. This was already
   described in the documentation, but not actually implemented.
