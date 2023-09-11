@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed 
+
+- Updated `org.json:json`` dependency due to CVE-2022-45688
+
 ## [0.8.0] - 2023-03-07
 
 ### Fixed 
