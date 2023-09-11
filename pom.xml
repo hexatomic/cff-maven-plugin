@@ -5,7 +5,7 @@
 	<groupId>org.corpus-tools</groupId>
 	<artifactId>cff-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<version>0.8.0</version>
+	<version>0.8.1</version>
 	<name>CFF Maven Plugin</name>
 	<url>http://maven.apache.org</url>
 	<licenses>
@@ -51,7 +51,7 @@
 				<plugin>
 					<groupId>org.corpus-tools</groupId>
 					<artifactId>cff-maven-plugin</artifactId>
-					<version>0.8.0</version>
+					<version>0.8.1</version>
 					<configuration>
 						<input>${project.basedir}/cff-templates/CITATION_input.yml</input>
 						<includeEmail>false</includeEmail>
@@ -184,7 +184,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20210307</version>
+			<version>20230618</version>
 		</dependency>
 		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
@@ -199,7 +199,7 @@
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-compat</artifactId>
-			<version>3.6.3</version>
+			<version>3.8.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
