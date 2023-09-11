@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed 
 
-- Updated `org.json:json`` dependency due to CVE-2022-45688
+- Updated `org.json:json` dependency due to CVE-2022-45688
+- Updated `org.apache.maven:maven-compat` dependency due to CVE-2021-26291
 
 ## [0.8.0] - 2023-03-07
 
